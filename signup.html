@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ball Fuzz Tennis Center Website</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href ="css/main.css">
+        
+    </head>
+    <body>
+        <header>
+            <a href="index.html"> BallFuzz.Tennis</a>
+        </header>
+
+        <form class ="signup">
+            <fieldset class="border">
+                <h3 class ="w-auto1">Sign Up</h3>
+                <div class="hero-bg1">
+                    <div class ="form-group row col-lg">
+                        <div class ="col-sm-2">
+                            <label for ="txtFirstname" class ="col-form-label" >
+                                <span>FirstName:</span>
+                                
+                            </label>
+                        </div>
+                        <div class ="col-sm-8">
+                            <input type="text" id="txtFirstname" name="txtFirstname" required class="form-control" placeholder="First Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class ="form-group row col-lg">
+                        <div class ="col-sm-2">
+                            <label for ="txtLastname" class ="col-form-label" >
+                                <span>LastName:</span>
+                                
+                            </label>
+                        </div>
+                        <div class ="col-sm-8">
+                            <input type="text" id="txtLastname" name="txtLastname" required class="form-control" placeholder="Last Name" required>
+                        </div>
+                    </div>
+
+                    <div class ="row form-group  col-lg">
+                        <label for ="txtusername" class="col-sm-2 col-form-label"> UserName:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id ="txtusername" name ="txtusername" required class ="form-control" placeholder ="Jamie" >
+                        </div>
+                    </div>
+
+                    <div class="col-lg">
+                        <fieldset class ="border form-group">
+                        
+                            <legend class ="col-sm-2 col-form-label">Gender:</legend>
+                            <div class ="col-sm-4">
+                                <div class ="form-check">
+                                    <input type="radio" id="rbMale" name="gender" value="male" class="form-check-input" >
+                                    <label for ="rbMale" class ="form-check-label">Male</label>
+                                </div>
+                                <div class ="form-check">
+                                    <input type="radio" id="rbFemale" name="gender" value="female" class="form-check-input" >
+                                    <label for ="rbFemale" class ="form-check-label">Female</label>
+                                </div>
+                                <div class ="form-check">
+                                
+                                    <input type="radio" id="rbOther" name="gender" value="other" class="form-check-input" >
+                                    <label for ="rbOther" class ="form-check-label">Other</label>
+                                </div>
+                            </div>
+                        
+                        
+                        </fieldset>
+                    </div>
+                    <div class ="row form-group  col-lg">
+                        <label for ="txtAddress" class= " col-sm-2 col-form-label"> Address:</label>
+
+                        <div class="col-md-4 col-lg-4">
+                            <input type="txt" id ="txtAddress" name ="txtAddress" class ="form-control" placeholder= "Street">
+                        </div>
+
+                        <div class="col">
+                            <input type="txt" id ="txtCity" name ="txtCity" class ="form-control" placeholder= "City">
+                        </div>
+
+                        <div class="col">
+                            <input type="txt" id ="txtState" name ="txtState" class ="form-control" placeholder= "State">
+                        </div>
+
+                        <div class="col">
+                            <input type="txt" id ="txtZipcode" name ="txtZipcode" class ="form-control" placeholder= "Zipcode" pattern =[0-9]{5}>
+                        </div>
+                    </div>
+                    <div class ="row form-group  col-lg">
+                        <label for ="txtEmail" class="col-sm-2 col-form-label"> Email:</label>
+                        <div class="col-sm-8">
+                            <input type="emai" id ="txtEmail" name ="txtEmail" required class ="form-control" placeholder ="name@example.com" >
+                        </div>
+                    </div>
+
+                    <div class ="row form-group  col-lg">
+                        <label for ="txtpassword" class="col-sm-2 col-form-label"> Password:</label>
+                        <div class="col-sm-8">
+                            <input type="password" id ="txtpassword" name ="txtpassword" required class ="form-control" placeholder ="password" >
+                        </div>
+                    </div>
+
+                    <div class ="row form-group  col-lg">
+                        <label for ="txtconpassword" class="col-sm-2 col-form-label"> Password:</label>
+                        <div class="col-sm-8">
+                            <input type="password" id ="txtconpassword" name ="txtconpassword" required class ="form-control" placeholder ="password" >
+                        </div>
+                    </div>
+
+                    <div class ="row form-group">
+                        <label for ="txtDOB" class="col-sm-2 col-form-label"> 
+                            Birthday:
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="date" id ="txtDOB" name ="txtDOB" required class ="form-control" placeholder= "Date of Birth">
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <fieldset class ="border form-group">
+                            
+                            <legend class ="col-sm-4 col-form-label">Security Questions:</legend>
+                            <div class ="row form-group  col-lg">
+                                <label for ="txtQuestion1" class="col-sm-12 col-form-label"> 1. What is your first pet's name?</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id ="txtQuestion1" name ="txtQuestion1" required class ="form-control" placeholder ="Oliver" >
+                                </div>
+                            </div>
+
+                            
+                            <div class ="row form-group  col-lg">
+                                <label for ="txtQuestion2" class="col-sm-12 col-form-label"> 2. What is your mother's maiden name?</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id ="txtQuestion2" name ="txtQuestion2" required class ="form-control" placeholder ="Scott" >
+                                </div>
+                            </div>
+
+                            
+                            <div class ="row form-group  col-lg">
+                                <label for ="txtQuestion3" class="col-sm-12 col-form-label"> 3. What is the name of your high school ?</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id ="txtQuestion3" name ="txtQuestion3" required class ="form-control" placeholder ="River High" >
+                                </div>
+                            </div>
+                            
+                        </fieldset>
+                    </div>
+
+                    <div class ="row form-group  col-lg">
+                        <label for ="txtBio" class="col-sm-2 col-form-label"> Bio:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id ="txtBio" name ="txtBio" required class ="form-control" placeholder ="Hi, I'm from Cali and I love tennis!!" >
+                        </div>
+                    </div>
+                </div>
+                   
+            </fieldset>
+            <img src= 'css/part2.jpg' alt= "tennis pic">
+        </form>
+        <div class ="low form-group row col-lg">
+            <div class ="col-sm-12">
+                <button type="submit" class= " btn btn-success btn-lg">Submit</button>
+                <button type="reset" class= "  btn btn-primary btn-lg">Reset</button>
+                </div>
+        </div>
+                
+    </body>
+</html>
+
+<!--“Jonas Wood - Four Majors: Unbound: Online Auction New York Wednesday, October 30, 2019 Lot 26.” Phillips, www.phillips.com/detail/jonas-wood/NY000619/26. -->
