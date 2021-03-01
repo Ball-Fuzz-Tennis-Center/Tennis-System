@@ -186,3 +186,34 @@ h6{
         height:50% ;
     }
 }
+
+/* Modify navbar background color */ 
+          
+.navbar-custom { 
+    background-color: #ffAE42; 
+} 
+/* Modify brand and text color */ 
+  
+.navbar-custom .navbar-brand, 
+.navbar-custom .navbar-text { 
+    color: white; 
+}
+
+/* Image effects */
+
+ /* Container holding the image and the text */
+ .image-container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+
+  .img {
+      object-fit: cover;
+  }
