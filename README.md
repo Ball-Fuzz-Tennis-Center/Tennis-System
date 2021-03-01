@@ -11,7 +11,7 @@ Issues:  The few issues that I came across are as follows:
 Giving border radius to buttons in css that used bootstrap features.
 Satisfying the HTML5 validator about comments. 
 
-Jonathan: I was assigned to create two reservation pages that included court reservation and lesson reservation. I used HTML5, bootstrap and jquery for the pages. I also created a homepage for the purpose linking all the pages together and is still under construction. It has a navigation bar with a drop down menu. The reservation pages are inside a form container and have drop down options.
+Jonathan: I was assigned to create two reservation pages that included court reservation and lesson reservation. I used HTML5, bootstrap and jquery for the pages. I also created a homepage for the purpose of linking all the pages together and is still under construction. It has a navigation bar with a drop down menu. The reservation pages are inside a form container and have drop down options.
 
 Issues: The few issues I came across are as follows:
 I had issues adjusting the navigation bar.

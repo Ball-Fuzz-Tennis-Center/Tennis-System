@@ -10,14 +10,14 @@
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <a class="navbar-brand" href="#">Ball Fuzz Tennis Center</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +40,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign In</a>
+                    <a class="nav-link" href="signin.html">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Up</a>
+                    <a class="nav-link" href="signup.html">Sign Up</a>
                 </li>
             </ul>
         </div>
@@ -51,89 +51,94 @@
 
     <!-- Court Reservation Form -->
 
-    <div style="margin:5%;">
-        <section>
-            <h1>Reserve a Tennis Court</h1>
-            <article>
-                <form>
-                    <fieldset class="border" style="padding:1%;">
-                        <legend class="w-auto">New Reservation</legend>
-                        <div class="row">
+    <header>
+        <a href="index.html"> BallFuzz.Tennis</a>
+    </header>
 
-                            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                                <div class="col">
-                                    <label for="dateField" class="col-form-label">Which day?</label>
-                                </div>
-                                <div class="col">
-                                    <input id="dateField" name="dateField" type="date" class="form-control" required>
-                                </div>
-                            </div>
+    <form class="signin">
+        <fieldset class="border" style="margin:5%;">
 
-                            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                                <div class="col">
-                                    <label for="lengthDropdown" class="col-form-label">For how long?</label>
-                                </div>
-                                <div class="col">
-                                    <select id="lengthDropdown" name="lengthDropdown" class="form-control">
-                                        <option value="undecided" selected>Pick one...</option>
-                                        <option value="30">30 Minutes</option>
-                                        <option value="60">60 Minutes</option>
-                                        <option value="90">90 Minutes</option>
-                                        <option value="120">120 Minutes</option>
-                                    </select>
-                                </div>
-                            </div>
+            <legend class="w-auto">New Court Reservation</legend>
 
-                            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                                <div class="col">
-                                    <label for="ballMachineCheck" class="col-form-label">Ball machine?</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="ballMachineCheck">
-                                  </div>
-                            </div>
+            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                <div class="col">
+                    <label for="dateField" class="col-form-label">Which day?</label>
+                </div>
+                <div class="col">
+                    <input id="dateField" name="dateField" type="date" class="form-control" required>
+                </div>
+            </div>
 
-                            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                                <div class="col">
-                                    <label for="timeDropdown" class="col-form-label">Available times:</label>
-                                </div>
-                                <div class="col">
-                                    <select id="timeDropdown" name="timeDropdown" class="form-control">
-                                        <option value="undecided" selected>Pick one...</option>
-                                        <option value="800">8:00 am</option>
-                                        <option value="830">8:30 am</option>
-                                        <option value="900">9:00 am</option>
-                                        <option value="900">9:30 am</option>
-                                        <option value="900">10:00 am</option>
-                                        <option value="900">10:30 am</option>
-                                        <option value="900">11:00 am</option>
-                                        <option value="900">11:30 am</option>
-                                        <option value="900">12:00 am</option>
-                                        <option value="900">12:30 am</option>
-                                        <option value="900">1:00 am</option>
-                                        <option value="900">1:30 am</option>
-                                        <option value="900">2:00 am</option>
-                                        <option value="900">2:30 am</option>
-                                        <option value="900">3:00 am</option>
-                                        <option value="900">3:30 am</option>
-                                        <option value="900">4:00 am</option>
-                                        <option value="1630">4:30 pm</option>
-                                        <option value="1700">5:00 pm</option>
-                                        <option value="1730">5:30 pm</option>
-                                    </select>
-                                </div>
-                            </div>
+            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                <div class="col">
+                    <label for="lengthDropdown" class="col-form-label">For how long?</label>
+                </div>
+                <div class="col">
+                    <select id="lengthDropdown" name="lengthDropdown" class="form-control">
+                        <option value="undecided" selected>Pick one...</option>
+                        <option value="30">30 Minutes</option>
+                        <option value="60">60 Minutes</option>
+                        <option value="90">90 Minutes</option>
+                        <option value="120">120 Minutes</option>
+                    </select>
+                </div>
+            </div>
 
-                        </div>
-                    </fieldset>
-                    <div class="col-sm-12 col-md-8 col-lg-7">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                    </div>
-                </form>
-            </article>
-        </section>
-    </div>
+            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                <div class="col">
+                    <label for="ballMachineCheck" class="col-form-label">Ball machine?</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="ballMachineCheck">
+                </div>
+            </div>
+
+            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                <div class="col">
+                    <label for="timeDropdown" class="col-form-label">Available times:</label>
+                </div>
+                <div class="col">
+                    <select id="timeDropdown" name="timeDropdown" class="form-control">
+                        <option value="undecided" selected>Pick one...</option>
+                        <option value="800">8:00 am</option>
+                        <option value="830">8:30 am</option>
+                        <option value="900">9:00 am</option>
+                        <option value="900">9:30 am</option>
+                        <option value="900">10:00 am</option>
+                        <option value="900">10:30 am</option>
+                        <option value="900">11:00 am</option>
+                        <option value="900">11:30 am</option>
+                        <option value="900">12:00 am</option>
+                        <option value="900">12:30 am</option>
+                        <option value="900">1:00 am</option>
+                        <option value="900">1:30 am</option>
+                        <option value="900">2:00 am</option>
+                        <option value="900">2:30 am</option>
+                        <option value="900">3:00 am</option>
+                        <option value="900">3:30 am</option>
+                        <option value="900">4:00 am</option>
+                        <option value="1630">4:30 pm</option>
+                        <option value="1700">5:00 pm</option>
+                        <option value="1730">5:30 pm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-8 col-lg-7">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+
+        </fieldset>
+    </form>
 </body>
+
+<footer>
+    <h6> Let's Play Tennis</h6>
+    <p>© 2021 by RD and JF. All Rights Reserved. BallFuzz's Tennis Center Is Proud To Serve the Colorado Tennis Community</p>
+    <p>Contact us: 720-989-4367, ballfuzztennis@gmail.com </p>
+    <p>Location: 18 Couscous St, Denver CO</p>
+
+</footer>
 
 </html>
