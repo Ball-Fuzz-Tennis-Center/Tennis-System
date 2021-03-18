@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <link rel="stylesheet" href ="css/main.css">
+        <link rel ="stylesheet" href ="css/signuperr.css">
         
     </head>
     <body>
@@ -12,10 +13,12 @@
             <a href="index.html"> BallFuzz.Tennis</a>
         </header>
 
-        <form class ="signup">
+        <form onsubmit ="return validateForm()" id="mainForm" novalidate >
+              
             <fieldset class="border">
                 <h3 class ="w-auto1">Sign Up</h3>
                 <div class="hero-bg1">
+                    <div id ="divinvalidError" class ="invisible errorMessage"> </div>
                     <div class ="form-group row col-lg">
                         <div class ="col-sm-2">
                             <label for ="txtFirstname" class ="col-form-label" >
@@ -92,7 +95,7 @@
                     <div class ="row form-group  col-lg">
                         <label for ="txtEmail" class="col-sm-2 col-form-label"> Email:</label>
                         <div class="col-sm-8">
-                            <input type="emai" id ="txtEmail" name ="txtEmail" required class ="form-control" placeholder ="name@example.com" >
+                            <input type="email" id ="txtEmail" name ="txtEmail" required class ="form-control" placeholder ="name@example.com" >
                         </div>
                     </div>
 
@@ -100,6 +103,7 @@
                         <label for ="txtpassword" class="col-sm-2 col-form-label"> Password:</label>
                         <div class="col-sm-8">
                             <input type="password" id ="txtpassword" name ="txtpassword" required class ="form-control" placeholder ="password" >
+                            <div id ="divconditionError" class ="invisible errorMessage"> </div>
                         </div>
                     </div>
 
@@ -107,7 +111,9 @@
                         <label for ="txtconpassword" class="col-sm-2 col-form-label"> Password:</label>
                         <div class="col-sm-8">
                             <input type="password" id ="txtconpassword" name ="txtconpassword" required class ="form-control" placeholder ="password" >
+                            <div id ="divpasswordError" class ="invisible errorMessage"> </div>
                         </div>
+                        
                     </div>
 
                     <div class ="row form-group">
@@ -122,29 +128,47 @@
                         <fieldset class ="border form-group">
                             
                             <legend class ="col-sm-4 col-form-label">Security Questions:</legend>
-                            <div class ="row form-group  col-lg">
-                                <label for ="txtQuestion1" class="col-sm-12 col-form-label"> 1. What is your first pet's name?</label>
-                                <div class="col-sm-8">
-                                    <input type="text" id ="txtQuestion1" name ="txtQuestion1" required class ="form-control" placeholder ="Oliver" >
+                            <div class ="row form-group  col-lg ">
+                            
+                                <select name="txtQuestion1" id="txtQuestion1" class="col-sm-8 col-form-label" onchange="updateinputView1()">
+                                    <option value="maybe0">Question 1</option>
+                                    <option value="maybe1">What was your first pet's name?</option>
+                                    <option value="maybe2">What's your favorite color?</option>
+                                    <option value="maybe3">What did your favorite food? </option>
+                                </select>
+                                <div  id ="divsecurityError1" class=" col-sm-8 invisible">
+                                    <input type="text" id ="txtQuestion1" name ="txtQuestion1" required class ="form-control"  >
                                 </div>
+                                
+                            </div>
+                            <div class ="row form-group  col-lg ">
+                            
+                                <select name="txtQuestion2" id="txtQuestion2" class="col-sm-8 col-form-label" onchange="updateinputView2()">
+                                    <option value="maybe0">Question 2</option>
+                                    <option value="maybe1">What is your mother's maiden name?</option>
+                                    <option value="maybe2">What's your first pet?</option>
+                                    <option value="maybe3">Where were you born? </option>
+                                </select>
+                                <div  id ="divsecurityError2" class=" col-sm-8 invisible">
+                                    <input type="text" id ="txtQuestion2" name ="txtQuestion2" required class ="form-control"  >
+                                </div>
+                                
+                            </div>
+                            <div class ="row form-group  col-lg ">
+                            
+                                <select name="txtQuestion3" id="txtQuestion3" class="col-sm-8 col-form-label" onchange="updateinputView3()">
+                                    <option value="maybe0">Question 3</option>
+                                    <option value="maybe1">What was the name of your high school?</option>
+                                    <option value="maybe2">What country would you like to visit? </option>
+                                    <option value="maybe3">What year were you born ? </option>
+                                </select>
+                                <div  id ="divsecurityError3" class=" col-sm-8 invisible">
+                                    <input type="text" id ="txtQuestion3" name ="txtQuestion3" required class ="form-control"  >
+                                </div>
+                                
                             </div>
 
-                            
-                            <div class ="row form-group  col-lg">
-                                <label for ="txtQuestion2" class="col-sm-12 col-form-label"> 2. What is your mother's maiden name?</label>
-                                <div class="col-sm-8">
-                                    <input type="text" id ="txtQuestion2" name ="txtQuestion2" required class ="form-control" placeholder ="Scott" >
-                                </div>
-                            </div>
-
-                            
-                            <div class ="row form-group  col-lg">
-                                <label for ="txtQuestion3" class="col-sm-12 col-form-label"> 3. What is the name of your high school ?</label>
-                                <div class="col-sm-8">
-                                    <input type="text" id ="txtQuestion3" name ="txtQuestion3" required class ="form-control" placeholder ="River High" >
-                                </div>
-                            </div>
-                            
+                        
                         </fieldset>
                     </div>
 
@@ -158,14 +182,16 @@
                    
             </fieldset>
             <img src= 'css/part2.jpg' alt= "tennis pic">
+
+            <div class ="low form-group row col-lg">
+                <div class ="col-sm-12">
+                    <button type="submit" class= " btn btn-success btn-lg">Submit</button>
+                    <button type="reset" class= "  btn btn-primary btn-lg">Reset</button>
+                    </div>
+            </div>
         </form>
-        <div class ="low form-group row col-lg">
-            <div class ="col-sm-12">
-                <button type="submit" class= " btn btn-success btn-lg">Submit</button>
-                <button type="reset" class= "  btn btn-primary btn-lg">Reset</button>
-                </div>
-        </div>
-                
+       
+               
     </body>
     <footer>
         <h6> Let's Play Tennis</h6>
@@ -174,6 +200,7 @@
         <p>Location: 18th Street Couscous St, Denver CO</p>
 
     </footer>
+    <script src ="js/signup.js"></script>   
 </html>
 
 <!--“Jonas Wood - Four Majors: Unbound: Online Auction New York Wednesday, October 30, 2019 Lot 26.” Phillips, www.phillips.com/detail/jonas-wood/NY000619/26. -->
