@@ -1,21 +1,11 @@
 # Tennis-System
 This is the main website and system for Ball Fuzz Tennis Center.
 
-Objective: The goal of this assignment was to create four static web pages as per the given format. The static pages include a header, navigation bar, footer in addition to sign in and sign up pages.There was no specific design outline to be followed and instead, focused on our own design to the pages. The project had to follow the HTML5 formatting with a separate stylesheet and bootstrap tools for presentation purposes.
+Objective: The goal of this assignment was to accomplish two tasks at hand. The first was to create a web app that uses Google API to search through Google books. The second task was to add dynamicity to the page by validating the sign up input values and create a function to change the layout. Both of these tasks had to be done in either Javascript, JQuery or Vue.js.
 
-Accomplishments: We decided to divide the project in two parts with each member finishing two pages of the project.
+Accomplishments: We decided to divide the project such that each member finished a part each of the project. We added client-side validation to forms on our website. We also improved the Google books API site from classwork with pagination and more detailed results.
+Ridhisha: I was working on part two of the project. I added a javascript page named signup.js. The first three functions serve the same purpose of hiding the input field from the users until they select a security question from the dropdown menu. The fourth function validates the user inputs. It checks if the two passwords are a match or not if they are not then an error is shown but if they are a match it undergoes another check to see whether the passwords meet the required conditions of at least one capital letter, one small letter and one number. If it passes the test it moves on to the next phase. To see if any of the inputs have a invalid symbols and if so it displays an error.
 
-Ridhisha: I was assigned to create the sign up and sign in pages for the website. I used HTML5 with embedded bootstrap and CSS for styling. My HTML code almost passed the validator page, except for the comments in the end which were citations of the images used in the project. The pages are responsive according to screen size; for the smaller screens, the pages only have a single form but for a screen size width greater than 1550px, an image would appear next to the form. The logo is a page name which serves as a button back to the home page and the font style was imported from Google Fonts
+Jonathan: I took care of part 1 of this assignment. I added pagination to the site including previous and next buttons as well as a status of which results are being currently viewed. I also had the previous and next buttons be disabled when necessary. I also added some more information to the book information such as ISBN13 as well as a description of the book. Then I cleaned up the aesthetic of the site for a nice and simple look. 
 
-Issues:  The few issues that I came across are as follows:
-Giving border radius to buttons in css that used bootstrap features.
-Satisfying the HTML5 validator about comments. 
-
-Jonathan: I was assigned to create two reservation pages that included court reservation and lesson reservation. I used HTML5, bootstrap and jquery for the pages. I also created a homepage for the purpose of linking all the pages together and is still under construction. It has a navigation bar with a drop down menu. The reservation pages are inside a form container and have drop down options.
-
-Issues: The few issues I came across are as follows:
-I had issues adjusting the navigation bar.
-I encountered some problem with the bootstrap grid system.
-
-
-Results: All the pages are filled with required content. All the input fields have specific data constraints and the submission button doesn't work without inputting the required fields.The cancel button functions as a link while the reset button clears out the entire page. All the elements are functional to our fullest extents.
+Issues: The only issue that I ran across was the highlighting the background of the input. Each time I tried the entire function would not work at all. One bug with the Google books API site is differing amount of results. Performing the same search over and over can sometimes yield different results and this can cause a bug with the pagination.
