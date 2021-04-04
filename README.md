@@ -1,21 +1,14 @@
 # Tennis-System
 This is the main website and system for Ball Fuzz Tennis Center.
 
-Objective: The goal of this assignment was to create four static web pages as per the given format. The static pages include a header, navigation bar, footer in addition to sign in and sign up pages.There was no specific design outline to be followed and instead, focused on our own design to the pages. The project had to follow the HTML5 formatting with a separate stylesheet and bootstrap tools for presentation purposes.
+Objective: Our task for assignment 3 was to convert our site to a Node web application which conforms to MVC architecture. All existing pages have been migrated to abide by the new structure. We had to link a database to the application to handle our site data, migrate existing validation techniques to conform to MVC, as well as creating error handling for the application.
 
-Accomplishments: We decided to divide the project in two parts with each member finishing two pages of the project.
+Jonathan: I was in charge of the migration to a Node web application. I initialized NPM and added the required packages to the project. Then I converted all pages to views as ejs files and re-routed everything manually through our new controllers. I also setup the database connection and created a User schema to store data about our customers.
 
-Ridhisha: I was assigned to create the sign up and sign in pages for the website. I used HTML5 with embedded bootstrap and CSS for styling. My HTML code almost passed the validator page, except for the comments in the end which were citations of the images used in the project. The pages are responsive according to screen size; for the smaller screens, the pages only have a single form but for a screen size width greater than 1550px, an image would appear next to the form. The logo is a page name which serves as a button back to the home page and the font style was imported from Google Fonts
+Ridhisha:I was responsible for adding the error controller for generic error handeling and usercontrolling. I modified the sign in and sign up pages to handle request. Finally, I added validators and authenticator to the sign in and sign up pages to correctly store the data in the database.And finally added a thanks and an error view page along with a seed file to populate the database.
 
-Issues:  The few issues that I came across are as follows:
-Giving border radius to buttons in css that used bootstrap features.
-Satisfying the HTML5 validator about comments. 
+Instructions: To run our application from a fresh clone, you must:
+1. Run 'npm install' to install all required dependencies for the project
+2. Run the seed.js file to populate the database with test data
+3. Run 'npm start' to run the application using nodemon
 
-Jonathan: I was assigned to create two reservation pages that included court reservation and lesson reservation. I used HTML5, bootstrap and jquery for the pages. I also created a homepage for the purpose of linking all the pages together and is still under construction. It has a navigation bar with a drop down menu. The reservation pages are inside a form container and have drop down options.
-
-Issues: The few issues I came across are as follows:
-I had issues adjusting the navigation bar.
-I encountered some problem with the bootstrap grid system.
-
-
-Results: All the pages are filled with required content. All the input fields have specific data constraints and the submission button doesn't work without inputting the required fields.The cancel button functions as a link while the reset button clears out the entire page. All the elements are functional to our fullest extents.
