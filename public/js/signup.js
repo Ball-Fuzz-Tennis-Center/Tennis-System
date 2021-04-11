@@ -1,8 +1,8 @@
 function updateinputView1(){
-    var  question1 = document.getElementById("txtQuestion1");
-    var  expect1 = document.getElementById("divsecurityError1");
+    var  answer1 = document.getElementById("txtSAnswer1");
+    var  expect1 = document.getElementById("divSecurityError1");
    
-    if (question1.value =="Question 1"){
+    if (answer1.value =="Question 1"){
         expect1.classList.add("invisible");
     } 
     else{
@@ -10,10 +10,10 @@ function updateinputView1(){
     }
 }
 function updateinputView2(){
-    var  question2 = document.getElementById("txtQuestion2");
-    var  expect2 = document.getElementById("divsecurityError2");
+    var  answer2 = document.getElementById("txtSAnswer2");
+    var  expect2 = document.getElementById("divSecurityError2");
    
-    if (question2.value =="Question 2"){
+    if (answer2.value =="Question 2"){
         expect2.classList.add("invisible");
     } 
     else{
@@ -21,10 +21,10 @@ function updateinputView2(){
     }
 }
 function updateinputView3(){
-    var  question3 = document.getElementById("txtQuestion3");
-    var  expect3 = document.getElementById("divsecurityError3");
+    var  answer3 = document.getElementById("txtSAnswer3");
+    var  expect3 = document.getElementById("divSecurityError3");
    
-    if (question3.value =="Question 3"){
+    if (answer3.value =="Question 3"){
         expect3.classList.add("invisible");
     } 
     else{
@@ -33,13 +33,13 @@ function updateinputView3(){
 }
 
 function validateForm(){
-    var password = document.getElementById("txtpassword").value;
-    var conpassword = document.getElementById("txtconpassword").value;
-    var passwordError = document.querySelector("#divpasswordError");
+    var password = document.getElementById("txtPassword").value;
+    var confirmPassword = document.getElementById("txtConfirmPassword").value;
+    var passwordError = document.querySelector("#divPasswordError");
     var formIsValid = true;
     
 
-    if (password != conpassword){
+    if (password != confirmPassword){
         
         passwordError.classList.remove("invisible");
         
@@ -52,7 +52,7 @@ function validateForm(){
        
         passwordError.classList.add("invisible");
         passwordError.innerHTML =""
-        var conError = document.querySelector("#divconditionError");
+        var conError = document.querySelector("#divConditionError");
         var result0 = /[A-Z]/g;
         var result1 = /[a-z]/g;
         var result2 = /[0-9]/g;
@@ -79,7 +79,7 @@ function validateForm(){
     for (let i=0; i< elements.length; i++){
         for (let j=0; j< invalidChars.length; j++){
             if(elements[i].value.indexOf(invalidChars[j]) != -1){
-                document.querySelector("#divinvalidError").classList.remove("invisible");
+                document.querySelector("#divInvalidError").classList.remove("invisible");
                 divinvalidError.innerHTML ="the field has an invalid input";
                 elements[i].classList.add("hasError");
                 formIsValid = false;
