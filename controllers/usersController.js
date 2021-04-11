@@ -81,10 +81,6 @@ exports.userAuthentication = (req, res, next) => {
             });
         }
     });
-
-
-
-
 };
 exports.loginAuthenticate = (req, res, next) => {
 
