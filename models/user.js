@@ -6,20 +6,19 @@ userSchema = mongoose.Schema({
     last: String,
     username: String,
     gender: String,
-    Street: String,
-    City: String,
-    State: String,
-    zipCode: String,
-    DOB: Date,
+    street: String,
+    city: String,
+    state: String,
+    zipcode: String,
+    dob: Date,
     email: String,
     password: String,
-    conpassword: String,
-    SQuestion1: String,
-    SQuestion2: String,
-    SQuestion3: String,
-    Question1: String,
-    Question2: String,
-    Question3: String
+    sQuestion1: String,
+    sQuestion2: String,
+    sQuestion3: String,
+    sAnswer1: String,
+    sAnswer2: String,
+    sAnswer3: String
 });
 
 module.exports = mongoose.model("User", userSchema);
