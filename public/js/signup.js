@@ -44,7 +44,7 @@ function validateForm(){
         passwordError.classList.remove("invisible");
         
         passwordError.innerHTML ="Passwords do not match"
-        
+        password.classList.add("hasError");
         
         formIsValid = false;
     }
@@ -65,6 +65,7 @@ function validateForm(){
         else{
             conError.innerHTML ="Password needs to have atleast 1 capital letter, atleast 1 lowercase letter and a number"
             conError.classList.remove("invisible");
+            //password.classList.add("hasError");
             formIsValid = false;
     
         }
