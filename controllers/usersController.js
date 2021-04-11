@@ -52,23 +52,31 @@ exports.userAuthentication = (req, res, next) => {
                     else {
                         let newUser = new User(
                             {
-                                first: req.body.first,
-                                last: req.body.last,
-                                username: req.body.username,
+                                name: {
+                                    first: req.body.first,
+                                    last: req.body.last
+                                },
+                                account: {
+                                    username: req.body.username,
+                                    email: req.body.email,
+                                    password: req.body.password
+                                },
                                 gender: req.body.gender,
-                                street: req.body.street,
-                                city: req.body.city,
-                                state: req.body.state,
-                                zipcode: req.body.zipcode,
+                                address: {
+                                    street: req.body.street,
+                                    city: req.body.city,
+                                    state: req.body.state,
+                                    zipcode: req.body.zipcode,
+                                },
                                 dob: req.body.dob,
-                                email: req.body.email,
-                                password: req.body.password,
-                                sQuestion1: req.body.sQuestion1,
-                                sQuestion2: req.body.sQuestion2,
-                                sQuestion3: req.body.sQuestion3,
-                                sAnswer1: req.body.sAnswer1,
-                                sAnswer2: req.body.sAnswer2,
-                                sAnswer3: req.body.sAnswer3
+                                security: {
+                                    question1: req.body.sQuestion1,
+                                    question2: req.body.sQuestion2,
+                                    question3: req.body.sQuestion3,
+                                    answer1: req.body.sAnswer1,
+                                    answer2: req.body.sAnswer2,
+                                    answer3: req.body.sAnswer3
+                                }
                             }
                         );
                         newUser.save().
