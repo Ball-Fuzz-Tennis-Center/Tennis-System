@@ -1,18 +1,20 @@
 "use strict";
 
+// Variables and dependencies
+
 const express = require("express"),
 app = express(),
 router = express.Router(),
 methodOverride = require("method-override"),
-layouts = require("express-ejs-layouts");
-const { body, validationResult } = require('express-validator');
-const bodyParser = require('body-parser');
+layouts = require("express-ejs-layouts"),
+{ body, validationResult } = require("express-validator"),
+bodyParser = require('body-parser');
 
 const homeController = require("./controllers/homeController");
 const usersController = require("./controllers/usersController");
 const errorController = require("./controllers/errorController");
 
-app.set("port", process.env.PORT || 3000);
+// Setup database connection and parameters
 
 const mongoose = require("mongoose");
 mongoose.connect(
@@ -22,6 +24,9 @@ mongoose.connect(
 mongoose.Promise = global.Promise;
 mongoose.set("useCreateIndex", true);
 
+// Setup application environment
+
+app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(
     express.urlencoded({
@@ -29,10 +34,14 @@ app.use(
     })
 );
 
+// Setup router environment
+
 router.use(express.json());
 router.use(layouts);
 router.use(express.static("public"));
 router.use(methodOverride("_method", { methods: ["GET", "POST"] }));
+
+// Routes
 
 router.get("/", homeController.showIndex);
 
@@ -45,8 +54,12 @@ router.post("/signin", usersController.loginAuthenticate);
 router.get("/reserve-court", homeController.showReserveCourt);
 router.get("/reserve-lesson", homeController.showReserveLesson);
 
+// Setup errors
+
 router.use(errorController.pageNotFoundError);
 router.use(errorController.internalServerError);
+
+// Setup application router and start server
 
 app.use("/", router);
 

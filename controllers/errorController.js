@@ -1,4 +1,3 @@
-const {INTERNAL_SERVER_ERROR} = require("http-status-codes");
 const httpStatus = require("http-status-codes");
 
 module.exports = {
