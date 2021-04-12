@@ -6,6 +6,10 @@ const mongoose = require("mongoose"),
 mongoose.connect("mongodb://localhost:27017/tennis-system");
 mongoose.connection;
 
+
+
+// User Data
+
 var users = [
   {
     first: "Jon",
@@ -62,6 +66,13 @@ users.forEach(u => {
 });
 
 
+
+
+// Court Reservation Data
+
+
+
+
 Promise.all(commands)
   .then(r => {
     console.log(JSON.stringify(r));
@@ -70,5 +81,3 @@ Promise.all(commands)
   .catch(error => {
     console.log(`ERROR: ${error}`);
 });
-
-
