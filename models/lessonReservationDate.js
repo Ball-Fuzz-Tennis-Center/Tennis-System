@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
 { Schema } = require("mongoose");
 
-courtReservationDateSchema = new Schema(
+lessonReservationDateSchema = new Schema(
     {
         date: {
             type: Date,
@@ -17,7 +17,7 @@ courtReservationDateSchema = new Schema(
     }
 );
 
-module.exports = mongoose.model("CourtReservationDate", courtReservationDateSchema);
+module.exports = mongoose.model("LessonReservationDate", lessonReservationDateSchema);
 
 
 

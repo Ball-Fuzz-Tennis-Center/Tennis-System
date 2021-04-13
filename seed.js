@@ -1,7 +1,9 @@
 "use strict";
 
 const mongoose = require("mongoose"),
-  User = require("./models/user");
+  User = require("./models/user"),
+  CourtReservationDate = require("./models/courtReservationDate"),
+  LessonReservationDate = require("./models/lessonReservationDate");
 
 mongoose.connect("mongodb://localhost:27017/tennis-system");
 mongoose.connection;
@@ -12,34 +14,36 @@ mongoose.connection;
 
 var users = [
   {
-    first: "Jon",
-    last: "Wexler",
-    username: "wex",
-    gender:"male",
-    email: "jon@jonwexler.com",
-    zipCode: 10016,
-    DOB: "03/21/2000",
-    password: "12346Pa!"
+    name: {
+      first: "Jon",
+      last: "Wexler"
+    },
+    account: {
+      username: "wex",
+      email: "jon@jonwexler.com",
+      password: "12346Pa!"
+    },
+    gender: "male",
+    address: {
+      zipcode: 12346
+    },
+    dob: "03/21/2000"
   },
   {
-    first: "Chef",
-    last: "Eggplant",
-    username: "chefE",
-    gender:"male",
-    email: "eggplant@recipeapp.com",
-    zipCode: 20331,
-    DOB: "03/21/2001",
-    password: "12345Pa@"
-  },
-  {
-    first: "Professor",
-    last: "Souffle",
-    username: "profS",
-    gender:"male",
-    email: "souffle@recipeapp.com",
-    zipCode: 19103,
-    DOB: "03/21/2002",
-    password: "12348Pa!"
+    name: {
+      first: "Chef",
+      last: "Eggplant"
+    },
+    account: {
+      username: "chefE",
+      email: "eggplant@recipeapp.com",
+      password: "12345Pa@"
+    },
+    gender: "male",
+    address: {
+      zipcode: 20331
+    },
+    dob: "03/21/2001"
   }
 ];
 
@@ -48,19 +52,25 @@ User.deleteMany()
   .then(() => {
     console.log("user log is empty!");
   });
-var commands =[];
+var commands = [];
 
 users.forEach(u => {
   commands.push(
     User.create({
-      first: u.first,
-      last: u.last,
-      username:u.username,
-      gender:u.gender,
-      email: u.email,
-      zipCode: u.zipCode,
-      DOB:u.DOB,
-      password: u.password
+      name: {
+        first: u.name.first,
+        last: u.name.last
+      },
+      account: {
+        username: u.account.username,
+        email: u.account.email,
+        password: u.account.password
+      },
+      gender: u.gender,
+      address: {
+        zipcode: u.address.zipcode
+      },
+      dob: u.dob
     })
   );
 });
@@ -70,7 +80,53 @@ users.forEach(u => {
 
 // Court Reservation Data
 
+let courtReservationDates = [];
 
+for (let i = 0; i <= 5; i++) {
+  const day = new Date();
+  day.setDate(day.getDate() + i);
+
+  let timeSlots = {}
+  for (let j = 0; j < 30; j++) {
+    timeSlots[j + 1] = null;
+  }
+
+  courtReservationDates.push(
+    CourtReservationDate.create({
+      date: day,
+      timeSlots: timeSlots
+    })
+  );
+}
+
+courtReservationDates.forEach(entry => {
+  commands.push(entry);
+});
+
+// Lesson Reservation Data
+
+let lessonReservationDates = [];
+
+for (let i = 0; i <= 5; i++) {
+  const day = new Date();
+  day.setDate(day.getDate() + i);
+
+  let timeSlots = {}
+  for (let j = 0; j < 30; j++) {
+    timeSlots[j + 1] = null;
+  }
+
+  lessonReservationDates.push(
+    LessonReservationDate.create({
+      date: day,
+      timeSlots: timeSlots
+    })
+  );
+}
+
+lessonReservationDates.forEach(entry => {
+  commands.push(entry);
+});
 
 
 Promise.all(commands)
@@ -80,4 +136,4 @@ Promise.all(commands)
   })
   .catch(error => {
     console.log(`ERROR: ${error}`);
-});
+  });

@@ -32,14 +32,14 @@ function updateinputView3(){
     }
 }
 
-function validateForm(){
+function validateForm() {
     var password = document.getElementById("txtPassword").value;
     var confirmPassword = document.getElementById("txtConfirmPassword").value;
     var passwordError = document.querySelector("#divPasswordError");
     var formIsValid = true;
     
 
-    if (password != confirmPassword){
+    if (password != confirmPassword) {
         
         passwordError.classList.remove("invisible");
         
@@ -48,7 +48,7 @@ function validateForm(){
         
         formIsValid = false;
     }
-    else{
+    else {
        
         passwordError.classList.add("invisible");
         passwordError.innerHTML =""
@@ -56,6 +56,7 @@ function validateForm(){
         var result0 = /[A-Z]/g;
         var result1 = /[a-z]/g;
         var result2 = /[0-9]/g;
+
         if(result0.test(password) == true && result1.test(password) == true && result2.test(password) == true){
             conError.innerHTML =""
             conError.classList.add("invisible");
@@ -65,17 +66,13 @@ function validateForm(){
         else{
             conError.innerHTML ="Password needs to have atleast 1 capital letter, atleast 1 lowercase letter and a number"
             conError.classList.remove("invisible");
-            //password.classList.add("hasError");
             formIsValid = false;
-    
         }
-        
-       
-
     }
 
     var elements = document.getElementsByTagName("input");
     var invalidChars = ['#', '{', '}', '<', '()', '>', '"', '`' ];
+
     for (let i=0; i< elements.length; i++){
         for (let j=0; j< invalidChars.length; j++){
             if(elements[i].value.indexOf(invalidChars[j]) != -1){
@@ -89,14 +86,8 @@ function validateForm(){
             }
         }
     }
-    
-    //var examine = document.getElementById("txtpassword").value;
-   
-   
-
 
     return formIsValid;
-
 }
 
 

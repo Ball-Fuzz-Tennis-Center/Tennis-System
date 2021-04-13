@@ -11,12 +11,14 @@
 
             <legend class="w-auto">New Court Reservation</legend>
 
+            <p>Notice: Courts may only be reserved up to 5 days in advance!</p>
+
             <div class="form-group row col-sm-12 col-md-8 col-lg-7">
                 <div class="col">
                     <label for="durationDropdown" class="col-form-label">How long?</label>
                 </div>
                 <div class="col">
-                    <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedReservationLength()">
+                    <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedReservationDuration()">
                         <option value="0" selected>Pick one...</option>
                         <option value="30">30 Minutes</option>
                         <option value="60">60 Minutes</option>
@@ -33,6 +35,9 @@
                 <div class="col">
                     <select class="form-select" id="dateSelect" onchange="changedDateSelect()">
                         <option value="0" selected>Choose a day...</option>
+                        <% dates.forEach((date) => { %>
+                            <option value="<%= date.date.getDay() %>"><%= date.date.toDateString() %></option>
+                        <% }); %>
                     </select>
                 </div>
             </div>
@@ -48,11 +53,12 @@
 
             <div class="form-group row col-sm-12 col-md-8 col-lg-7">
                 <div class="col">
-                    <label for="timeDropdown" class="col-form-label">Available times:</label>
+                    <label for="timeDropdown" class="col-form-label">Pick a time:</label>
                 </div>
                 <div class="col">
                     <select id="timeDropdown" name="timeDropdown" class="form-control">
-                        <option value="0" selected>Pick one...</option>
+                        <option value="0" selected>Pick a time...</option>
+                        <!-- Populate times based on date picked -->
                     </select>
                 </div>
             </div>

@@ -35,19 +35,19 @@ userSchema = new Schema(
         address: {
             street: {
                 type: String,
-                required: true
+                required: false
             },
             city: {
                 type: String,
-                required: true
+                required: false
             },
             state: {
                 type: String,
-                required: true
+                required: false
             },
             zipcode: {
                 type: Number,
-                required: true
+                required: false
             }
         },
         dob: {
@@ -57,27 +57,27 @@ userSchema = new Schema(
         security: {
             question1: {
                 type: String,
-                required: true
+                required: false
             },
             question2: {
                 type: String,
-                required: true
+                required: false
             },
             question3: {
                 type: String,
-                required: true
+                required: false
             },
             answer1: {
                 type: String,
-                required: true
+                required: false
             },
             answer2: {
                 type: String,
-                required: true
+                required: false
             },
             answer3: {
                 type: String,
-                required: true
+                required: false
             }
         }
     },
