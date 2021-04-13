@@ -15,13 +15,14 @@ let date = 0;
 // Get dates passed into EJS from controller and convert
 let dates = JSON.parse(passedDates);
 
-function changedReservationDuration() {
+function changedDurationDropdown() {
     duration = durationDropdown.value;
-    console.log("LOL");
     
     if (duration == -1) {
         clearDateSelect();
         dateSelect.disabled = true;
+        clearTimeDropdown();
+        timeDropdown.disabled = true;
     }
     else {
         dateSelect.disabled = false;

@@ -21,7 +21,7 @@
                         <label for="durationDropdown" class="col-form-label">How long?</label>
                     </div>
                     <div class="col">
-                        <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedReservationDuration()">
+                        <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedDurationDropdown()">
                             <option value="-1" selected>Pick one...</option>\
                             <option value="2">60 Minutes</option>
                             <option value="4">120 Minutes</option>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col">
                         <select class="form-select" id="dateSelect" onchange="changedDateSelect()">
-                            <option value="0" selected>Pick a day...</option>
+                            <option value="-1" selected>Pick a day...</option>
                         </select>
                     </div>
                 </div>
