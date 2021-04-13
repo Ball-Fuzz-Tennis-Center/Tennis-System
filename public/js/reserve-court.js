@@ -13,18 +13,14 @@ timeDropdown.disabled = true;
 
 let duration = 0;
 let date = 0;
-let time = 0;
 
 // Get dates passed into EJS from controller and convert
 let dates = JSON.parse(passedDates);
-dates.forEach((date) => {
-    console.log(date);
-});
 
 function changedReservationDuration() {
     duration = durationDropdown.value;
     
-    if (duration == 0) {
+    if (duration == -1) {
         clearDateSelect();
         dateSelect.disabled = true;
         ballMachineCheck.checked = false;
