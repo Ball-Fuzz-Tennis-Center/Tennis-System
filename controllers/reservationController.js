@@ -20,18 +20,19 @@ module.exports = {
             if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
 
             dates.forEach((date) => {
-                console.log(date);
                 if (date._id == req.body.dateSelect) {
-                    console.log(`DateID: ${date._id} Req DateID: ${req.body.dateSelect}`)
                     let dateId = date._id;
-                    console.log(date.date.toDateString());
-                    console.log(dateId);
                     let newTimeSlots = new Map(date.timeSlots);
                     let newTimeSlotBallMachines = new Map(date.timeSlotBallMachines);
-                    
-                    newTimeSlots.set(req.body.timeDropdown, user._id);
-                    if (req.body.ballMachineCheck) {
-                        newTimeSlotBallMachines.set(req.body.timeDropdown, true);
+
+                    let duration = Number(req.body.durationDropdown);
+
+                    for (let i = 0; i < duration; i++) {
+                        let slot = `${Number(req.body.timeDropdown) + i}`
+                        newTimeSlots.set(slot, user._id);
+                        if (req.body.ballMachineCheck) {
+                            newTimeSlotBallMachines.set(slot, true);
+                        }
                     }
 
                     CourtReservationDate.findByIdAndUpdate(dateId,
@@ -57,15 +58,16 @@ module.exports = {
             if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
 
             dates.forEach((date) => {
-                console.log(date);
                 if (date._id == req.body.dateSelect) {
-                    console.log(`DateID: ${date._id} Req DateID: ${req.body.dateSelect}`)
                     let dateId = date._id;
-                    console.log(date.date.toDateString());
-                    console.log(dateId);
                     let newTimeSlots = new Map(date.timeSlots);
                     
-                    newTimeSlots.set(req.body.timeDropdown, user._id);
+                    let duration = Number(req.body.durationDropdown);
+
+                    for (let i = 0; i < duration; i++) {
+                        let slot = `${Number(req.body.timeDropdown) + i}`
+                        newTimeSlots.set(slot, user._id);
+                    }
 
                     LessonReservationDate.findByIdAndUpdate(dateId, {"timeSlots": newTimeSlots}, function (err, result) {
                         if (!err) {
