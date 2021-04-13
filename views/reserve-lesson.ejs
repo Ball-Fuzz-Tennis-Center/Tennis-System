@@ -9,7 +9,7 @@
         var passedDates = '<%- JSON.stringify(dates) %>';
     </script>
 
-    <form class="signin" autocomplete="off">
+    <form class="signin" autocomplete="off" action="/reserve-lesson" method="POST">
         <fieldset class="border" style="margin:5%;">
 
             <legend class="w-auto">New Lesson Reservation</legend>
@@ -31,10 +31,10 @@
 
                 <div class="form-group row col-sm-12 col-md-8 col-lg-7">
                     <div class="col">
-                        <label for="dateField" class="col-form-label">Which day?</label>
+                        <label for="dateSelect" class="col-form-label">Which day?</label>
                     </div>
                     <div class="col">
-                        <select class="form-select" id="dateSelect" onchange="changedDateSelect()">
+                        <select class="form-select" id="dateSelect" name="dateSelect" onchange="changedDateSelect()">
                             <option value="-1" selected>Pick a day...</option>
                         </select>
                     </div>

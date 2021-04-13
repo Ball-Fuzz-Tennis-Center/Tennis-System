@@ -12,6 +12,7 @@ bodyParser = require('body-parser');
 
 const homeController = require("./controllers/homeController");
 const usersController = require("./controllers/usersController");
+const reservationController = require("./controllers/reservationController");
 const errorController = require("./controllers/errorController");
 
 // Setup database connection and parameters
@@ -51,8 +52,11 @@ router.get("/signup", usersController.showSignUp);
 router.post("/signup", usersController.userAuthentication);
 router.post("/signin", usersController.loginAuthenticate);
 
-router.get("/reserve-court", homeController.showReserveCourt);
-router.get("/reserve-lesson", homeController.showReserveLesson);
+router.get("/reserve-court", reservationController.showReserveCourt);
+router.post("/reserve-court", reservationController.reserveCourt, reservationController.showReserveCourt);
+
+router.get("/reserve-lesson", reservationController.showReserveLesson);
+router.post("/reserve-lesson", reservationController.reserveLesson);
 
 // Setup errors
 

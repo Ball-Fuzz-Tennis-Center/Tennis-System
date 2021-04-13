@@ -52,15 +52,23 @@ function changedDateSelect() {
 
 function populateDateSelect() {
     clearDateSelect();
+    let today = new Date();
 
-    // Only displays first 6 dates including today
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < dates.length; i++) {
         if (dates[i]) {
-            let newDate = new Date(dates[i].date);
-            let dateOption = document.createElement("option");
-            dateOption.value = `${newDate.getDay()}`;
-            dateOption.text = `${newDate.toDateString()}`;
-            dateSelect.add(dateOption);
+            let checkDate = new Date(dates[i].date);
+            if (checkDate.toDateString() == today.toDateString()) {
+                for (let j = 0; j < 6; j++) {
+                    if (dates[i + j]) {
+                        let dateId = dates[i + j]._id;
+                        let newDate = new Date(dates[i + j].date);
+                        let dateOption = document.createElement("option");
+                        dateOption.value = `${dateId}`;
+                        dateOption.text = `${newDate.toDateString()}`;
+                        dateSelect.add(dateOption);
+                    }
+                }
+            }
         }
     }
 }
@@ -70,7 +78,7 @@ function populateTimeDropdown() {
     
     dates.forEach((date) => {
         let currentDate = new Date(date.date);
-        if (currentDate.getDay() == dateSelect.value) {
+        if (date._id == dateSelect.value) {
             for (let timeSlot of Object.keys(date.timeSlots)) {
                 let availableTimeSlot = true;
                 

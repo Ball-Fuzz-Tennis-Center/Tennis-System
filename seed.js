@@ -82,7 +82,7 @@ users.forEach(u => {
 
 let courtReservationDates = [];
 
-for (let i = 0; i <= 5; i++) {
+for (let i = 0; i <= 20; i++) {
   const day = new Date();
   day.setDate(day.getDate() + i);
 
@@ -107,7 +107,7 @@ courtReservationDates.forEach(entry => {
 
 let lessonReservationDates = [];
 
-for (let i = 0; i <= 5; i++) {
+for (let i = 0; i <= 20; i++) {
   const day = new Date();
   day.setDate(day.getDate() + i);
 
