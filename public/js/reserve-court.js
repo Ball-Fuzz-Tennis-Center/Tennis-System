@@ -75,30 +75,22 @@ function populateDateSelect() {
 
 function populateTimeDropdown() {
     clearTimeDropdown();
-    
+    console.log(dates);
     dates.forEach((date) => {
-        let currentDate = new Date(date.date);
         if (date._id == dateSelect.value) {
             for (let timeSlot of Object.keys(date.timeSlots)) {
-                let availableTimeSlot = true;
-                
-                for (let i = 0; i < duration; i++) {
-                    if (Number(timeSlot) + Number(i) <= 30) {
-                        if (date.timeSlots[timeSlot + i] != null) {
-                            availableTimeSlot = false;
-                        }
-                    }
-                    else {
-                        availableTimeSlot = false;
-                    }
-                }
 
                 let timeSlotOption = document.createElement("option");
                 timeSlotOption.value = timeSlot;
                 timeSlotOption.text = `${getTimeSlotValue(timeSlot)}`;
-                if (!availableTimeSlot) {
+
+                if (date.timeSlots[timeSlot] != null) {
                     timeSlotOption.disabled = true;
                 }
+                if (timeSlot > 30 - duration + 1) {
+                    timeSlotOption.disabled = true;
+                }
+
                 timeDropdown.add(timeSlotOption);
             }
         }
