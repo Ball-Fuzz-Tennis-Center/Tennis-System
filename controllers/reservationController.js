@@ -27,10 +27,18 @@ module.exports = {
                     console.log(date.date.toDateString());
                     console.log(dateId);
                     let newTimeSlots = new Map(date.timeSlots);
+                    let newTimeSlotBallMachines = new Map(date.timeSlotBallMachines);
                     
                     newTimeSlots.set(req.body.timeDropdown, user._id);
+                    if (req.body.ballMachineCheck) {
+                        newTimeSlotBallMachines.set(req.body.timeDropdown, true);
+                    }
 
-                    CourtReservationDate.findByIdAndUpdate(dateId, {"timeSlots": newTimeSlots}, function (err, result) {
+                    CourtReservationDate.findByIdAndUpdate(dateId,
+                        {
+                            "timeSlots": newTimeSlots,
+                            "timeSlotBallMachines": newTimeSlotBallMachines
+                        }, function (err, result) {
                         if (!err) {
                             next();
                         }

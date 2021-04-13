@@ -10,6 +10,10 @@ courtReservationDateSchema = new Schema(
         timeSlots: {
             type: Map,
             required: true
+        },
+        timeSlotBallMachines: {
+            type: Map,
+            require: true
         }
     },
     {

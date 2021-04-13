@@ -86,15 +86,18 @@ for (let i = 0; i <= 20; i++) {
   const day = new Date();
   day.setDate(day.getDate() + i);
 
-  let timeSlots = {}
+  let timeSlots = {};
+  let timeSlotBallMachines = {};
   for (let j = 0; j < 30; j++) {
     timeSlots[j + 1] = null;
+    timeSlotBallMachines[j + 1] = false;
   }
 
   courtReservationDates.push(
     CourtReservationDate.create({
       date: day,
-      timeSlots: timeSlots
+      timeSlots: timeSlots,
+      timeSlotBallMachines: timeSlotBallMachines
     })
   );
 }
@@ -111,7 +114,7 @@ for (let i = 0; i <= 20; i++) {
   const day = new Date();
   day.setDate(day.getDate() + i);
 
-  let timeSlots = {}
+  let timeSlots = {};
   for (let j = 0; j < 30; j++) {
     timeSlots[j + 1] = null;
   }
