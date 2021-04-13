@@ -6,6 +6,10 @@
         <a href="/"> BallFuzz.Tennis</a>
     </header>
 
+    <script>
+        var passedDates = '<%- JSON.stringify(dates) %>';
+    </script>
+
     <form class="signin" autocomplete="off">
         <fieldset class="border" style="margin:5%;">
 
@@ -19,11 +23,11 @@
                 </div>
                 <div class="col">
                     <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedReservationDuration()">
-                        <option value="0" selected>Pick one...</option>
-                        <option value="30">30 Minutes</option>
-                        <option value="60">60 Minutes</option>
-                        <option value="90">90 Minutes</option>
-                        <option value="120">120 Minutes</option>
+                        <option value="-1" selected>Pick one...</option>
+                        <option value="1">30 Minutes</option>
+                        <option value="2">60 Minutes</option>
+                        <option value="3">90 Minutes</option>
+                        <option value="4">120 Minutes</option>
                     </select>
                 </div>
             </div>
@@ -34,10 +38,7 @@
                 </div>
                 <div class="col">
                     <select class="form-select" id="dateSelect" onchange="changedDateSelect()">
-                        <option value="0" selected>Choose a day...</option>
-                        <% dates.forEach((date) => { %>
-                            <option value="<%= date.date.getDay() %>"><%= date.date.toDateString() %></option>
-                        <% }); %>
+                        <option value="0" selected>Pick a day...</option>
                     </select>
                 </div>
             </div>
@@ -53,11 +54,11 @@
 
             <div class="form-group row col-sm-12 col-md-8 col-lg-7">
                 <div class="col">
-                    <label for="timeDropdown" class="col-form-label">Pick a time:</label>
+                    <label for="timeDropdown" class="col-form-label">Start time:</label>
                 </div>
                 <div class="col">
                     <select id="timeDropdown" name="timeDropdown" class="form-control">
-                        <option value="0" selected>Pick a time...</option>
+                        <option value="-1" selected>Pick a time...</option>
                         <!-- Populate times based on date picked -->
                     </select>
                 </div>
