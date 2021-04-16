@@ -18,15 +18,11 @@ var users = [
       first: "Jon",
       last: "Wexler"
     },
-    account: {
-      username: "wex",
-      email: "jon@jonwexler.com",
-      password: "12346Pa!"
-    },
+    username: "wex",
+    email: "jon@jonwexler.com",
+    password: "12346Pa!",
     gender: "male",
-    address: {
-      zipcode: 12346
-    },
+    zipcode: 12346,
     dob: "03/21/2000"
   },
   {
@@ -34,16 +30,24 @@ var users = [
       first: "Chef",
       last: "Eggplant"
     },
-    account: {
-      username: "chefE",
-      email: "eggplant@recipeapp.com",
-      password: "12345Pa@"
+    username: "chefE",
+    gender:"male",
+    email: "eggplant@recipeapp.com",
+    zipCode: 20331,
+    dob: "03/21/2001",
+    password: "12345Pa@"
+  },
+  {
+    name:{
+      first: "Professor",
+      last: "Souffle"
     },
-    gender: "male",
-    address: {
-      zipcode: 20331
-    },
-    dob: "03/21/2001"
+    username: "profS",
+    gender:"male",
+    email: "souffle@recipeapp.com",
+    zipCode: 19103,
+    dob: "03/21/2002",
+    password: "12348Pa!"
   }
 ];
 
@@ -56,20 +60,17 @@ var commands = [];
 
 users.forEach(u => {
   commands.push(
-    User.create({
+    User.register({
       name: {
         first: u.name.first,
         last: u.name.last
       },
-      account: {
-        username: u.account.username,
-        email: u.account.email,
-        password: u.account.password
-      },
+
+      username: u.username,
+      email: u.email,
+      password: u.password,
       gender: u.gender,
-      address: {
-        zipcode: u.address.zipcode
-      },
+      zipcode: u.zipcode,
       dob: u.dob
     })
   );
