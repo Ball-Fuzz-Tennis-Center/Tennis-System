@@ -6,18 +6,29 @@ const express = require("express"),
 app = express(),
 router = express.Router(),
 methodOverride = require("method-override"),
-layouts = require("express-ejs-layouts"),
-{ body, validationResult } = require("express-validator"),
-bodyParser = require('body-parser');
+layouts = require("express-ejs-layouts");
+//{ body, validationResult } = require("express-validator"),
+//bodyParser = require('body-parser');
+
+
+const cookieParser = require("cookie-parser"),
+passport = require("passport"),
+expressSession = require("express-session"),
+expressValidator = require ("express-validator"),
+connectFlash = require("connect-flash");
+
 
 const homeController = require("./controllers/homeController");
 const usersController = require("./controllers/usersController");
 const reservationController = require("./controllers/reservationController");
 const errorController = require("./controllers/errorController");
 
+const User = require("./models/user");
+
 // Setup database connection and parameters
 
 const mongoose = require("mongoose");
+//const cookieParser = require("cookie-parser");
 mongoose.connect(
     "mongodb://localhost:27017/tennis-system", 
     { useNewUrlParser: true }
@@ -38,19 +49,51 @@ app.use(
 // Setup router environment
 
 router.use(express.json());
+router.use(cookieParser("my_passcode"));
+router.use(expressSession({
+    secret :"my_passcode",
+    cookie:{
+        maxAge:360000
+    },
+    resave: false,
+    saveUninitialized: false
+}));
+router.use(connectFlash());
+
+
+router.use(passport.initialize());
+router.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser);
+passport.deserializeUser(User.deserializeUser);
+
 router.use(layouts);
 router.use(express.static("public"));
 router.use(methodOverride("_method", { methods: ["GET", "POST"] }));
+
+
+router.use(expressValidator());
+
+router.use((req,res,next) => {
+    res.locals.flashMessages = req.flash();
+    res.locals.loggedIn = req.isAuthenticated();
+    res.locals.currentUser = req.user;
+    next();
+});
+
 
 // Routes
 
 router.get("/", homeController.showIndex);
 
-router.get("/signin", usersController.showSignIn);
-router.get("/signup", usersController.showSignUp);
 
-router.post("/signup", usersController.userAuthentication);
-router.post("/signin", usersController.loginAuthenticate);
+router.get("/signup", usersController.showSignUp);
+router.post("/signup", usersController.validate, usersController.userAuthentication, usersController.redirectView);
+
+router.get("/signin", usersController.showSignIn);
+router.post("/signin", usersController.authenticate, usersController.redirectView);
+router.get("/logout", usersController.logout, usersController.redirectView)
+
 
 router.get("/reserve-court", reservationController.showReserveCourt);
 router.post("/reserve-court", reservationController.reserveCourt, reservationController.showReserveCourt);

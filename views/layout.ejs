@@ -45,7 +45,34 @@
             </ul>
         </div>
     </nav>
-    <%- body %>
+
+    <div class="login-status">
+        <% if (loggedIn) { %>
+            <div class=" bubble logged-in">
+                Logged in as <a href="<%=`${currentUser._id}`%>">
+                    <%= currentUser.fullName %></a>
+            </div>
+            <div class=" bubble log-out">
+                <a href="/logout">Log out</a>
+            </div>
+        <% } %>
+    </div>
+
+    
+    <div class="flashes">
+        <% if (flashMessages) { %>
+          <% if (flashMessages.success) { %>
+            <div class="flash success"><%= flashMessages.success %></div>
+          <% } else if (flashMessages.error) { %>
+            <div class="flash error"><%= flashMessages.error %></div>
+          <% } %>
+        <% } %>
+    </div>
+
+    <div class="container">
+        <%- body %>
+    </div>
+    
   
 </body>
 
