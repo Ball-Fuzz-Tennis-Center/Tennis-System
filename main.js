@@ -1,51 +1,114 @@
-const express =require("express");
-const{body, validationResult } = require('express-validator');
-app = express();
-router = express.Router();
-const bodyParser = require('body-parser');
+"use strict";
 
+// Variables and dependencies
+
+const express = require("express"),
+app = express(),
+router = express.Router(),
+methodOverride = require("method-override"),
+layouts = require("express-ejs-layouts");
+//{ body, validationResult } = require("express-validator"),
+//bodyParser = require('body-parser');
+
+
+const cookieParser = require("cookie-parser"),
+passport = require("passport"),
+expressSession = require("express-session"),
+expressValidator = require ("express-validator"),
+connectFlash = require("connect-flash");
+
+
+const homeController = require("./controllers/homeController");
+const usersController = require("./controllers/usersController");
+const reservationController = require("./controllers/reservationController");
+const errorController = require("./controllers/errorController");
+
+const User = require("./models/user");
+
+// Setup database connection and parameters
+
+const mongoose = require("mongoose");
+//const cookieParser = require("cookie-parser");
+mongoose.connect(
+    "mongodb://localhost:27017/tennis-system", 
+    { useNewUrlParser: true }
+);
+mongoose.Promise = global.Promise;
+mongoose.set("useCreateIndex", true);
+
+// Setup application environment
 
 app.set("port", process.env.PORT || 3000);
-
-homeController = require("./controllers/homeController");
-usersController = require("./controllers/usersController");
-errorController = require("./controllers/errorController");
-
-
-layouts = require("express-ejs-layouts");
-mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost:27017/tennis-system", { useNewUrlParser: true });
-
-mongoose.Promise = global.Promise;
-
 app.set("view engine", "ejs");
-app.use(layouts);
-
-app.get("/", homeController.showIndex);
-
-app.use(express.static("public"));
 app.use(
     express.urlencoded({
         extended: false
     })
 );
 
+// Setup router environment
 
-app.use(express.json());
+router.use(express.json());
+router.use(cookieParser("my_passcode"));
+router.use(expressSession({
+    secret :"my_passcode",
+    cookie:{
+        maxAge:360000
+    },
+    resave: false,
+    saveUninitialized: false
+}));
+router.use(connectFlash());
 
 
-app.get("/signin", usersController.showSignIn);
-app.get("/signup", usersController.showSignUp);
+router.use(passport.initialize());
+router.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser);
+passport.deserializeUser(User.deserializeUser);
 
-app.post("/signup",usersController.userAuthentication);
-app.post("/signin",usersController.loginAuthenticate);
+router.use(layouts);
+router.use(express.static("public"));
+router.use(methodOverride("_method", { methods: ["GET", "POST"] }));
 
-app.get("/reserve-court", homeController.showReserveCourt);
-app.get("/reserve-lesson", homeController.showReserveLesson);
 
-app.use(errorController.pageNotFoundError);
-app.use(errorController.internalServerError);
+router.use(expressValidator());
+
+router.use((req,res,next) => {
+    res.locals.flashMessages = req.flash();
+    res.locals.loggedIn = req.isAuthenticated();
+    res.locals.currentUser = req.user;
+    next();
+});
+
+
+// Routes
+
+router.get("/", homeController.showIndex);
+
+
+router.get("/signup", usersController.showSignUp);
+router.post("/signup", usersController.validate, usersController.userAuthentication, usersController.redirectView);
+
+router.get("/signin", usersController.showSignIn);
+router.post("/signin", usersController.authenticate, usersController.redirectView);
+router.get("/logout", usersController.logout, usersController.redirectView)
+
+
+router.get("/reserve-court", reservationController.showReserveCourt);
+router.post("/reserve-court", reservationController.reserveCourt, reservationController.showReserveCourt);
+
+router.get("/reserve-lesson", reservationController.showReserveLesson);
+router.post("/reserve-lesson", reservationController.reserveLesson);
+
+// Setup errors
+
+router.use(errorController.pageNotFoundError);
+router.use(errorController.internalServerError);
+
+// Setup application router and start server
+
+app.use("/", router);
 
 app.listen(app.get("port"), () => {
     console.log(`Server is running on port ${app.get("port")}`);

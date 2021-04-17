@@ -9,37 +9,37 @@
         <fieldset class="border">
             <h3 class="w-auto1">Sign Up</h3>
             <div class="hero-bg1">
-                <div id="divinvalidError" class="invisible errorMessage"> </div>
+                <div id="divInvalidError" class="invisible errorMessage"> </div>
                 <div class="form-group row col-lg">
                     <div class="col-sm-4">
-                        <label for="txtFirstname" class="col-form-label">
+                        <label for="txtFirstName" class="col-form-label">
                             <span>First Name:</span>
 
                         </label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" id="txtFirstname" name="first" required class="form-control" placeholder="First Name"
+                        <input type="text" id="txtFirstName" name="first" required class="form-control" placeholder="First Name"
                             required>
                     </div>
                 </div>
 
                 <div class="form-group row col-lg">
                     <div class="col-sm-4">
-                        <label for="txtLastname" class="col-form-label">
+                        <label for="txtLastName" class="col-form-label">
                             <span>Last Name:</span>
 
                         </label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" id="txtLastname" name="last" required class="form-control" placeholder="Last Name"
+                        <input type="text" id="txtLastName" name="last" required class="form-control" placeholder="Last Name"
                             required>
                     </div>
                 </div>
 
                 <div class="row form-group  col-lg">
-                    <label for="txtusername" class="col-sm-4 col-form-label"> UserName:</label>
+                    <label for="txtUsername" class="col-sm-4 col-form-label"> UserName:</label>
                     <div class="col-sm-8">
-                        <input type="text" id="txtusername" name="username" required class="form-control" placeholder="Jamie">
+                        <input type="text" id="txtUsername" name="username" required class="form-control" placeholder="Jamie">
                     </div>
                 </div>
 
@@ -70,50 +70,50 @@
                     <label for="txtAddress" class=" col-sm-2 col-form-label"> Address:</label>
 
                     <div class="col-md-4 col-lg-4">
-                        <input type="txt" id="txtAddress" name="Street" class="form-control" placeholder="Street">
+                        <input type="txt" id="txtAddress" name="street" class="form-control" placeholder="Street">
                     </div>
 
 
                     <div class="col">
-                        <input type="txt" id="txtCity" name="City" class="form-control" placeholder="City">
+                        <input type="txt" id="txtCity" name="city" class="form-control" placeholder="City">
                     </div>
 
                     <div class="col">
-                        <input type="txt" id="txtState" name="State" class="form-control" placeholder="State">
+                        <input type="txt" id="txtState" name="state" class="form-control" placeholder="State">
                     </div>
 
                     <div class="col">
-                        <input type="txt" id="txtZipcode" name="zipCode" class="form-control" placeholder="Zipcode" pattern=[0-9]{5}>
+                        <input type="txt" id="txtZipcode" name="zipcode" class="form-control" placeholder="Zipcode" pattern=[0-9]{5}>
                     </div>
                 </div>
                 <div class="row form-group">
                     <label for="txtDOB" class="col-sm-4 col-form-label"> Birthday:</label>
                     <div class="col-sm-6">
-                        <input type="date" id="txtDOB" name="DOB" required class="form-control" placeholder="Date of Birth">
+                        <input type="date" id="txtDOB" name="dob" required class="form-control" placeholder="Date of Birth">
                     </div>
                 </div>
                 <div class="row form-group  col-lg">
-                    <label for="txtEmail" class="col-sm-4 col-form-label"> Email:</label>
+                    <label for="inputEmail" class="col-sm-4 col-form-label"> Email:</label>
                     <div class="col-sm-8">
-                        <input type="emai" id="txtEmail" name="email" required class="form-control" placeholder="name@example.com">
+                        <input type="emai" id="inputEmail" name="email" required class="form-control" placeholder="name@example.com">
                     </div>
                 </div>
 
 
                 <div class="row form-group  col-lg">
-                    <label for="txtpassword" class="col-sm-4 col-form-label"> Password:</label>
+                    <label for="inputPassword" class="col-sm-4 col-form-label"> Password:</label>
                     <div class="col-sm-8">
-                        <input type="password" id="txtpassword" name="password" required class="form-control" placeholder="password">
-                        <div id="divconditionError" class="invisible errorMessage"> </div>
+                        <input type="password" id="inputPassword" name="password" required class="form-control" placeholder="password">
+                        <div id="divConditionError" class="invisible errorMessage"> </div>
                     </div>
                 </div>
 
                 <div class="row form-group  col-lg">
-                    <label for="txtconpassword" class="col-sm-4 col-form-label"> Password:</label>
+                    <label for="txtConfirmPassword" class="col-sm-4 col-form-label">Confirm Password:</label>
                     <div class="col-sm-8">
-                        <input type="password" id="txtconpassword" name="conpassword" required class="form-control"
+                        <input type="password" id="txtConfirmPassword" name="confirmPassword" required class="form-control"
                             placeholder="password">
-                        <div id="divpasswordError" class="invisible errorMessage"> </div>
+                        <div id="divPasswordError" class="invisible errorMessage"> </div>
                     </div>
 
                 </div>
@@ -126,40 +126,40 @@
                         <legend class="col-sm-4 col-form-label">Security Questions:</legend>
                         <div class="row form-group  col-lg ">
 
-                            <select name="SQuestion1" id="txtQuestion01" class="col-sm-8 col-form-label" onchange="updateinputView1()">
+                            <select name="sQuestion1" id="txtSQuestion1" class="col-sm-8 col-form-label" onchange="updateinputView1()">
                                 <option value="maybe0" >Question 1</option>
                                 <option value="maybe1" name ="maybe1">What was your first pet's name?</option>
                                 <option value="maybe2">What's your favorite color?</option>
                                 <option value="maybe3">What did your favorite food? </option>
                             </select>
-                            <div id="divsecurityError1" class=" col-sm-8 invisible">
-                                <input type="text" id="txtQuestion1" name="Question1" required class="form-control">
+                            <div id="divSecurityError1" class=" col-sm-8 invisible">
+                                <input type="text" id="txtSAnswer1" name="sAnswer1" required class="form-control">
                             </div>
 
                         </div>
                         <div class="row form-group  col-lg ">
 
-                            <select name="SQuestion2" id="txtQuestion02" class="col-sm-8 col-form-label" onchange="updateinputView2()">
+                            <select name="sQuestion2" id="txtSQuestion2" class="col-sm-8 col-form-label" onchange="updateinputView2()">
                                 <option value="maybe0">Question 2</option>
                                 <option value="maybe1" name ="maybe1">What is your mother's maiden name?</option>
                                 <option value="maybe2">What's your first pet?</option>
                                 <option value="maybe3">Where were you born? </option>
                             </select>
-                            <div id="divsecurityError2" class=" col-sm-8 invisible">
-                                <input type="text" id="txtQuestion2" name="Question2" required class="form-control">
+                            <div id="divSecurityError2" class=" col-sm-8 invisible">
+                                <input type="text" id="txtSAnswer2" name="sAnswer2" required class="form-control">
                             </div>
 
                         </div>
                         <div class="row form-group  col-lg ">
 
-                            <select name="SQuestion3" id="txtQuestion03" class="col-sm-8 col-form-label" onchange="updateinputView3()">
+                            <select name="sQuestion3" id="txtSQuestion3" class="col-sm-8 col-form-label" onchange="updateinputView3()">
                                 <option value="maybe0">Question 3</option>
                                 <option value="maybe1" name ="maybe1">What was the name of your high school?</option>
                                 <option value="maybe2">What country would you like to visit? </option>
                                 <option value="maybe3">What year were you born ? </option>
                             </select>
-                            <div id="divsecurityError3" class=" col-sm-8 invisible">
-                                <input type="text" id="txtQuestion3" name="Question3" required class="form-control">
+                            <div id="divSecurityError3" class=" col-sm-8 invisible">
+                                <input type="text" id="txtSAnswer3" name="sAnswer3" required class="form-control">
                             </div>
 
                         </div>

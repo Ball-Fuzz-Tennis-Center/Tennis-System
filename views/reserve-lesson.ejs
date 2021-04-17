@@ -5,7 +5,11 @@
         <a href="/"> BallFuzz.Tennis</a>
     </header>
 
-    <form class="signin">
+    <script>
+        var passedDates = '<%- JSON.stringify(dates) %>';
+    </script>
+
+    <form class="signin" autocomplete="off" action="/reserve-lesson" method="POST">
         <fieldset class="border" style="margin:5%;">
 
             <legend class="w-auto">New Lesson Reservation</legend>
@@ -14,53 +18,35 @@
 
                 <div class="form-group row col-sm-12 col-md-8 col-lg-7">
                     <div class="col">
-                        <label for="dateField" class="col-form-label">Which day?</label>
+                        <label for="durationDropdown" class="col-form-label">How long?</label>
                     </div>
                     <div class="col">
-                        <input id="dateField" name="dateField" type="date" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                    <div class="col">
-                        <label for="lengthDropdown" class="col-form-label">For how long?</label>
-                    </div>
-                    <div class="col">
-                        <select id="lengthDropdown" name="lengthDropdown" class="form-control">
-                            <option value="undecided" selected>Pick one...</option>
-                            <option value="60">60 Minutes</option>
-                            <option value="120">120 Minutes</option>
+                        <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedDurationDropdown()">
+                            <option value="-1" selected>Pick one...</option>\
+                            <option value="2">60 Minutes</option>
+                            <option value="4">120 Minutes</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group row col-sm-12 col-md-8 col-lg-7">
                     <div class="col">
-                        <label for="timeDropdown" class="col-form-label">Available times:</label>
+                        <label for="dateSelect" class="col-form-label">Which day?</label>
+                    </div>
+                    <div class="col">
+                        <select class="form-select" id="dateSelect" name="dateSelect" onchange="changedDateSelect()">
+                            <option value="-1" selected>Pick a day...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                    <div class="col">
+                        <label for="timeDropdown" class="col-form-label">Start time:</label>
                     </div>
                     <div class="col">
                         <select id="timeDropdown" name="timeDropdown" class="form-control">
-                            <option value="undecided" selected>Pick one...</option>
-                            <option value="800">8:00 am</option>
-                            <option value="830">8:30 am</option>
-                            <option value="900">9:00 am</option>
-                            <option value="900">9:30 am</option>
-                            <option value="900">10:00 am</option>
-                            <option value="900">10:30 am</option>
-                            <option value="900">11:00 am</option>
-                            <option value="900">11:30 am</option>
-                            <option value="900">12:00 am</option>
-                            <option value="900">12:30 am</option>
-                            <option value="900">1:00 am</option>
-                            <option value="900">1:30 am</option>
-                            <option value="900">2:00 am</option>
-                            <option value="900">2:30 am</option>
-                            <option value="900">3:00 am</option>
-                            <option value="900">3:30 am</option>
-                            <option value="900">4:00 am</option>
-                            <option value="1630">4:30 pm</option>
-                            <option value="1700">5:00 pm</option>
-                            <option value="1730">5:30 pm</option>
+                            <option value="-1" selected>Pick a time...</option>
                         </select>
                     </div>
                 </div>
