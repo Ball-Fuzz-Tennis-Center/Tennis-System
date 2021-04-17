@@ -28,10 +28,10 @@ getUserParams = body =>{
     };
 };
 
-/* const { render } = require("ejs");
+const { render } = require("ejs");
 const { body, validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
-const { application, response } = require("express"); */
+const { application, response } = require("express"); 
 
 
 module.exports = {
@@ -124,11 +124,10 @@ module.exports = {
 
     },
     authenticate: passport.authenticate("local", {
+        successFlash:"Sucessfully logged in!",
+        successRedirect: "/signin",
         failureRedirect:"/signin",
-        failureFlash: "Invalid email or password",
-        successRedirect: "/",
-        successFlash:"Sucessfully logged in !"
-
+        failureFlash: "Invalid email or password"
     })
 
 };
