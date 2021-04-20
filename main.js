@@ -64,8 +64,8 @@ router.use(connectFlash());
 router.use(passport.initialize());
 router.use(passport.session());
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 router.use(layouts);
 router.use(express.static("public"));
