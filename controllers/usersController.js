@@ -63,7 +63,7 @@ module.exports = {
                             if(user){
                                 console.log("hurray")
                                 req.flash("success", "Account was sucessfully created");
-                                res.locals.redirect = "/thanks";
+                                res.locals.redirect = "/images/thanks";
                                 next();
                             }
                             else{
@@ -124,8 +124,9 @@ module.exports = {
 
     },
     authenticate: passport.authenticate("local", {
-        successFlash:"Sucessfully logged in!",
         successRedirect: "/signin",
+        successFlash:"Sucessfully logged in!",
+
         failureRedirect:"/signin",
         failureFlash: "Invalid email or password"
     })

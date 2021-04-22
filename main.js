@@ -58,14 +58,18 @@ router.use(expressSession({
     resave: false,
     saveUninitialized: false
 }));
-router.use(connectFlash());
 
 
 router.use(passport.initialize());
 router.use(passport.session());
-passport.use(User.createStrategy());
+
+
+passport.use(User.createStrategy()); 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+router.use(connectFlash());
+
+
 
 router.use(layouts);
 router.use(express.static("public"));
@@ -75,9 +79,9 @@ router.use(methodOverride("_method", { methods: ["GET", "POST"] }));
 router.use(expressValidator());
 
 router.use((req,res,next) => {
+    res.locals.currentUser = req.user;
     res.locals.flashMessages = req.flash();
     res.locals.loggedIn = req.isAuthenticated();
-    res.locals.currentUser = req.user;
     next();
 });
 
@@ -91,7 +95,7 @@ router.get("/signup", usersController.showSignUp);
 router.post("/signup", usersController.validate, usersController.userAuthentication, usersController.redirectView);
 
 router.get("/signin", usersController.showSignIn);
-router.post("/signin", usersController.authenticate, usersController.redirectView);
+router.post("/signin", usersController.authenticate );
 router.get("/logout", usersController.logout, usersController.redirectView)
 
 
