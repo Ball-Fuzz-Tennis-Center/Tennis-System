@@ -30,6 +30,7 @@ function changedDurationDropdown() {
     }
 }
 
+//menaingless change
 function changedDateSelect() {
     date = dateSelect.value;
 
