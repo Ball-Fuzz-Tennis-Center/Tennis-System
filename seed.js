@@ -60,7 +60,7 @@ var commands = [];
 
 users.forEach(u => {
   commands.push(
-    User.register({
+    User.create({
       name: {
         first: u.name.first,
         last: u.name.last
