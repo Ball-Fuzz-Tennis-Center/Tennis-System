@@ -63,7 +63,7 @@ module.exports = {
                             if(user){
                                 console.log("hurray")
                                 req.flash("success", "Account was sucessfully created");
-                                res.locals.redirect = "/images/thanks";
+                                res.locals.redirect = "/";
                                 next();
                             }
                             else{
