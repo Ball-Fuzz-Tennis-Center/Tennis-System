@@ -11,5 +11,6 @@ I was responsible for setting up the usercontroller to handle login and sign up 
 
 Instructions: To run our application from a fresh clone, you must:
 1. Run 'npm install' to install all required dependencies for the project
-2. Run the seed.js file to populate the database with test data
-3. Run 'npm start' to run the application using nodemon
+2. To populate database with user test data, run 'node seedUsers.js'
+3. To populate database with reservation dates test data, run 'node seedReservationDates.js'
+4. Run 'npm start' to run the application using nodemon
