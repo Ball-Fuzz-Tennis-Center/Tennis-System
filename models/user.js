@@ -1,12 +1,12 @@
-const passportLocalMongose = require("passport-local-mongoose");
+"use strict";
 
 const mongoose =require("mongoose"),
-{ Schema } = require("mongoose");
-
+{ Schema } = mongoose,
+passportLocalMongose = require("passport-local-mongoose"),
 
 userSchema = new Schema(
     {
-        name:{
+        name: {
             first: {
                 type: String,
                 required: true
@@ -17,7 +17,7 @@ userSchema = new Schema(
             },
         },
         
-        username : {
+        username: {
             type: String,
             required: true
         },
@@ -50,7 +50,7 @@ userSchema = new Schema(
         
         dob: {
             type: Date,
-            required: true
+            required: false //
         },
         
         question1: {
@@ -77,14 +77,13 @@ userSchema = new Schema(
             type: String,
             required: false
         }
-        
     },
     {
         timestamps: true
     }
-    );
+);
 
-userSchema.plugin(passportLocalMongose,{
+userSchema.plugin(passportLocalMongose, {
     usernameField: "email"
 });
 

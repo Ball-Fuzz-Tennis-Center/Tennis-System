@@ -63,7 +63,7 @@ module.exports = {
                             if(user){
                                 console.log("hurray")
                                 req.flash("success", "Account was sucessfully created");
-                                res.locals.redirect = "/images/thanks";
+                                res.locals.redirect = "/";
                                 next();
                             }
                             else{
@@ -115,6 +115,71 @@ module.exports = {
         if (redirectPath !== undefined) res.redirect(redirectPath);
         else next();
     },
+
+    show: (req, res, next) => {
+        let userId = req.params.id;
+        User.findById(userId)
+          .then(user => {
+            res.locals.user = user;
+            next();
+          })
+          .catch(error => {
+            console.log(`Error fetching user by ID: ${error.message}`);
+            next(error);
+          });
+      },
+      showView: (req, res) => {
+        res.render("users/show");
+      },
+      edit: (req, res, next) => {
+        let userId = req.params.id;
+        User.findById(userId)
+          .then(user => {
+            res.render("users/edit", {
+              user: user
+            });
+          })
+          .catch(error => {
+            console.log(`Error fetching user by ID: ${error.message}`);
+            next(error);
+          });
+      },
+      update: (req, res, next) => {
+        let userId = req.params.id,
+          userParams = {
+            name: {
+              first: req.body.first,
+              last: req.body.last
+            },
+            email: req.body.email,
+            password: req.body.password,
+            zipCode: req.body.zipCode
+          };
+        User.findByIdAndUpdate(userId, {
+          $set: userParams
+        })
+          .then(user => {
+            res.locals.redirect = `/users/${userId}`;
+            res.locals.user = user;
+            next();
+          })
+          .catch(error => {
+            console.log(`Error updating user by ID: ${error.message}`);
+            next(error);
+          });
+      },
+      delete: (req, res, next) => {
+        let userId = req.params.id;
+        User.findByIdAndRemove(userId)
+          .then(() => {
+            res.locals.redirect = "/users";
+            next();
+          })
+          .catch(error => {
+            console.log(`Error deleting user by ID: ${error.message}`);
+            next();
+          });
+      },
 
     logout:(req,res,next) =>{
         req.logout();

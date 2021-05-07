@@ -31,7 +31,7 @@ const mongoose = require("mongoose");
 //const cookieParser = require("cookie-parser");
 mongoose.connect(
     "mongodb://localhost:27017/tennis-system", 
-    { useNewUrlParser: true }
+    { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.Promise = global.Promise;
 mongoose.set("useCreateIndex", true);
