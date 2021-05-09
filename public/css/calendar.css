@@ -1,29 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-body{
-    font-family: 'Oswald';
-    margin:0;
-    background:#ffAE42;
-    box-sizing: border-box;
-}
-
-html{
-    font-size:62.5%;
-}
-header{
-  text-align: center;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  background:#ffAE42;
-}
-
-header a{
- 
-  font-weight: 600;
-  font-size: 4.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: aliceblue;
-}
 
 .container{
   width:100%;
@@ -72,11 +47,6 @@ header a{
 .round {
   border-radius: 50%;
 }
-a:hover {
-  background-color:#ffAE42;
-  color: black;
-}
-
 .month p{
   font-size: 1rem;
 }
@@ -122,7 +92,7 @@ a:hover {
   
   width:calc(100%/7);
   text-align:left;
-  height: 10rem;
+  height: 7rem;
   display:flex;
   border: 1px solid black;
   justify-content: center;
