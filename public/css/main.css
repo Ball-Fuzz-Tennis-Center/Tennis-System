@@ -33,6 +33,13 @@ form {
     
 }
 
+.standard-div {
+    text-align: left;
+    border-radius: 0.8em;
+    background-color: aliceblue;
+    color: #00224B;
+    padding: 5%;
+}
 
 .hero-bg{
     font-size: 2rem;

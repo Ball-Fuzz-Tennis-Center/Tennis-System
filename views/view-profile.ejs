@@ -1,0 +1,58 @@
+<div>
+    <header>
+        <a href="/"> BallFuzz.Tennis</a>
+    </header>
+
+    <div class="standard-div">
+        
+        <% if (loggedIn) { %>
+            <h1><%= currentUser.fullName %></h1>
+        <% } else { %>
+            <h1>You're not signed in!</h1>
+            <a href="/signIn">Sign in here</a>
+        <% } %>
+
+        <% if (loggedIn) { %>
+
+            <a href="/edit-profile">Edit Profile</a>
+            <br>
+            <a href="/change-password">Change Password</a>
+
+            <div style="padding: 3%;">
+                <div class="row col-sm-12">
+                    <label col>First Name: <span><%= currentUser.name.first %></span></label>
+                </div>
+
+                <div class="row col-sm-12">
+                    <label col>Last Name: <span><%= currentUser.name.last %></span></label>
+                </div>
+
+                <div class="row col-sm-12">
+                    <label col>Username: <span><%= currentUser.username %></span></label>
+                </div>
+
+                <div class="row col-sm-12">
+                    <label col>Email: <span><%= currentUser.email %></span></label>
+                </div>
+
+                <div class="row col-sm-12">
+                    <label col>Address: 
+                        <span>
+                            <%= currentUser.street %>, <%= currentUser.city %>, <%= currentUser.state %> <%= currentUser.zipcode %>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="row col-sm-12">
+                    <label col>Gender: <span><%= currentUser.gender %></span></label>
+                </div>
+
+                <div class="row col-sm-12">
+                    <label col>Date of Birth: <span><%= currentUser.dob.toDateString() %></span></label>
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>

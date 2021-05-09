@@ -41,6 +41,12 @@ module.exports = {
     showSignUp: (req, res) => {
         res.render("signup");
     },
+    showProfile: (req, res) => {
+      res.render("view-profile");
+    },
+    showChangePassword: (req, res) => {
+      res.render("change-password");
+    },
     userAuthentication: (req, res, next) => {
         if (req.skip) return next();
         User.findOne({username: req.body.username}, function (err, user){
@@ -107,6 +113,35 @@ module.exports = {
                 next();
             }
         });
+    },
+
+    changeUserPassword: (req, res, next) => {
+      let currentUser = res.locals.currentUser;
+      let newPassword = req.body.newPassword;
+      let confirmNewPassword = req.body.confirmNewPassword;
+
+      if (newPassword != confirmNewPassword) {
+        res.locals.redirect = "/change-password";
+        req.flash("error", "Passwords do not match!");
+        next();
+      }
+
+      User.findById(currentUser._id).then(function(sanitizedUser) {
+          if (sanitizedUser) {
+              sanitizedUser.setPassword(newPassword, function() {
+                  sanitizedUser.save();
+                  res.locals.redirect = "/view-profile";
+                  req.flash("success", "Password changed successfully!");
+                  next();
+              });
+          } else {
+              res.locals.redirect = "/view-profile";
+              req.flash("error", "Server Error: Failed to change password!");
+              next();
+          }
+      }, function(err) {
+          console.error(err);
+      });
     },
 
     redirectView: (req, res, next) => {
