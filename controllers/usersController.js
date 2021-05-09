@@ -67,7 +67,7 @@ module.exports = {
                         let newUser = new User(getUserParams(req.body));
                         User.register(newUser, req.body.password,(error, user) =>{
                             if(user){
-                                req.flash("success", "Account created successfully.");
+                                req.flash("success", "Successfully created account. Please sign in once again.");
                                 res.locals.redirect = "/";
                                 next();
                             }
@@ -122,7 +122,7 @@ module.exports = {
 
       if (newPassword != confirmNewPassword) {
         res.locals.redirect = "/change-password";
-        req.flash("error", "Passwords do not match!");
+        req.flash("error", "Passwords do not match.");
         next();
       }
 
@@ -131,7 +131,7 @@ module.exports = {
               sanitizedUser.setPassword(newPassword, function() {
                   sanitizedUser.save();
                   res.locals.redirect = "/view-profile";
-                  req.flash("success", "Password changed successfully!");
+                  req.flash("success", "Password changed successfully.");
                   next();
               });
           } else {
@@ -217,17 +217,17 @@ module.exports = {
 
     logout:(req,res,next) =>{
         req.logout();
-        req.flash("success", "You have been logged out");
+        req.flash("success", "Successfully signed out.");
         res.locals.redirect ="/";
         next();
 
     },
     authenticate: passport.authenticate("local", {
         successRedirect: "/",
-        successFlash:"Sucessfully logged in!",
+        successFlash:"Successfully signed in.",
 
         failureRedirect:"/signin",
-        failureFlash: "Invalid email or password"
+        failureFlash: "Invalid email or password."
     })
 
 };

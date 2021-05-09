@@ -5,10 +5,10 @@ body{
     margin:0;
     background:#ffAE42;
     background-repeat: no-repeat;
+    padding-top: 70px;
     padding-right: 5em;
     padding-left: 5em;
     font-weight: 600;
-
 }
 
 header a{
@@ -39,6 +39,14 @@ form {
     background-color: aliceblue;
     color: #00224B;
     padding: 5%;
+}
+
+.flash-div {
+    text-align: center;
+    border-radius: 0.8em;
+    background-color: #e9a142;
+    color: #00224B;
+    padding: 0.8%;
 }
 
 .hero-bg{
@@ -138,12 +146,6 @@ h6{
 }
 
 
-.dropdown-menu,
-.dropdown-menu ul {
-  list-style-type:none;
-}
-
-
 @media(min-width:1150px){
     body{
      
@@ -202,16 +204,43 @@ h6{
     }
 }
 
-/* Modify navbar background color */ 
+/* Navbar */ 
           
 .navbar-custom { 
-    background-color: #ffAE42; 
+    background-color: #3ec994; 
 } 
 /* Modify brand and text color */ 
   
 .navbar-custom .navbar-brand, 
 .navbar-custom .navbar-text { 
-    color: white; 
+    color: white;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: rgb(235, 235, 235);
+    font-size: 1.2rem;
+}
+
+/* Album */
+
+.album-custom {
+    background-color: #e9a142;
+}
+
+.card-custom {
+    background-color: #c54444;
+}
+
+.card-text {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.card-button-custom {
+    background-color: #3ec994;
+    border-color: #3ec994;
+    font-size: 1.3rem;
 }
 
 /* Image effects */

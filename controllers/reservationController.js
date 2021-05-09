@@ -42,12 +42,12 @@ module.exports = {
                         }, function (err, result) {
                         if (!err) {
                             res.locals.redirect = "/";
-                            req.flash("success", "Successfully booked court!");
+                            req.flash("success", "Successfully booked court.");
                             next();
                         }
                         else {
                             res.locals.redirect = "/reserve-court";
-                            req.flash("error", "Failed to book court!");
+                            req.flash("error", "Failed to book court.");
                         }
                     });
                 }
@@ -75,12 +75,12 @@ module.exports = {
                     LessonReservationDate.findByIdAndUpdate(dateId, {"timeSlots": newTimeSlots}, function (err, result) {
                         if (!err) {
                             res.locals.redirect = "/";
-                            req.flash("success", "Successfully booked lesson!");
+                            req.flash("success", "Successfully booked lesson.");
                             next();
                         }
                         else {
                             res.locals.redirect = "/reserve-lesson";
-                            req.flash("error", "Failed to book lesson!");
+                            req.flash("error", "Failed to book lesson.");
                         }
                     });
                 }

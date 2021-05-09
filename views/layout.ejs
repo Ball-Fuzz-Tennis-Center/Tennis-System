@@ -15,82 +15,92 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <a class="navbar-brand" href="/">Ball Fuzz Tennis Center</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand" href="/">Ball Fuzz Tennis Center</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="shop">Shop</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop">Shop</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="calendar">Calendar</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calendar">Calendar</a>
+                    </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Reserve
-                    </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Reserve
+                        </a>
 
-                    <% if (loggedIn) { %>
+                        <% if (loggedIn) { %>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="reserve-court">Reserve a Court</a>
-                        <a class="dropdown-item" href="reserve-lesson">Reserve a Lesson</a>
-                    </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="reserve-court">Reserve a Court</a>
+                            <a class="dropdown-item" href="reserve-lesson">Reserve a Lesson</a>
+                        </div>
 
-                    <% } else { %>
+                        <% } else { %>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="signIn">Reserve a Court</a>
-                        <a class="dropdown-item" href="signIn">Reserve a Lesson</a>
-                    </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="signIn">Reserve a Court</a>
+                            <a class="dropdown-item" href="signIn">Reserve a Lesson</a>
+                        </div>
 
-                    <% } %>
+                        <% } %>
 
-                </li>
+                    </li>
 
-            </ul>
-            
-            <ul class="navbar-nav ml-auto"></ul>
+                </ul>
+                
+                <ul class="navbar-nav ml-auto"></ul>
 
-            <% if (loggedIn) { %>
+                <% if (loggedIn) { %>
 
-                <li class="navbar-nav nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarAccountDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Signed in as <%= currentUser.name.first %>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/view-profile">Profile</a>
-                        <a class="dropdown-item" href="/logout">Log Out</a>
-                    </div>
-                </li>
+                    <li class="navbar-nav nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarAccountDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Signed in as <%= currentUser.name.first %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/view-profile">Profile</a>
+                            <a class="dropdown-item" href="/logout">Log Out</a>
+                        </div>
+                    </li>
 
-            <% } else { %>
+                <% } else { %>
 
-                <li class="navbar-nav nav-item">
-                    <a class="nav-link" href="signIn">Sign In</a>
-                </li>
+                    <li class="navbar-nav nav-item">
+                        <a class="nav-link" href="signIn">Sign In</a>
+                    </li>
 
-            <% } %>
+                    <li class="navbar-nav nav-item" style="color: aliceblue;">
+                        - or -
+                    </li>
 
-            </ul>
-            
+                    <li class="navbar-nav nav-item">
+                        <a class="nav-link" href="signUp">Join Us!</a>
+                    </li>
+
+                <% } %>
+
+                </ul>
+                
+            </div>
         </div>
     </nav>
     
     <div class="flashes">
         <% if (flashMessages) { %>
           <% if (flashMessages.success) { %>
-            <div class="flash success"><%= flashMessages.success %></div>
+            <div class="flash success flash-div"><%= flashMessages.success %></div>
           <% } else if (flashMessages.error) { %>
-            <div class="flash error"><%= flashMessages.error %></div>
+            <div class="flash error flash-div"><%= flashMessages.error %></div>
           <% } %>
         <% } %>
     </div>
