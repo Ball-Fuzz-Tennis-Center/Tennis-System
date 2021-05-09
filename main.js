@@ -105,6 +105,7 @@ router.post("/reserve-court", reservationController.reserveCourt, reservationCon
 router.get("/reserve-lesson", reservationController.showReserveLesson);
 router.post("/reserve-lesson", reservationController.reserveLesson);
 
+router.get("/calendar", homeController.showCaledar);
 // Setup errors
 
 router.use(errorController.pageNotFoundError);
