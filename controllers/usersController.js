@@ -61,13 +61,12 @@ module.exports = {
                         let newUser = new User(getUserParams(req.body));
                         User.register(newUser, req.body.password,(error, user) =>{
                             if(user){
-                                console.log("hurray")
-                                req.flash("success", "Account was sucessfully created");
+                                req.flash("success", "Account created successfully.");
                                 res.locals.redirect = "/";
                                 next();
                             }
                             else{
-                                req.flash("error", " Account couldn't be created");
+                                req.flash("error", "Failed to create account.");
                                 res.locals.redirect = "/signup";
                                 next();
                             }
