@@ -15,7 +15,11 @@
                             <img class="card-img-top" src="images/tennis-courts.jpeg">
                             <div class="card-body">
                                 <p class="card-text">Come play on our beautiful courts! Our courts are state of the art and are regularly maintained to keep your game on point!</p>
-                                <a href="reserve-court.html" class="btn btn-primary">Reserve Court</a>
+                                <% if (loggedIn) { %>
+                                    <a href="reserve-court" class="btn btn-primary">Reserve Court</a>
+                                <% } else { %>
+                                    <a href="signIn" class="btn btn-primary">Reserve Court</a>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -24,7 +28,11 @@
                             <img class="card-img-top" src="images/tennis-lesson.jpeg">
                             <div class="card-body">
                                 <p class="card-text">Come take some lessons with our talented fleet of coaches! Whether you are just starting out or are professional, you can always level up!</p>
-                                <a href="reserve-lesson.html" class="btn btn-primary">Reserve Lesson</a>
+                                <% if (loggedIn) { %>
+                                    <a href="reserve-lesson" class="btn btn-primary">Reserve Lesson</a>
+                                <% } else { %>
+                                    <a href="signIn" class="btn btn-primary">Reserve Lesson</a>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -33,7 +41,7 @@
                             <img class="card-img-top" src="images/tennis-store.jpeg">
                             <div class="card-body">
                                 <p class="card-text">Need some gear? We've got you covered. Our tennis store is highly equipped with a range of products to bring your game higher and higher!</p>
-                                <a href="#" class="btn btn-primary">Tennis Store</a>
+                                <a href="shop" class="btn btn-primary">Tennis Store</a>
                             </div>
                         </div>
                     </div>

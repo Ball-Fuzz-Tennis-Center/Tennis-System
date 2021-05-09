@@ -95,7 +95,7 @@ router.get("/signup", usersController.showSignUp);
 router.post("/signup", usersController.validate, usersController.userAuthentication, usersController.redirectView);
 
 router.get("/signin", usersController.showSignIn);
-router.post("/signin", usersController.authenticate );
+router.post("/signin", usersController.authenticate);
 router.get("/logout", usersController.logout, usersController.redirectView)
 
 
