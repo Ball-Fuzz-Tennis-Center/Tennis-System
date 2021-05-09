@@ -14,7 +14,7 @@ module.exports = {
         fetchLessonReservationDatesAndShow(res);
     },
     reserveCourt: (req, res, next) => {
-        let user = User(res.locals.user);
+        let user = User(res.locals.currentUser);
 
         CourtReservationDate.find({}, function (err, dates) {
             if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
@@ -41,18 +41,21 @@ module.exports = {
                             "timeSlotBallMachines": newTimeSlotBallMachines
                         }, function (err, result) {
                         if (!err) {
+                            res.locals.redirect = "/";
+                            req.flash("success", "Successfully booked court!");
                             next();
                         }
                         else {
-                            console.log(`Error updating reservation! ${err}`);
+                            res.locals.redirect = "/reserve-court";
+                            req.flash("error", "Failed to book court!");
                         }
                     });
                 }
             });
         });
     },
-    reserveLesson: (req, res) => {
-        let user = User(res.locals.user);
+    reserveLesson: (req, res, next) => {
+        let user = User(res.locals.currentUser);
 
         LessonReservationDate.find({}, function (err, dates) {
             if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
@@ -71,15 +74,23 @@ module.exports = {
 
                     LessonReservationDate.findByIdAndUpdate(dateId, {"timeSlots": newTimeSlots}, function (err, result) {
                         if (!err) {
+                            res.locals.redirect = "/";
+                            req.flash("success", "Successfully booked lesson!");
                             next();
                         }
                         else {
-                            console.log(`Error updating reservation! ${err}`);
+                            res.locals.redirect = "/reserve-lesson";
+                            req.flash("error", "Failed to book lesson!");
                         }
                     });
                 }
             });
         });
+    },
+    redirectView: (req, res, next) => {
+        let redirectPath = res.locals.redirect;
+        if (redirectPath !== undefined) res.redirect(redirectPath);
+        else next();
     }
 };
 

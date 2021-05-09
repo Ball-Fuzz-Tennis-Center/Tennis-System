@@ -85,6 +85,18 @@ function populateTimeDropdown() {
                     timeSlotOption.disabled = true;
                 }
 
+                let overlap = false;
+
+                for (let i = 1; i < duration; i++) {
+                    if (date.timeSlots[Number(timeSlot) + Number(i)] != null) {
+                        overlap = true;
+                    }
+                }
+
+                if (overlap) {
+                    timeSlotOption.disabled = true;
+                }
+
                 timeDropdown.add(timeSlotOption);
             }
         }

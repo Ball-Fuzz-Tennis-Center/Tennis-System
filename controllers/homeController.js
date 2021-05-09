@@ -4,7 +4,10 @@ module.exports = {
     showIndex: (req, res) => {
         res.render("index");
     },
-    showCaledar: (req, res) => {
+    showCalendar: (req, res) => {
         res.render("calendar");
+    },
+    showShop: (req, res) => {
+        res.render("shop");
     }
 };

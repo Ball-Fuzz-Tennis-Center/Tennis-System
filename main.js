@@ -103,12 +103,14 @@ router.get("/change-password", usersController.showChangePassword);
 router.post("/change-password", usersController.changeUserPassword, usersController.redirectView);
 
 router.get("/reserve-court", reservationController.showReserveCourt);
-router.post("/reserve-court", reservationController.reserveCourt, reservationController.showReserveCourt);
+router.post("/reserve-court", reservationController.reserveCourt, reservationController.redirectView);
 
 router.get("/reserve-lesson", reservationController.showReserveLesson);
-router.post("/reserve-lesson", reservationController.reserveLesson);
+router.post("/reserve-lesson", reservationController.reserveLesson, reservationController.redirectView);
 
-router.get("/calendar", homeController.showCaledar);
+router.get("/calendar", homeController.showCalendar);
+
+router.get("/shop", homeController.showShop);
 // Setup errors
 
 router.use(errorController.pageNotFoundError);
