@@ -114,15 +114,17 @@ module.exports = {
                   iterating = false;
                   endingSlot = timeSlot;
                   let newDate = new Date(courtDate.date);
-
-                  userCourtReservations.push(
-                    {
-                      date: newDate.toDateString(),
-                      startTime: getTimeSlotValue(startingSlot),
-                      endTime: getTimeSlotValue(endingSlot),
-                      ballMachine: ballMachine
-                    }
-                  );
+                  let today = new Date();
+                  if (newDate >= today) {
+                    userCourtReservations.push(
+                      {
+                        date: newDate.toDateString(),
+                        startTime: getTimeSlotValue(startingSlot),
+                        endTime: getTimeSlotValue(endingSlot),
+                        ballMachine: ballMachine
+                      }
+                    );
+                  }
 
                   ballMachine = false;
                 }
@@ -155,14 +157,16 @@ module.exports = {
                   iterating = false;
                   endingSlot = 31;
                   let newDate = new Date(lessonDate.date);
-
-                  userLessonReservations.push(
-                    {
-                      date: newDate.toDateString(),
-                      startTime: getTimeSlotValue(startingSlot),
-                      endTime: getTimeSlotValue(endingSlot)
-                    }
-                  );
+                  let today = new Date();
+                  if (newDate >= today) {
+                    userLessonReservations.push(
+                      {
+                        date: newDate.toDateString(),
+                        startTime: getTimeSlotValue(startingSlot),
+                        endTime: getTimeSlotValue(endingSlot)
+                      }
+                    );
+                  }
                 }
 
                 if (currentTimeSlotValue == null) {

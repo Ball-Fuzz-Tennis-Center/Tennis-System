@@ -18,37 +18,86 @@
             <br>
             <a href="/change-password">Change Password</a>
 
-            <div style="padding: 3%;">
-                <div class="row col-sm-12">
-                    <label col>First Name: <span><%= currentUser.name.first %></span></label>
-                </div>
+            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 20px;">
+            
+                <h2 style="color: white;">Account Details</h2>
+    
+                <div class="list-group list-group-custom">
+    
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">First Name</h5>
+                      </div>
+                      <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.name.first %></p>
+                      <small style="font-size: 1rem;"></small>
+                    </a>
 
-                <div class="row col-sm-12">
-                    <label col>Last Name: <span><%= currentUser.name.last %></span></label>
-                </div>
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1" style="font-size: 1.2rem;">Last Name</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.name.last %></p>
+                        <small style="font-size: 1rem;"></small>
+                      </a>
 
-                <div class="row col-sm-12">
-                    <label col>Username: <span><%= currentUser.username %></span></label>
-                </div>
+                      <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1" style="font-size: 1.2rem;">Username</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.username %></p>
+                        <small style="font-size: 1rem;"></small>
+                      </a>
 
-                <div class="row col-sm-12">
-                    <label col>Email: <span><%= currentUser.email %></span></label>
-                </div>
+                      <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1" style="font-size: 1.2rem;">Email Address</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.email %></p>
+                        <small style="font-size: 1rem;"></small>
+                      </a>
 
-                <div class="row col-sm-12">
-                    <label col>Address: 
-                        <span>
-                            <%= currentUser.street %>, <%= currentUser.city %>, <%= currentUser.state %> <%= currentUser.zipcode %>
-                        </span>
-                    </label>
                 </div>
+            </div>
 
-                <div class="row col-sm-12">
-                    <label col>Gender: <span><%= currentUser.gender %></span></label>
+            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 20px;">
+            
+                <h2 style="color: white;">Address Details</h2>
+    
+                <div class="list-group list-group-custom">
+    
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">Home Address</h5>
+                      </div>
+                      <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.street %>, <%= currentUser.city %>, <%= currentUser.state %> <%= currentUser.zipcode %></p>
+                      <small style="font-size: 1rem;"></small>
+                    </a>
+
                 </div>
+            </div>
 
-                <div class="row col-sm-12">
-                    <label col>Date of Birth: <span><%= currentUser.dob.toDateString() %></span></label>
+            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 20px;">
+
+                <h2 style="color: white;">Personal Details</h2>
+        
+                <div class="list-group list-group-custom">
+
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">Date of Birth</h5>
+                    </div>
+                    <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.dob.toDateString() %></p>
+                    <small style="font-size: 1rem;"></small>
+                    </a>
+
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">Gender</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.gender %></p>
+                        <small style="font-size: 1rem;"></small>
+                    </a>
+
                 </div>
             </div>
 
@@ -70,7 +119,7 @@
 
                 <% courtReservations.forEach(reservation => { %>
 
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1" style="font-size: 2rem;"><%= reservation.date %></h5>
                   </div>
@@ -95,7 +144,7 @@
 
                 <% lessonReservations.forEach(reservation => { %>
 
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1" style="font-size: 2rem;"><%= reservation.date %></h5>
                   </div>
