@@ -114,8 +114,9 @@ router.post("/reserve-lesson", reservationController.reserveLesson, reservationC
 
 // Other Pages
 
-router.get("/calendar", homeController.showCalendar);
 router.get("/shop", homeController.showShop);
+router.get("/calendar", homeController.showCalendar);
+
 // Setup errors
 
 router.use(errorController.pageNotFoundError);
