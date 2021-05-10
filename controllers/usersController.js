@@ -41,18 +41,21 @@ module.exports = {
   showSignIn: (req, res) => {
     res.render("users/signin");
   },
+
   showSignUp: (req, res) => {
     res.render("users/signup");
   },
+
   showChangePassword: (req, res) => {
-    res.render("change-password");
+    res.render("users/change-password");
   },
-  userAuthentication: (req, res, next) => {
+
+  create: (req, res, next) => {
     if (req.skip) return next();
     User.findOne({ username: req.body.username }, function (err, user) {
       if (user) {
         req.flash("error", `${user.username} is taken!`);
-        res.locals.redirect = "/signup";
+        res.locals.redirect = "/users/new";
         next();
       }
       else {
@@ -60,7 +63,7 @@ module.exports = {
         User.findOne({ email: req.body.email }, function (err, user) {
           if (user) {
             req.flash("error", `${user.email} is taken!`);
-            res.locals.redirect = "/signup";
+            res.locals.redirect = "/users/new";
             next();
           }
           else {
@@ -73,7 +76,7 @@ module.exports = {
               }
               else {
                 req.flash("error", "Failed to create account.");
-                res.locals.redirect = "/signup";
+                res.locals.redirect = "/users/new";
                 next();
               }
             })
@@ -82,6 +85,7 @@ module.exports = {
       }
     });
   },
+
   validate: (req, res, next) => {
 
     req
@@ -106,7 +110,7 @@ module.exports = {
         let messages = error.array().map(e => e.msg);
         req.skip = true;
         req.flash("error", messages.join(" and "));
-        res.locals.redirect = "/signup";
+        res.locals.redirect = "/users/new";
         next();
       }
       else {
@@ -115,13 +119,21 @@ module.exports = {
     });
   },
 
+  authenticate: passport.authenticate("local", {
+    successRedirect: "/",
+    successFlash: "Successfully signed in.",
+
+    failureRedirect: "/users/signin",
+    failureFlash: "Invalid email or password."
+  }),
+
   changeUserPassword: (req, res, next) => {
     let currentUser = res.locals.currentUser;
     let newPassword = req.body.newPassword;
     let confirmNewPassword = req.body.confirmNewPassword;
 
     if (newPassword != confirmNewPassword) {
-      res.locals.redirect = "/change-password";
+      res.locals.redirect = `/users/${currentUser._id}/change-password`;
       req.flash("error", "Passwords do not match.");
       next();
     }
@@ -130,12 +142,12 @@ module.exports = {
       if (sanitizedUser) {
         sanitizedUser.setPassword(newPassword, function () {
           sanitizedUser.save();
-          res.locals.redirect = "/view-profile";
+          res.locals.redirect = `/users/${currentUser._id}`;
           req.flash("success", "Password changed successfully.");
           next();
         });
       } else {
-        res.locals.redirect = "/view-profile";
+        res.locals.redirect = `/users/${currentUser._id}`;
         req.flash("error", "Server Error: Failed to change password!");
         next();
       }
@@ -303,7 +315,7 @@ module.exports = {
     let userId = req.params.id;
     User.findById(userId)
       .then(user => {
-        res.render("users/edit", {
+        res.render(`/users/${user._id}/edit`, {
           user: user
         });
       })
@@ -327,7 +339,7 @@ module.exports = {
       $set: userParams
     })
       .then(user => {
-        res.locals.redirect = `/users/${userId}`;
+        res.locals.redirect = `/users/${user._id}`;
         res.locals.user = user;
         next();
       })
@@ -340,7 +352,7 @@ module.exports = {
     let userId = req.params.id;
     User.findByIdAndRemove(userId)
       .then(() => {
-        res.locals.redirect = "/users";
+        res.locals.redirect = "/";
         next();
       })
       .catch(error => {
@@ -349,21 +361,12 @@ module.exports = {
       });
   },
 
-  logout: (req, res, next) => {
+  signOut: (req, res, next) => {
     req.logout();
     req.flash("success", "Successfully signed out.");
     res.locals.redirect = "/";
     next();
-
-  },
-  authenticate: passport.authenticate("local", {
-    successRedirect: "/",
-    successFlash: "Successfully signed in.",
-
-    failureRedirect: "/signin",
-    failureFlash: "Invalid email or password."
-  })
-
+  }
 };
 
 

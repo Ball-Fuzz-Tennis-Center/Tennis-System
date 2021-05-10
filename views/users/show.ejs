@@ -9,7 +9,7 @@
             <h1 style="margin-bottom: 20px;"><%= currentUser.fullName %></h1>
         <% } else { %>
             <h1>You're not signed in!</h1>
-            <a href="/signIn">Sign in here</a>
+            <a href="/users/signin">Sign in here</a>
         <% } %>
 
         <% if (loggedIn) { %>
@@ -99,7 +99,7 @@
 
             <a href="/edit-profile">Edit Profile</a>
             <br>
-            <a href="/change-password" style="text-align: right;">Change Password</a>
+            <a href="<%= `/users/${currentUser._id}/change-password` %>" style="text-align: right;">Change Password</a>
 
         <% } %>
 
@@ -161,6 +161,6 @@
 
     <% } %>
 
-    <script src="js/view-profile.js"></script>
+    <script src="/js/view-profile.js"></script>
 
 </div>

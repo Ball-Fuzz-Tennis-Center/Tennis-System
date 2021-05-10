@@ -90,17 +90,21 @@ router.use((req,res,next) => {
 
 router.get("/", homeController.showIndex);
 
+// Users
 
-router.get("/signup", usersController.showSignUp);
-router.post("/signup", usersController.validate, usersController.userAuthentication, usersController.redirectView);
+router.get("/users/new", usersController.showSignUp);
+router.post("/users/create", usersController.validate, usersController.create, usersController.redirectView);
+router.get("/users/signin", usersController.showSignIn);
+router.post("/users/signin", usersController.authenticate);
+router.get("/users/signout", usersController.signOut, usersController.redirectView);
+router.get("/users/:id/edit", usersController.edit);
+router.put("/users/:id/update", usersController.validate, usersController.update, usersController.redirectView);
+router.get("/users/:id/change-password", usersController.showChangePassword);
+router.post("/users/:id/change-password", usersController.changeUserPassword, usersController.redirectView);
+router.get("/users/:id", usersController.show);
+router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
 
-router.get("/signin", usersController.showSignIn);
-router.post("/signin", usersController.authenticate);
-router.get("/logout", usersController.logout, usersController.redirectView)
-
-router.get("/view-profile", usersController.show);
-router.get("/change-password", usersController.showChangePassword);
-router.post("/change-password", usersController.changeUserPassword, usersController.redirectView);
+// Reservations
 
 router.get("/reserve-court", reservationController.showReserveCourt);
 router.post("/reserve-court", reservationController.reserveCourt, reservationController.redirectView);
@@ -108,8 +112,9 @@ router.post("/reserve-court", reservationController.reserveCourt, reservationCon
 router.get("/reserve-lesson", reservationController.showReserveLesson);
 router.post("/reserve-lesson", reservationController.reserveLesson, reservationController.redirectView);
 
-router.get("/calendar", homeController.showCalendar);
+// Other Pages
 
+router.get("/calendar", homeController.showCalendar);
 router.get("/shop", homeController.showShop);
 // Setup errors
 
