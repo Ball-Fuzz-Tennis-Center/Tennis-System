@@ -18,9 +18,9 @@
                                 <div class="card-body">
                                     <p class="card-text">Come play on our beautiful courts! Our courts are state of the art (standard or clay) and are regularly maintained to keep your game on point!</p>
                                     <% if (loggedIn) { %>
-                                        <a href="reserve-court" class="btn btn-primary card-button-custom">Reserve Court</a>
+                                        <a href="/reserve-court" class="btn btn-primary card-button-custom">Reserve Court</a>
                                     <% } else { %>
-                                        <a href="signIn" class="btn btn-primary card-button-custom">Reserve Court</a>
+                                        <a href="/users/signin" class="btn btn-primary card-button-custom">Reserve Court</a>
                                     <% } %>
                                 </div>
                             </div>
@@ -31,9 +31,9 @@
                                 <div class="card-body">
                                     <p class="card-text">Come take some lessons with our talented fleet of coaches! Whether you are just starting out or are a professional, you can always level up!</p>
                                     <% if (loggedIn) { %>
-                                        <a href="reserve-lesson" class="btn btn-primary card-button-custom">Reserve Lesson</a>
+                                        <a href="/reserve-lesson" class="btn btn-primary card-button-custom">Reserve Lesson</a>
                                     <% } else { %>
-                                        <a href="signIn" class="btn btn-primary card-button-custom">Reserve Lesson</a>
+                                        <a href="/users/signin" class="btn btn-primary card-button-custom">Reserve Lesson</a>
                                     <% } %>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <img class="card-img-top" src="images/tennis-store.jpeg">
                                 <div class="card-body">
                                     <p class="card-text">Need some gear? We've got you covered. Our tennis store is highly equipped with a range of products to bring your game higher and higher!</p>
-                                    <a href="shop" class="btn btn-primary card-button-custom">Tennis Store</a>
+                                    <a href="/shop" class="btn btn-primary card-button-custom">Tennis Store</a>
                                 </div>
                             </div>
                         </div>
