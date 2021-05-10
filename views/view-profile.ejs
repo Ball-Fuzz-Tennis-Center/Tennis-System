@@ -6,7 +6,7 @@
     <div class="standard-div">
         
         <% if (loggedIn) { %>
-            <h1><%= currentUser.fullName %></h1>
+            <h1 style="margin-bottom: 20px;"><%= currentUser.fullName %></h1>
         <% } else { %>
             <h1>You're not signed in!</h1>
             <a href="/signIn">Sign in here</a>
@@ -14,11 +14,7 @@
 
         <% if (loggedIn) { %>
 
-            <a href="/edit-profile">Edit Profile</a>
-            <br>
-            <a href="/change-password">Change Password</a>
-
-            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 20px;">
+            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444;">
             
                 <h2 style="color: white;">Account Details</h2>
     
@@ -59,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 20px;">
+            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 10px;">
             
                 <h2 style="color: white;">Address Details</h2>
     
@@ -76,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 20px;">
+            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 10px; margin-bottom: 10px;">
 
                 <h2 style="color: white;">Personal Details</h2>
         
@@ -100,6 +96,10 @@
 
                 </div>
             </div>
+
+            <a href="/edit-profile">Edit Profile</a>
+            <br>
+            <a href="/change-password" style="text-align: right;">Change Password</a>
 
         <% } %>
 
