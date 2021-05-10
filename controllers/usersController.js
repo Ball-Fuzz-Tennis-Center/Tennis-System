@@ -87,7 +87,6 @@ module.exports = {
   },
 
   validate: (req, res, next) => {
-
     req
       .sanitizeBody("email").normalizeEmail({
         all_lowercase: true
@@ -98,6 +97,29 @@ module.exports = {
     req.check("username", "Username cannot be empty").notEmpty();
     req.check("gender", "Gender cannot be empty").notEmpty();
     req.check("dob", "Birthday cannot be empty").notEmpty();
+    req.check("street", "street cannot be empty").notEmpty();
+    req.check("city", "city cannot be empty").notEmpty();
+    req.check("zipcode", "zipcode cannot be empty").notEmpty().isInt().isLength({
+      min: 5,
+      max: 5
+    }).equals(req.body.zipcode);
+
+    req.getValidationResult().then(error => {
+      if (!error.isEmpty()) {
+        let messages = error.array().map(e => e.msg);
+        req.skip = true;
+        req.flash("error", messages.join(" and "));
+        res.locals.redirect = "/users/new";
+        next();
+      }
+      else {
+        next();
+      }
+    });
+  },
+
+  validateUpdate: (req, res, next) => {
+    req.check("username", "Username cannot be empty").notEmpty();
     req.check("street", "street cannot be empty").notEmpty();
     req.check("city", "city cannot be empty").notEmpty();
     req.check("zipcode", "zipcode cannot be empty").notEmpty().isInt().isLength({
@@ -326,6 +348,7 @@ module.exports = {
   },
   update: (req, res, next) => {
     let currentUser = res.locals.currentUser;
+    console.log(`CURRENT USER: ${currentUser}`);
     let userId = req.params.id,
       userParams = {
         name: {
@@ -351,6 +374,7 @@ module.exports = {
       $set: userParams
     })
       .then(user => {
+        req.flash("success", "Successfully updated profile.");
         res.locals.redirect = `/users/${user._id}`;
         res.locals.user = user;
         next();

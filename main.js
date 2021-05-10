@@ -98,7 +98,7 @@ router.get("/users/signin", usersController.showSignIn);
 router.post("/users/signin", usersController.authenticate);
 router.get("/users/signout", usersController.signOut, usersController.redirectView);
 router.get("/users/:id/edit", usersController.edit);
-router.put("/users/:id/update", usersController.validate, usersController.update, usersController.redirectView);
+router.put("/users/:id/update", usersController.validateUpdate, usersController.update, usersController.redirectView);
 router.get("/users/:id/change-password", usersController.showChangePassword);
 router.post("/users/:id/change-password", usersController.changeUserPassword, usersController.redirectView);
 router.get("/users/:id", usersController.show);
