@@ -98,7 +98,7 @@ router.get("/signin", usersController.showSignIn);
 router.post("/signin", usersController.authenticate);
 router.get("/logout", usersController.logout, usersController.redirectView)
 
-router.get("/view-profile", usersController.showProfile);
+router.get("/view-profile", usersController.show);
 router.get("/change-password", usersController.showChangePassword);
 router.post("/change-password", usersController.changeUserPassword, usersController.redirectView);
 
