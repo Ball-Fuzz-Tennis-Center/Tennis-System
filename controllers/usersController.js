@@ -388,6 +388,7 @@ module.exports = {
     let userId = req.params.id;
     User.findByIdAndRemove(userId)
       .then(() => {
+        req.flash("success", "Successfully deleted account.");
         res.locals.redirect = "/";
         next();
       })

@@ -81,6 +81,8 @@
             <div class="col-sm-12">
                 <button type="submit" class="btn btn-success btn-lg">Submit</button>
                 <button type="button" onclick="document.location='<%= `/users/${user._id}` %>'" class="btn btn-primary btn-lg">Cancel</button>
+                <br>
+                <a style="color: red; font-size: 1rem;" href="<%= `/users/${user._id}/delete` %>">Delete Account</a>
             </div>
         </div>
     </form>
