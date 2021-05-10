@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <a href="/edit-profile">Edit Profile</a>
+            <a href="<%= `/users/${currentUser._id}/edit` %>">Edit Profile</a>
             <br>
             <a href="<%= `/users/${currentUser._id}/change-password` %>" style="text-align: right;">Change Password</a>
 

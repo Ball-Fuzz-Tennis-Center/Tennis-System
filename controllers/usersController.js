@@ -315,7 +315,7 @@ module.exports = {
     let userId = req.params.id;
     User.findById(userId)
       .then(user => {
-        res.render(`/users/${user._id}/edit`, {
+        res.render("users/edit", {
           user: user
         });
       })
@@ -325,15 +325,27 @@ module.exports = {
       });
   },
   update: (req, res, next) => {
+    let currentUser = res.locals.currentUser;
     let userId = req.params.id,
       userParams = {
         name: {
           first: req.body.first,
           last: req.body.last
         },
-        email: req.body.email,
-        password: req.body.password,
-        zipCode: req.body.zipCode
+        username: req.body.username,
+        email: currentUser.email,
+        gender: currentUser.gender,
+        dob: currentUser.dob,
+        street: req.body.street,
+        city: req.body.city,
+        state: req.body.state,
+        zipCode: req.body.zipCode,
+        question1: currentUser.question1,
+        question2: currentUser.question2,
+        question3: currentUser.question3,
+        answer1: currentUser.answer1,
+        answer2: currentUser.answer2,
+        answer3: currentUser.answer3
       };
     User.findByIdAndUpdate(userId, {
       $set: userParams
