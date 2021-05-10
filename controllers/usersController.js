@@ -140,10 +140,12 @@ module.exports = {
 
               if (!iterating) {
 
-                if (currentTimeSlotValue != null) { // Fix this
-                  if (currentTimeSlotValue == res.locals.currentUser._id) {
-                    iterating = true;
-                    startingSlot = timeSlot;
+                if (currentTimeSlotValue != null) {
+                  if (currentUser != null) {
+                    if (currentTimeSlotValue == currentUser._id) {
+                      iterating = true;
+                      startingSlot = timeSlot;
+                    }
                   }
                 }
               }
