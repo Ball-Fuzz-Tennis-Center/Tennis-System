@@ -8,10 +8,24 @@ let courtReservationDates = [];
 
 module.exports = {
     showReserveCourt: (req, res) => {
-        fetchCourtReservationDatesAndShow(res);
+
+        CourtReservationDate.find({}, function (err, dates) {
+            if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
+    
+            dates.sort((a, b) => (a.date > b.date) ? 1: -1);
+    
+            res.render("reserve-court", { dates: dates });
+        });
     },
     showReserveLesson: (req, res) => {
-        fetchLessonReservationDatesAndShow(res);
+        
+        LessonReservationDate.find({}, function (err, dates) {
+            if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
+    
+            dates.sort((a, b) => (a.date > b.date) ? 1: -1);
+    
+            res.render("reserve-lesson", { dates: dates });
+        });
     },
     reserveCourt: (req, res, next) => {
         let user = User(res.locals.currentUser);
@@ -93,23 +107,3 @@ module.exports = {
         else next();
     }
 };
-
-function fetchCourtReservationDatesAndShow(res) {
-    CourtReservationDate.find({}, function (err, dates) {
-        if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
-
-        dates.sort((a, b) => (a.date > b.date) ? 1: -1);
-
-        res.render("reserve-court", { dates: dates });
-    });
-}
-
-function fetchLessonReservationDatesAndShow(res) {
-    LessonReservationDate.find({}, function (err, dates) {
-        if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
-
-        dates.sort((a, b) => (a.date > b.date) ? 1: -1);
-
-        res.render("reserve-lesson", { dates: dates });
-    });
-}

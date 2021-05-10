@@ -2,6 +2,9 @@
 
 const passport = require("passport");
 
+const CourtReservationDate = require("../models/courtReservationDate");
+const LessonReservationDate = require("../models/lessonReservationDate");
+
 const User = require("../models/user"),
 pasport = require("passport"),
 getUserParams = body =>{
@@ -42,7 +45,148 @@ module.exports = {
         res.render("signup");
     },
     showProfile: (req, res) => {
-      res.render("view-profile");
+
+      let currentUser = res.locals.currentUser;
+
+      CourtReservationDate.find({}, function (err, courtDates) {
+        if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
+  
+        courtDates.sort((a, b) => (a.date > b.date) ? 1: -1);
+
+        LessonReservationDate.find({}, function (err, lessonDates) {
+          if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
+    
+          lessonDates.sort((a, b) => (a.date > b.date) ? 1: -1);
+
+          let userCourtReservations = [];
+          let userLessonReservations = [];
+
+          let jsonCourtDates = JSON.stringify(courtDates);
+          let jsonLessonDates = JSON.stringify(lessonDates);
+
+          let parsedCourtDates = JSON.parse(jsonCourtDates);
+          let parsedLessonDates = JSON.parse(jsonLessonDates);
+
+          parsedCourtDates.forEach(courtDate => {
+            let iterating = false;
+            let startingSlot = '';
+            let endingSlot = '';
+            let ballMachine = false;
+
+            for (let timeSlot of Object.keys(courtDate.timeSlots)) {
+              let currentTimeSlotValue = courtDate.timeSlots[timeSlot];
+
+              if (!iterating) {
+
+                if (currentTimeSlotValue != null) {
+                  if (currentUser != null) {
+                    if (currentTimeSlotValue == currentUser._id) {
+                      iterating = true;
+                      startingSlot = timeSlot;
+  
+                      if (courtDate.timeSlotBallMachines[timeSlot] == true) {
+                        ballMachine = true;
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+
+                if (timeSlot == 30) {
+                  iterating = false;
+                  endingSlot = 31;
+                  let newDate = new Date(lessonDate.date);
+
+                  userCourtReservations.push(
+                    {
+                      date: newDate.toDateString(),
+                      startTime: getTimeSlotValue(startingSlot),
+                      endTime: getTimeSlotValue(endingSlot),
+                      ballMachine: ballMachine
+                    }
+                  );
+
+                  ballMachine = false;
+                }
+
+                if (currentTimeSlotValue == null) {
+                  iterating = false;
+                  endingSlot = timeSlot;
+                  let newDate = new Date(courtDate.date);
+
+                  userCourtReservations.push(
+                    {
+                      date: newDate.toDateString(),
+                      startTime: getTimeSlotValue(startingSlot),
+                      endTime: getTimeSlotValue(endingSlot),
+                      ballMachine: ballMachine
+                    }
+                  );
+
+                  ballMachine = false;
+                }
+              }
+            }
+          });
+
+          parsedLessonDates.forEach(lessonDate => {
+            let iterating = false;
+            let startingSlot = '';
+            let endingSlot = '';
+
+            for (let timeSlot of Object.keys(lessonDate.timeSlots)) {
+              let currentTimeSlotValue = lessonDate.timeSlots[timeSlot];
+
+              if (!iterating) {
+
+                if (currentTimeSlotValue != null) { // Fix this
+                  if (currentTimeSlotValue == res.locals.currentUser._id) {
+                    iterating = true;
+                    startingSlot = timeSlot;
+                  }
+                }
+              }
+              else {
+
+                if (timeSlot == 30) {
+                  iterating = false;
+                  endingSlot = 31;
+                  let newDate = new Date(lessonDate.date);
+
+                  userLessonReservations.push(
+                    {
+                      date: newDate.toDateString(),
+                      startTime: getTimeSlotValue(startingSlot),
+                      endTime: getTimeSlotValue(endingSlot)
+                    }
+                  );
+                }
+
+                if (currentTimeSlotValue == null) {
+                  iterating = false;
+                  endingSlot = timeSlot;
+                  let newDate = new Date(lessonDate.date);
+
+                  userLessonReservations.push(
+                    {
+                      date: newDate.toDateString(),
+                      startTime: getTimeSlotValue(startingSlot),
+                      endTime: getTimeSlotValue(endingSlot)
+                    }
+                  );
+                }
+              }
+            }
+          });
+    
+          res.render("view-profile", 
+          {
+            courtReservations: userCourtReservations,
+            lessonReservations: userLessonReservations
+          });
+        });
+      });
     },
     showChangePassword: (req, res) => {
       res.render("change-password");
@@ -231,7 +375,132 @@ module.exports = {
     })
 
 };
-           
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getTimeSlotValue(timeSlot) {
+  let timeSlotValue = "";
+  let timeSlotNumber = Number(timeSlot);
+
+  switch (timeSlotNumber) {
+      case 1:
+          timeSlotValue = "7:00 am";
+          break;
+      case 2:
+          timeSlotValue = "7:30 am";
+          break;
+      case 3:
+          timeSlotValue = "8:00 am";
+          break;
+      case 4:
+          timeSlotValue = "8:30 am";
+          break;
+      case 5:
+          timeSlotValue = "9:00 am";
+          break;
+      case 6:
+          timeSlotValue = "9:30 am";
+          break;
+      case 7:
+          timeSlotValue = "10:00 am";
+          break;
+      case 8:
+          timeSlotValue = "10:30 am";
+          break;
+      case 9:
+          timeSlotValue = "11:00 am";
+          break;
+      case 10:
+          timeSlotValue = "11:30 am";
+          break;
+      case 11:
+          timeSlotValue = "12:00 pm";
+          break;
+      case 12:
+          timeSlotValue = "12:30 pm";
+          break;
+      case 13:
+          timeSlotValue = "1:00 pm";
+          break;
+      case 14:
+          timeSlotValue = "1:30 pm";
+          break;
+      case 15:
+          timeSlotValue = "2:00 pm";
+          break;
+      case 16:
+          timeSlotValue = "2:30 pm";
+          break;
+      case 17:
+          timeSlotValue = "3:00 pm";
+          break;
+      case 18:
+          timeSlotValue = "3:30 pm";
+          break;
+      case 19:
+          timeSlotValue = "4:00 pm";
+          break;
+      case 20:
+          timeSlotValue = "4:30 pm";
+          break;
+      case 21:
+          timeSlotValue = "5:00 pm";
+          break;
+      case 22:
+          timeSlotValue = "5:30 pm";
+          break;
+      case 23:
+          timeSlotValue = "6:00 pm";
+          break;
+      case 24:
+          timeSlotValue = "6:30 pm";
+          break;
+      case 25:
+          timeSlotValue = "7:00 pm";
+          break;
+      case 26:
+          timeSlotValue = "7:30 pm";
+          break;
+      case 27:
+          timeSlotValue = "8:00 pm";
+          break;
+      case 28:
+          timeSlotValue = "8:30 pm";
+          break;
+      case 29:
+          timeSlotValue = "9:00 pm";
+          break;
+      case 30:
+          timeSlotValue = "9:30 pm";
+          break;
+      case 31:
+          timeSlotValue = "10:00 pm";
+          break;
+      default:
+          timeSlotValue = "undefined";
+          break;
+  }
+
+  return timeSlotValue;
+}

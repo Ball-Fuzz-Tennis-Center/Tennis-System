@@ -55,4 +55,63 @@
         <% } %>
 
     </div>
+
+    <% if (loggedIn) { %>
+
+    <div class="standard-div" style="margin-top: 30px;">
+        
+        <h1 style="margin-bottom: 20px;">Reservations</h1>
+
+        <div class="standard-div shadow" style="padding: 2%; background-color: #c54444;">
+            
+            <h2 style="color: white;">Court Reservations</h2>
+
+            <div class="list-group list-group-custom">
+
+                <% courtReservations.forEach(reservation => { %>
+
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" style="font-size: 2rem;"><%= reservation.date %></h5>
+                  </div>
+                  <p class="mb-1" style="font-size: 1.5rem; color: navy;"><%= reservation.startTime %> to <%= reservation.endTime %></p>
+                  <small style="font-size: 1rem;">
+                    <% if (reservation.ballMachine) { %>
+                        With Ball Machine
+                    <% } %>
+                  </small>
+                </a>
+
+                <% }); %>
+
+            </div>
+        </div>
+
+        <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 10px;">
+            
+            <h2 style="color: white;">Lesson Reservations</h2>
+
+            <div class="list-group list-group-custom">
+
+                <% lessonReservations.forEach(reservation => { %>
+
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" style="font-size: 2rem;"><%= reservation.date %></h5>
+                  </div>
+                  <p class="mb-1" style="font-size: 1.5rem; color: navy;"><%= reservation.startTime %> to <%= reservation.endTime %></p>
+                  <small></small>
+                </a>
+
+                <% }); %>
+
+            </div>
+        </div>
+
+    </div>
+
+    <% } %>
+
+    <script src="js/view-profile.js"></script>
+
 </div>

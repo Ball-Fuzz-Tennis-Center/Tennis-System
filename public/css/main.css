@@ -243,6 +243,12 @@ h6{
     font-size: 1.3rem;
 }
 
+.list-group-item-custom {
+    background-color: #e9a142;
+}
+
+
+
 /* Image effects */
 
  /* Container holding the image and the text */
