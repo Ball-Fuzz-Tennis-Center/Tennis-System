@@ -46,44 +46,11 @@ module.exports = {
     res.render("users/signup");
   },
 
-  showChangePassword: (req, res) => {
-    res.render("users/change-password");
-  },
-
-  create: (req, res, next) => {
-    if (req.skip) return next();
-    User.findOne({ username: req.body.username }, function (err, user) {
-      if (user) {
-        req.flash("error", `${user.username} is taken!`);
-        res.locals.redirect = "/users/new";
-        next();
-      }
-      else {
-
-        User.findOne({ email: req.body.email }, function (err, user) {
-          if (user) {
-            req.flash("error", `${user.email} is taken!`);
-            res.locals.redirect = "/users/new";
-            next();
-          }
-          else {
-            let newUser = new User(getUserParams(req.body));
-            User.register(newUser, req.body.password, (error, user) => {
-              if (user) {
-                req.flash("success", "Successfully created account. Please sign in once again.");
-                res.locals.redirect = "/";
-                next();
-              }
-              else {
-                req.flash("error", "Failed to create account.");
-                res.locals.redirect = "/users/new";
-                next();
-              }
-            })
-          }
-        });
-      }
-    });
+  signOut: (req, res, next) => {
+    req.logout();
+    req.flash("success", "Successfully signed out.");
+    res.locals.redirect = "/";
+    next();
   },
 
   validate: (req, res, next) => {
@@ -149,6 +116,10 @@ module.exports = {
     failureFlash: "Invalid email or password."
   }),
 
+  showChangePassword: (req, res) => {
+    res.render("users/change-password");
+  },
+
   changeUserPassword: (req, res, next) => {
     let currentUser = res.locals.currentUser;
     let newPassword = req.body.newPassword;
@@ -176,12 +147,6 @@ module.exports = {
     }, function (err) {
       console.error(err);
     });
-  },
-
-  redirectView: (req, res, next) => {
-    let redirectPath = res.locals.redirect;
-    if (redirectPath !== undefined) res.redirect(redirectPath);
-    else next();
   },
 
   show: (req, res) => {
@@ -343,6 +308,43 @@ module.exports = {
       });
     });
   },
+  
+  create: (req, res, next) => {
+    if (req.skip) return next();
+    User.findOne({ username: req.body.username }, function (err, user) {
+      if (user) {
+        req.flash("error", `${user.username} is taken!`);
+        res.locals.redirect = "/users/new";
+        next();
+      }
+      else {
+
+        User.findOne({ email: req.body.email }, function (err, user) {
+          if (user) {
+            req.flash("error", `${user.email} is taken!`);
+            res.locals.redirect = "/users/new";
+            next();
+          }
+          else {
+            let newUser = new User(getUserParams(req.body));
+            User.register(newUser, req.body.password, (error, user) => {
+              if (user) {
+                req.flash("success", "Successfully created account. Please sign in once again.");
+                res.locals.redirect = "/";
+                next();
+              }
+              else {
+                req.flash("error", "Failed to create account.");
+                res.locals.redirect = "/users/new";
+                next();
+              }
+            })
+          }
+        });
+      }
+    });
+  },
+
   edit: (req, res, next) => {
     let userId = req.params.id;
     User.findById(userId)
@@ -356,6 +358,7 @@ module.exports = {
         next(error);
       });
   },
+
   update: (req, res, next) => {
     let currentUser = res.locals.currentUser;
     console.log(`CURRENT USER: ${currentUser}`);
@@ -394,6 +397,7 @@ module.exports = {
         next(error);
       });
   },
+  
   delete: (req, res, next) => {
     let userId = req.params.id;
     User.findByIdAndRemove(userId)
@@ -408,11 +412,10 @@ module.exports = {
       });
   },
 
-  signOut: (req, res, next) => {
-    req.logout();
-    req.flash("success", "Successfully signed out.");
-    res.locals.redirect = "/";
-    next();
+  redirectView: (req, res, next) => {
+    let redirectPath = res.locals.redirect;
+    if (redirectPath !== undefined) res.redirect(redirectPath);
+    else next();
   }
 };
 
