@@ -10,7 +10,12 @@ module.exports = {
     showReserveCourt: (req, res) => {
 
         CourtReservationDate.find({}, function (err, dates) {
-            if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
+            if (err != undefined) { 
+                console.log(`Failed to fetch court reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch court reservations.");
+                next();
+             }
     
             dates.sort((a, b) => (a.date > b.date) ? 1: -1);
     
@@ -20,7 +25,12 @@ module.exports = {
     showReserveLesson: (req, res) => {
         
         LessonReservationDate.find({}, function (err, dates) {
-            if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
+            if (err != undefined) { 
+                console.log(`Failed to fetch lesson reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch lesson reservations.");
+                next();
+             }
     
             dates.sort((a, b) => (a.date > b.date) ? 1: -1);
     
@@ -31,7 +41,12 @@ module.exports = {
         let user = User(res.locals.currentUser);
 
         CourtReservationDate.find({}, function (err, dates) {
-            if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
+            if (err != undefined) { 
+                console.log(`Failed to fetch court reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch court reservations.");
+                next();
+            }
 
             dates.forEach((date) => {
                 if (date._id == req.body.dateSelect) {
@@ -72,7 +87,12 @@ module.exports = {
         let user = User(res.locals.currentUser);
 
         LessonReservationDate.find({}, function (err, dates) {
-            if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
+            if (err != undefined) {
+                console.log(`Failed to fetch lesson reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch lesson reservations.");
+                next();
+            }
 
             dates.forEach((date) => {
                 if (date._id == req.body.dateSelect) {

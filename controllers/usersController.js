@@ -170,7 +170,7 @@ module.exports = {
         });
       } else {
         res.locals.redirect = `/users/${currentUser._id}`;
-        req.flash("error", "Server Error: Failed to change password!");
+        req.flash("error", "Internal Error: Failed to change password!");
         next();
       }
     }, function (err) {
@@ -188,12 +188,22 @@ module.exports = {
     let currentUser = res.locals.currentUser;
 
     CourtReservationDate.find({}, function (err, courtDates) {
-      if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
+      if (err != undefined) { 
+        console.log(`Failed to fetch court reservation dates: ${err.message}`);
+        res.locals.redirect = "/";
+        req.flash("Internal Error: Failed to fetch court reservations.");
+        next();
+      }
 
       courtDates.sort((a, b) => (a.date > b.date) ? 1 : -1);
 
       LessonReservationDate.find({}, function (err, lessonDates) {
-        if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
+        if (err != undefined) { 
+          console.log(`Failed to fetch lesson reservation dates: ${err.message}`);
+          res.locals.redirect = "/";
+          req.flash("Internal Error: Failed to fetch lesson reservations.");
+          next();
+        }
 
         lessonDates.sort((a, b) => (a.date > b.date) ? 1 : -1);
 

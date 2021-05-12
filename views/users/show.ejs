@@ -14,7 +14,7 @@
 
         <% if (loggedIn) { %>
 
-            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444;">
+            <div class="standard-div shadow div-account-details">
             
                 <h2 style="color: white;">Account Details</h2>
     
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 10px;">
+            <div class="standard-div shadow div-address-details">
             
                 <h2 style="color: white;">Address Details</h2>
     
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 10px; margin-bottom: 10px;">
+            <div class="standard-div shadow div-personal-details">
 
                 <h2 style="color: white;">Personal Details</h2>
         
@@ -99,7 +99,7 @@
 
             <a href="<%= `/users/${currentUser._id}/edit` %>">Edit Profile</a>
             <br>
-            <a href="<%= `/users/${currentUser._id}/change-password` %>" style="text-align: right;">Change Password</a>
+            <a href="<%= `/users/${currentUser._id}/change-password` %>">Change Password</a>
 
         <% } %>
 
@@ -107,11 +107,11 @@
 
     <% if (loggedIn) { %>
 
-    <div class="standard-div" style="margin-top: 30px;">
+    <div class="standard-div div-reservations">
         
         <h1 style="margin-bottom: 20px;">Reservations</h1>
 
-        <div class="standard-div shadow" style="padding: 2%; background-color: #c54444;">
+        <div class="standard-div shadow div-reservations-court">
             
             <h2 style="color: white;">Court Reservations</h2>
 
@@ -121,9 +121,9 @@
 
                 <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1" style="font-size: 2rem;"><%= reservation.date %></h5>
+                    <h5 class="mb-1 title-reservation"><%= reservation.date %></h5>
                   </div>
-                  <p class="mb-1" style="font-size: 1.5rem; color: navy;"><%= reservation.startTime %> to <%= reservation.endTime %></p>
+                  <p class="mb-1 info-reservation"><%= reservation.startTime %> to <%= reservation.endTime %></p>
                   <small style="font-size: 1rem;">
                     <% if (reservation.ballMachine) { %>
                         With Ball Machine
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <div class="standard-div shadow" style="padding: 2%; background-color: #c54444; margin-top: 10px;">
+        <div class="standard-div shadow div-reservations-lesson">
             
             <h2 style="color: white;">Lesson Reservations</h2>
 
@@ -146,9 +146,9 @@
 
                 <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1" style="font-size: 2rem;"><%= reservation.date %></h5>
+                    <h5 class="mb-1 title-reservation"><%= reservation.date %></h5>
                   </div>
-                  <p class="mb-1" style="font-size: 1.5rem; color: navy;"><%= reservation.startTime %> to <%= reservation.endTime %></p>
+                  <p class="mb-1 info-reservation"><%= reservation.startTime %> to <%= reservation.endTime %></p>
                   <small></small>
                 </a>
 

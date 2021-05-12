@@ -212,6 +212,11 @@ h6{
 .navbar-custom { 
     background-color: #3ec994; 
 } 
+
+.navbar-signin-option-divider {
+    color: aliceblue;
+}
+
 /* Modify brand and text color */ 
   
 .navbar-custom .navbar-brand, 
@@ -246,9 +251,59 @@ h6{
     font-size: 1.3rem;
 }
 
-.list-group-item-custom {
-    
+/* Custom Blocks */
+
+.div-index {
+    background-color: #e9a142; 
+    padding: 1%;
 }
+
+.div-account-details {
+    padding: 2%; 
+    background-color: #c54444;
+}
+
+.div-address-details {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 10px;
+}
+
+.div-personal-details {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.div-reservations {
+    margin-top: 30px;
+}
+
+.div-reservations-court {
+    padding: 2%; 
+    background-color: #c54444;
+}
+
+.div-reservations-lesson {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 10px;
+}
+
+.title-reservation {
+    font-size: 2rem;
+}
+
+.info-reservation {
+    font-size: 1.5rem; 
+    color: navy;
+}
+
+.signup-link {
+    color: deepskyblue;
+}
+
 
 
 
