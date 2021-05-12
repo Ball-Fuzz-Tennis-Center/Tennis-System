@@ -117,6 +117,8 @@ router.post("/reserve-lesson", reservationController.reserveLesson, reservationC
 router.get("/shop", homeController.showShop);
 router.get("/calendar", homeController.showCalendar);
 
+// Enter items in the shop for admin use
+router.get("/newItem", homeController.addItem);
 // Setup errors
 
 router.use(errorController.pageNotFoundError);

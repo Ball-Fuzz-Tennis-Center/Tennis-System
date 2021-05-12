@@ -3,7 +3,7 @@
 .container{
   width:100%;
   height: 50%;
-  display:flex;
+  
   justify-content:center;
   
   
@@ -86,10 +86,10 @@
   
 }
 .days div{
-  font-size:1rem;
+  font-size:1 rem;
   
   width:calc(100%/7);
-  text-align:left;
+  
   height: 7rem;
   display:flex;
   border: 1px solid black;
@@ -97,6 +97,22 @@
   align-items: center;
   transition: backgroud-color 0.2s;
   
+}
+
+
+ .event{
+   font-size: 0.8rem;
+   border:0.1rem solid black;
+   background-color: lightblue;
+   display: block;
+ }
+
+.days .month-day{
+  text-align:left;
+  display: block;
+}
+.days .today{
+  display: block;
 }
 
 .days div:hover:not(.today){
@@ -114,3 +130,37 @@
   background-color:#ffAE42 ;
 }
 
+ .days .month-day .modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

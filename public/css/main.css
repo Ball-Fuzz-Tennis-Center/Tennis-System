@@ -13,16 +13,19 @@ body{
 
 header a{
     font-weight: 600;
-    font-size: 4.5rem;
-    padding-bottom: 2em;
+    font-size: 2rem;
+    padding-bottom: 1em;
     color: aliceblue;
     cursor: pointer;
+    
 }
 
 header{
     text-align: center;
     padding-top: 5em;
     padding-bottom: 5em;
+    text-decoration: none;
+    background-image:url("images/tennis.jpg") ;
 }
 
 form {

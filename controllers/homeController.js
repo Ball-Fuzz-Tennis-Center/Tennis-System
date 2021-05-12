@@ -9,5 +9,9 @@ module.exports = {
     },
     showShop: (req, res) => {
         res.render("shop");
-    }
+    },
+    addItem: (req, res) => {
+        res.render("newItem");
+    },
+
 };
