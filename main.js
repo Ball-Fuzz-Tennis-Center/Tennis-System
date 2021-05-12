@@ -102,7 +102,7 @@ router.put("/users/:id/update", usersController.validateUpdate, usersController.
 router.get("/users/:id/change-password", usersController.showChangePassword);
 router.post("/users/:id/change-password", usersController.changeUserPassword, usersController.redirectView);
 router.get("/users/:id", usersController.show);
-router.get("/users/:id/delete", usersController.delete, usersController.redirectView);
+router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
 
 // Reservations
 

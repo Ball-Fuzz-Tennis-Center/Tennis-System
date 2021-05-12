@@ -119,14 +119,15 @@ module.exports = {
 
   authorizeRole: (role) => {
     return (req, res, next) => {
-      if (res.locals.currentUser.role != role) {
+      if (res.locals.currentUser == null) {
+        next();
+      }
+      else if (res.locals.currentUser.role != role) {
         res.locals.redirect = '/';
         req.flash("error", "Unauthorized.");
-        console.log("Unauthorized!");
         next();
       }
       else {
-        console.log("Authorized!");
         next();
       }
     }
@@ -429,7 +430,15 @@ module.exports = {
   },
 
   showAdminDashboard: (req, res, next) => {
-    res.render("admin-dashboard");
+
+    User.find().then(users => {
+      res.render("admin-dashboard", {users: users});
+    })
+    .catch(error => {
+      res.locals.redirect = '/';
+      req.flash("error", "Internal Error: Failed to fetch users.");
+      res.redirect(res.locals.redirect);
+    });
   },
 
   redirectView: (req, res, next) => {

@@ -304,6 +304,26 @@ h6{
     color: deepskyblue;
 }
 
+.div-admin-users {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.table-admin-users {
+    margin-top: 20px;
+}
+
+.span-admin-users {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.link-admin-users {
+    font-size: 1.2rem;
+    color: lightcoral;
+}
+
 
 
 
