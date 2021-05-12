@@ -112,6 +112,10 @@ router.post("/reserve-court", reservationController.reserveCourt, reservationCon
 router.get("/reserve-lesson", reservationController.showReserveLesson);
 router.post("/reserve-lesson", reservationController.reserveLesson, reservationController.redirectView);
 
+// Administrative Pages
+
+router.get("/admin-dashboard", usersController.authorizeRole('admin'), usersController.redirectView, usersController.showAdminDashboard);
+
 // Other Pages
 
 router.get("/shop", homeController.showShop);

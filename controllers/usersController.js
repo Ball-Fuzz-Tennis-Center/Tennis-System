@@ -17,6 +17,7 @@ const User = require("../models/user"),
       email: body.email,
       password: body.password,
       gender: body.gender,
+      role: 'standard',           // Sets new user's role to standard by default
       street: body.street,
       city: body.city,
       state: body.state,
@@ -115,6 +116,21 @@ module.exports = {
     failureRedirect: "/users/signin",
     failureFlash: "Invalid email or password."
   }),
+
+  authorizeRole: (role) => {
+    return (req, res, next) => {
+      if (res.locals.currentUser.role != role) {
+        res.locals.redirect = '/';
+        req.flash("error", "Unauthorized.");
+        console.log("Unauthorized!");
+        next();
+      }
+      else {
+        console.log("Authorized!");
+        next();
+      }
+    }
+  },
 
   showChangePassword: (req, res) => {
     res.render("users/change-password");
@@ -397,7 +413,7 @@ module.exports = {
         next(error);
       });
   },
-  
+
   delete: (req, res, next) => {
     let userId = req.params.id;
     User.findByIdAndRemove(userId)
@@ -410,6 +426,10 @@ module.exports = {
         console.log(`Error deleting user by ID: ${error.message}`);
         next();
       });
+  },
+
+  showAdminDashboard: (req, res, next) => {
+    res.render("admin-dashboard");
   },
 
   redirectView: (req, res, next) => {
