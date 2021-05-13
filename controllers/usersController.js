@@ -450,27 +450,6 @@ module.exports = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getTimeSlotValue(timeSlot) {
   let timeSlotValue = "";
   let timeSlotNumber = Number(timeSlot);

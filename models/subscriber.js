@@ -1,6 +1,4 @@
 "use strict";
-const subscriber = require("./subscriber");
-
 
 const mongoose = require("mongoose"),
     subscriberSchema = mongoose.Schema(
@@ -12,6 +10,10 @@ const mongoose = require("mongoose"),
             },
             phone:{
                 type : Number,
+                required: true
+            },
+            date:{
+                type : Date,
                 required: true
             }
         },

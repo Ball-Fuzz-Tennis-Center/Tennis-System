@@ -1,5 +1,25 @@
 <div class="container">
+    <link rel="stylesheet" href="css/shop.css">
     <div class="standard-div">
+        <% if (loggedIn) { %>
+            <h1 style="margin-bottom: 20px;"><%= currentUser.fullName %></h1>
+        <% } else { %>
+            <h1>You're not signed in!</h1>
+            <a href="/users/signin">Sign in here</a>
+        <% } %>
+
+        <% if (loggedIn) { %>
+            <legend class="w-auto">Racquet Collection</legend>
+
+            <div class ="racquetBrand1" id = "wilson">
+
+            </div>
+            <div class ="racquetBrand1" id = "prince"></div>
+            <div class ="racquetBrand1" id = "babolat"></div>
+        <% } %>
+
+
         
     </div>
+    <script src="/js/shop.js"></script>
 </div>

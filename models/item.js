@@ -2,11 +2,10 @@
 
 const mongoose =require("mongoose"),
 { Schema } = mongoose,
-passportLocalMongose = require("passport-local-mongoose"),
+
 
 itemSchema = new Schema(
     {
-        
         companyName: {
             type: String,
             required: true
@@ -30,10 +29,13 @@ itemSchema = new Schema(
             required: true
         },
         image:{
-            
+            type: String,
+            required: true
+        },
+        itemId:{
+            type: String,
             required: true
         }
-
     },
     {
         timestamps: true

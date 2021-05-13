@@ -83,13 +83,16 @@ const renderCalendar =() =>{
             }
             else if(dictMonth[i] == 5){
                 count ++;
-                if(count%2 == 1){
+                if(count%3 == 0){
                     days += `<div class="month-day"> ${i}
-                    <button class=" btn btn-primary btn-s" id="myBtn">Meet And Greet</button>
+                    <button class=" box btn btn-primary btn-s" id="myBtn">Meet And Greet</button>
                     <div id="myModal" class="modal">
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <p>yet to write it</p>
+                            <p>Meet And Greet</p>
+                            <p> We are proud to present a biweekly event to meet like minded people, play tennis and make tennis buddies for life.</p>
+                            
+                            <a href="/#eventBox" class="btn btn-primary card-button-custom">Sign me up</a>
                         </div>
                     </div>
                     </div>`;
@@ -111,18 +114,21 @@ const renderCalendar =() =>{
         monthDays.innerHTML = days;
     }
     
+    var buttonClick= document.getElementById("myBtn");
+    var insideBox= document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("myModal");
 
-    btn.onclick = function() {
-    modal.style.display = "block";
+    buttonClick.onclick = function() {
+        modal.style.display = "block";
     }
-    span.onclick = function() {
-    modal.style.display = "none";
+    insideBox.onclick = function() {
+        modal.style.display = "none";
     }
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    } 
 }
 document .querySelector('.previous').addEventListener('click', () =>{
     date.setMonth(date.getMonth()-1);
@@ -138,3 +144,10 @@ document .querySelector('.next').addEventListener('click', () =>{
     
 renderCalendar();
 
+function doIt() {
+    return new Promise(function(resolve, reject) {
+        reject();
+    });
+}
+
+  

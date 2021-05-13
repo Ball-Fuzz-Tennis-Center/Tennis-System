@@ -99,7 +99,6 @@
   
 }
 
-
  .event{
    font-size: 0.8rem;
    border:0.1rem solid black;
@@ -115,8 +114,8 @@
   display: block;
 }
 
-.days div:hover:not(.today){
-  background-color:#04AA6D ;
+.days .month-day:hover:not(.today){
+  background-color: #04AA6D;
   border:0.2rem solid black;
   cursor:pointer;
 }
@@ -130,8 +129,8 @@
   background-color:#ffAE42 ;
 }
 
- .days .month-day .modal {
-  display: none;
+.days .month-day .modal {
+  display: none; 
   position: fixed; 
   z-index: 1; 
   left: 0;
@@ -143,23 +142,23 @@
   background-color: rgba(0,0,0,0.4); 
 }
 
-.modal-content {
+ .days .month-day .modal .modal-content {
   background-color: #fefefe;
   margin: 15% auto; 
-  padding: 20px;
+  padding: 5px;
   border: 1px solid #888;
   width: 80%; 
 }
 
-.close {
+.days .month-day .modal .modal-content .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.days .month-day .modal .modal-content .close:hover,
+.days .month-day .modal .modal-content .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

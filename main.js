@@ -120,6 +120,7 @@ router.get("/admin-dashboard", usersController.authorizeRole('admin'), usersCont
 
 router.get("/shop", homeController.showShop);
 router.get("/calendar", homeController.showCalendar);
+router.post("/subscribers/create", homeController.create);
 
 // Enter items in the shop for admin use
 router.get("/newItem", homeController.addItem);

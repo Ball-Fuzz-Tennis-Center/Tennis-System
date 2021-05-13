@@ -52,7 +52,28 @@
             </div>
 
         </div>
-        <div class="container-two">
+        <div class="container-two" id ="eventBox">
+            <header> Our Meet And Greet Event</header>
+
+            <p> Please join us for our netwroking event, to meet your next tennis buddy. The day begins with some tennis under the sun
+                and swap players every 30mins, an opportunity to meet your next. Gatorade will be provided.</p>
+            
+            <P> </P>    
+            <div class ="form-data">
+                <form action ="/subscribers/create" method ="POST">
+            
+                    <label for ="email"> email </label>
+                    <input type = "email" name ="email" id ="email" required>
+            
+                    <label for ="phone"> phone </label>
+                    <input type = "phone" name ="phone" id ="phone" required>
+            
+                    <label for ="date"> date</label>
+                    <input type = "date" name ="date" id ="date" required>
+            
+                    <button class="btn btn-lg btn-primary btn" type ="submit"> Create </buttton>
+            
+                </form>
             
         </div>
 
