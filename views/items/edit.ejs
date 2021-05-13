@@ -4,23 +4,27 @@
         <a href="/"> BallFuzz.Tennis</a>
     </header>
 
-    <form method ="POST" action="<%= `/items/${item._id}/update?_method=PUT` %>">
-        <label for ="manufacturer">Manufacturer</label>
-        <input type = "text" name ="manufacturer" id ="manufacturer" value="<%= item.manufacturer %>" autofocus required>
+    <div class="standard-div div-admin-edit-item">
 
-        <label for ="model">Model</label>
-        <input type = "text" name ="model" id ="model" value="<%= item.manufacturer %>" required>
+        <form method ="POST" action="<%= `/items/${item._id}/update?_method=PUT` %>">
+            <label for ="manufacturer">Manufacturer</label>
+            <input type = "text" name ="manufacturer" id ="manufacturer" value="<%= item.manufacturer %>" autofocus required>
+    
+            <label for ="model">Model</label>
+            <input type = "text" name ="model" id ="model" value="<%= item.manufacturer %>" required>
+    
+            <label for ="price">Price</label>
+            <input type = "number" name ="price" id ="price" value="<%= item.price %>" required>
+    
+            <label for ="image">Image URL</label>
+            <input type = "text" name ="image" id ="image" value="<%= item.image %>" required>
+    
+            <label for ="quantity">Quantity</label>
+            <input type="number" name ="quantity" id ="quantity" value="<%= item.quantity %>" required>
+    
+            <button class="btn btn-lg btn-primary btn" type ="submit">Update</button>
+    
+        </form>
 
-        <label for ="price">Price</label>
-        <input type = "number" name ="price" id ="price" value="<%= item.price %>" required>
-
-        <label for ="image">Image URL</label>
-        <input type = "text" name ="image" id ="image" value="<%= item.image %>" required>
-
-        <label for ="quantity">Quantity</label>
-        <input type="number" name ="quantity" id ="quantity" value="<%= item.quantity %>" required>
-
-        <button class="btn btn-lg btn-primary btn" type ="submit">Update</button>
-
-    </form>
+    </div>
 </div>
