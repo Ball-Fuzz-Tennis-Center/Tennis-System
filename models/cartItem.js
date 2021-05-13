@@ -4,23 +4,15 @@ const mongoose =require("mongoose"),
 { Schema } = mongoose,
 
 
-itemSchema = new Schema(
+cartItemSchema = new Schema(
     {
-        manufacturer: {
+        userId: {
             type: String,
             required: true
         },
-        model: {
+        itemId: {
             type: String,
             required: true
-        },
-        price:{
-            type: Number,
-            required: true
-        },
-        image:{
-            type: String,
-            required: false
         },
         quantity: {
             type: Number,
@@ -33,4 +25,4 @@ itemSchema = new Schema(
 );
 
 
-module.exports = mongoose.model("Item", itemSchema);
+module.exports = mongoose.model("CartItem", cartItemSchema);

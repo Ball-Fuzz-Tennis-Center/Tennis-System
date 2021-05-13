@@ -10,49 +10,6 @@ module.exports = {
     showCalendar: (req, res) => {
         res.render("calendar");
     },
-    newItem: (req, res) => {
-        res.render("newItem");
-    },
-
-    createItems: (req, res, next) => {
-        let newItem = {
-            companyName: req.body.companyName,
-            model: req.body.model,
-            count: req.body.count,
-            price:req.body.price,
-            image:req.body.image,
-            itemId:req.body. itemId
-
-
-        };
-        Item.create(newItem)
-        .then( course => {
-            res.locals.redirect = "/shop";
-            res.locals.item =item;
-            
-            next();
-        })
-        .catch( error => {
-            console.log(`Error saving course: ${error.message}`);
-             next(error)
-        })
-    },
-
-    show: (req,res, next) => {
-        let itemId = req.params.id;
-        Item.findById(itemId)
-        .then( item => {
-            res.locals.item = item;
-            next();
-        })
-        .catch( error =>{
-            console.log(`Error fetching course by ID: ${error.message}`);
-        })
-    },
-    
-    showShop: (req, res) => {
-        res.render("items/shop");
-    },
     
     createSubscribers: (req, res, next) => {
         let newSubcriber = {
@@ -78,5 +35,4 @@ module.exports = {
         if(redirectPath !== undefined )res.redirect(redirectPath);
         else next();
     }
-
 };

@@ -4,6 +4,7 @@ const passport = require("passport");
 
 const CourtReservationDate = require("../models/courtReservationDate");
 const LessonReservationDate = require("../models/lessonReservationDate");
+const Item = require("../models/item");
 
 const User = require("../models/user"),
   pasport = require("passport"),
@@ -432,7 +433,14 @@ module.exports = {
   showAdminDashboard: (req, res, next) => {
 
     User.find().then(users => {
-      res.render("admin-dashboard", {users: users});
+      Item.find().then(items => {
+        res.render("admin-dashboard", {users: users, items: items});
+      })
+      .catch(error => {
+        res.locals.redirect = '/';
+        req.flash("error", "Internal Error: Failed to fetch items.");
+        res.redirect(res.locals.redirect);
+      });
     })
     .catch(error => {
       res.locals.redirect = '/';

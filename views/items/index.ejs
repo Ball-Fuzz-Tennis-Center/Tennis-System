@@ -1,0 +1,87 @@
+<div class="container">
+    <link rel="stylesheet" href="css/shop.css">
+
+    <header>
+        <a href="/"> BallFuzz.Tennis</a>
+    </header>
+
+    <div class="standard-div">
+        <% if (loggedIn) { %>
+            <h1 style="margin-bottom: 20px;">BallFuzz Shop</h1>
+        <% } else { %>
+            <h1>You're not signed in!</h1>
+            <a href="/users/signin">Sign in here</a>
+        <% } %>
+
+        <% if (loggedIn) { %>
+
+
+        <div class="standard-div div-shop-items">
+            
+            <h2 style="color: white;">Shop Inventory</h2>
+    
+            <div class="list-group list-group-custom">
+
+                <% items.forEach(item => { %>
+
+                <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" style="font-size: 1.2rem;"><%= item.manufacturer %></h5>
+                    <small>Add to Cart</small>
+                    </div>
+                    <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= item.model %></p>
+                    <small style="font-size: 1rem;">$<%= item.price %></small>
+                </a>
+
+                <% }); %>
+
+            </div>
+
+        </div>
+
+        <div class="standard-div div-shop-cart">
+
+            <h2 style="color: white;">Cart</h2>
+
+            <table class="table table-striped table-shop-cart">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <% cartItems.forEach(item => { %>
+                
+                    <tr>
+                        <td>
+                            <span class="span-cart-items"><%= item.manufacturer %> <%= item.model %></span>
+                        </td>
+                        <td>
+                            <span class="span-cart-items"><%= item.price %></span>
+                        </td>
+                        <td>
+                            <span class="span-cart-items">QUANTITY HERE</span>
+                        </td>
+                        <td>
+                            <a class="link-cart-items" href="#" onclick="return confirm('Are you sure?')">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+
+                <% }); %>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <% } %>
+
+    <script src="/js/shop.js"></script>
+</div>

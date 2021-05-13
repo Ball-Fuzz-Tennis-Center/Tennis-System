@@ -20,6 +20,7 @@ connectFlash = require("connect-flash");
 
 const homeController = require("./controllers/homeController");
 const usersController = require("./controllers/usersController");
+const itemsController = require("./controllers/itemsController");
 const reservationController = require("./controllers/reservationController");
 const errorController = require("./controllers/errorController");
 
@@ -92,39 +93,118 @@ router.get("/", homeController.showIndex);
 
 // Users
 
-router.get("/users/new", usersController.showSignUp);
-router.post("/users/create", usersController.validate, usersController.create, usersController.redirectView);
-router.get("/users/signin", usersController.showSignIn);
-router.post("/users/signin", usersController.authenticate);
-router.get("/users/signout", usersController.signOut, usersController.redirectView);
-router.get("/users/:id/edit", usersController.edit);
-router.put("/users/:id/update", usersController.validateUpdate, usersController.update, usersController.redirectView);
-router.get("/users/:id/change-password", usersController.showChangePassword);
-router.post("/users/:id/change-password", usersController.changeUserPassword, usersController.redirectView);
-router.get("/users/:id", usersController.show);
-router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
+router.get("/users/new", 
+usersController.showSignUp);
+
+router.post("/users/create", 
+usersController.validate, 
+usersController.create, 
+usersController.redirectView);
+
+router.get("/users/signin", 
+usersController.showSignIn);
+
+router.post("/users/signin", 
+usersController.authenticate);
+
+router.get("/users/signout", 
+usersController.signOut, 
+usersController.redirectView);
+
+router.get("/users/:id/edit", 
+usersController.edit);
+
+router.put("/users/:id/update", 
+usersController.validateUpdate, 
+usersController.update, 
+usersController.redirectView);
+
+router.get("/users/:id/change-password", 
+usersController.showChangePassword);
+
+router.post("/users/:id/change-password", 
+usersController.changeUserPassword, 
+usersController.redirectView);
+
+router.get("/users/:id", 
+usersController.show);
+
+router.delete("/users/:id/delete", 
+usersController.delete, 
+usersController.redirectView);
 
 // Reservations
 
-router.get("/reserve-court", reservationController.showReserveCourt);
-router.post("/reserve-court", reservationController.reserveCourt, reservationController.redirectView);
+router.get("/reserve-court", 
+reservationController.showReserveCourt);
 
-router.get("/reserve-lesson", reservationController.showReserveLesson);
-router.post("/reserve-lesson", reservationController.reserveLesson, reservationController.redirectView);
+router.post("/reserve-court", 
+reservationController.reserveCourt, 
+reservationController.redirectView);
+
+router.get("/reserve-lesson", 
+reservationController.showReserveLesson);
+
+router.post("/reserve-lesson", 
+reservationController.reserveLesson, 
+reservationController.redirectView);
+
+// Items
+
+router.get('/items/shop', 
+itemsController.index);
+
+router.get("/items/new", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.new);
+
+router.post("/items/create", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.create, 
+itemsController.redirectView);
+
+router.get("/items/:id/edit", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.edit);
+
+router.get("/items/:id/update", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.update, 
+itemsController.redirectView);
+
+router.post("/items/add-to-cart/:userId/:itemId", 
+itemsController.addItemToCart, 
+itemsController.redirectView);
+
+router.get("/items/:id", 
+itemsController.show);
+
+router.delete("/items/:id/delete", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.delete, 
+itemsController.redirectView);
 
 // Administrative Pages
 
-router.get("/admin-dashboard", usersController.authorizeRole('admin'), usersController.redirectView, usersController.showAdminDashboard);
+router.get("/admin-dashboard", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+usersController.showAdminDashboard);
 
 // Other Pages
-router.get("/calendar", homeController.showCalendar);
-router.post("/subscribers/create", homeController.createSubscribers,homeController.redirectView );
+router.get("/calendar", 
+homeController.showCalendar);
 
-// Enter items in the shop for admin use
-router.get("/newItem", homeController.newItem);
-router.post("/items/create", homeController.createItems,homeController.redirectView );
-router.get("/items/:id", homeController.show, homeController.showShop);
-// Setup errors
+router.post("/subscribers/create", 
+homeController.createSubscribers,
+homeController.redirectView);
+
+// Errors
 
 router.use(errorController.pageNotFoundError);
 router.use(errorController.internalServerError);

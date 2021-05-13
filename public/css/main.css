@@ -324,6 +324,42 @@ h6{
     color: lightcoral;
 }
 
+.div-admin-items {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.div-shop-items {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.table-admin-items {
+    margin-top: 20px;
+}
+
+.div-shop-cart {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.table-shop-cart {
+    margin-top: 20px;
+}
+
+.span-cart-items {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.link-cart-items {
+    font-size: 1.2rem;
+    color: lightcoral;
+}
+
 
 
 

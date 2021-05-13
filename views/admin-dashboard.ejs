@@ -51,6 +51,62 @@
             </table>
         </div>
 
+        <div class="standard-div div-admin-items">
+
+            <h2 style="color: white;">Shop Items</h2>
+
+            <table class="table table-striped table-admin-items">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Manufacturer</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                        <th>Image URL</th>
+                        <th>Quantity</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <% items.forEach(item => { %>
+                
+                    <tr>
+                        <td>
+                            <span class="span-admin-users"><%= item.manufacturer %></span>
+                        </td>
+                        <td>
+                            <span class="span-admin-users"><%= item.model %></span>
+                        </td>
+                        <td>
+                            <span class="span-admin-users">$<%= item.price %></span>
+                        </td>
+                        <td>
+                            <span class="span-admin-users"><%= item.image %></span>
+                        </td>
+                        <td>
+                            <span class="span-admin-users"><%= item.quantity %></span>
+                        </td>
+                        <td>
+                            <a class="link-admin-users" href="<%= `/items/${item._id}/edit` %>">
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a class="link-admin-users" href="<%= `/items/${item._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+
+                <% }); %>
+
+                </tbody>
+            </table>
+
+            <a class="dropdown-item" href="/items/new">Add Item</a>
+        </div>
     </div>
 
     <% } else { %>
