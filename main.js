@@ -180,6 +180,10 @@ router.post("/items/add-to-cart/:userId/:itemId",
 itemsController.addItemToCart, 
 itemsController.redirectView);
 
+router.delete("/items/remove-from-cart/:userId/:itemId/delete",
+itemsController.removeItemFromCart,
+itemsController.redirectView);
+
 router.get("/items/:id", 
 itemsController.show);
 

@@ -24,10 +24,10 @@
 
                 <% items.forEach(item => { %>
 
-                <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                <a href="<%= `/items/${item._id}` %>" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
                     <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1" style="font-size: 1.2rem;"><%= item.manufacturer %></h5>
-                    <small>Add to Cart</small>
+                    <small><%= item.quantity %> in stock</small>
                     </div>
                     <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= item.model %></p>
                     <small style="font-size: 1rem;">$<%= item.price %></small>
@@ -55,20 +55,20 @@
 
                 <tbody>
 
-                <% cartItems.forEach(item => { %>
+                <% cartItems.forEach(cartItem => { %>
                 
                     <tr>
                         <td>
-                            <span class="span-cart-items"><%= item.manufacturer %> <%= item.model %></span>
+                            <span class="span-cart-items"><%= cartItem.manufacturer %> <%= cartItem.model %></span>
                         </td>
                         <td>
-                            <span class="span-cart-items"><%= item.price %></span>
+                            <span class="span-cart-items">$<%= cartItem.price %></span>
                         </td>
                         <td>
-                            <span class="span-cart-items">QUANTITY HERE</span>
+                            <span class="span-cart-items"><%= cartItem.quantity %></span>
                         </td>
                         <td>
-                            <a class="link-cart-items" href="#" onclick="return confirm('Are you sure?')">
+                            <a class="link-cart-items" href="<%= `/items/remove-from-cart/${currentUser._id}/${cartItem.itemId}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">
                                 Delete
                             </a>
                         </td>

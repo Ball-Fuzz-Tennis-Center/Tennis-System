@@ -1,0 +1,38 @@
+<div class="container">
+
+    <header>
+        <a href="/"> BallFuzz.Tennis</a>
+    </header>
+
+    <% if(loggedIn) { %>
+
+        <% if (item != null) { %>
+
+        <div class="standard-div">
+            <div class="card" style="width: 18rem;">
+                <img src="/images/tennis.jpg" class="card-img-top" alt="Item Image">
+                <div class="card-body">
+                    <h5 class="card-title"><%= item.manufacturer %> <%= item.model %></h5>
+                    <p class="card-text card-text-custom">$<%= item.price %></p>
+
+                    <form method="POST" action="<%= `/items/add-to-cart/${currentUser._id}/${item._id}` %>">
+                        <div class="dropdown">
+                            <select class="form-select" id="quantity" name="quantity">
+                                <option selected value="0">Quantity</option>
+                                <% for (let i = 1; i <= item.quantity; i++) { %>
+                                    <option value="<%= i %>"><%= i %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn" type ="submit">Add to Cart</button>
+                    </form>
+                    
+                </div>
+            </div>
+            <a href="/items/shop" class="btn btn-secondary">Back to Shop</a>
+        </div>
+
+        <% } %>
+    <% } %>
+
+</div>

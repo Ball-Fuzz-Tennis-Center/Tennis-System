@@ -16,7 +16,7 @@ module.exports = {
 
                 if (currentUser != null) {
                     cartItems.forEach(cartItem => {
-                        if (cartItem.userId == currentUser._id) { userCartItems.push(cartItem); }
+                        if (cartItem.userId == currentUser._id) { userCartItems.push(new CartItem(cartItem)); }
                     });
                 }
                 res.render("items/index", {items: items, cartItems: userCartItems});
@@ -115,6 +115,7 @@ module.exports = {
     addItemToCart: (req, res, next) => {
         let userId = req.params.userId;
         let itemId = req.params.itemId;
+        let quantity = req.body.quantity;
 
         CartItem.find().then(cartItems => {
             cartItems.forEach(cartItem => {
@@ -122,13 +123,50 @@ module.exports = {
                     let cartItemId = cartItem._id;
                     let updatedCartItem = {
                         userId: cartItem.userId,
-                        itemId: cartItem.itemId
+                        itemId: cartItem.itemId,
+                        manufacturer: cartItem.manufacturer,
+                        model: cartItem.model,
+                        price: cartItem.price,
+                        quantity: quantity
                     };
+
+                    Item.findById(itemId).then(item => {
+                        if (quantity > item.quantity) {
+                            res.locals.redirect = '/items/shop';
+                            req.flash("error", "Quantity selected is too high.");
+                            next();
+                        }
+                    })
+                    .catch(error => {
+                        res.locals.redirect = '/items/shop';
+                        req.flash("error", "Internal Error: Failed to fetch item.")
+                        next();
+                    });
 
                     CartItem.findByIdAndUpdate(cartItemId, {
                         $set: updatedCartItem
                     })
                     .then(cartItem => {
+                        Item.findById(itemId).then(item => {
+                            Item.findByIdAndUpdate(itemId, {
+                                manufacturer: item.manufacturer,
+                                model: item.model,
+                                price: item.price,
+                                image: item.image,
+                                quantity: Number(item.quantity) - Number(quantity)
+                            })
+                            .catch(error => {
+                                res.locals.redirect = '/items/shop';
+                                req.flash("error", "Internal Error: Failed to update item.")
+                                next();
+                            });
+                        })
+                        .catch(error => {
+                            res.locals.redirect = '/items/shop';
+                            req.flash("error", "Internal Error: Failed to fetch item.")
+                            next();
+                        });
+
                         res.locals.redirect = '/items/shop';
                         req.flash("success", "Added item to cart.");
                         next();
@@ -141,18 +179,126 @@ module.exports = {
             });
         });
 
-        CartItem.create({
-            userId: userId,
-            itemId: itemId
-        })
-        .then(item => {
-            res.locals.redirect = '/items/shop';
-            req.flash("success", "Added item to cart.");
-            next();
+        Item.findById(itemId).then(item => {
+            if (quantity > item.quantity) {
+                res.locals.redirect = '/items/shop';
+                req.flash("error", "Quantity selected is too high.");
+                next();
+            }
         })
         .catch(error => {
             res.locals.redirect = '/items/shop';
-            req.flash("error", "Internal Error: Failed to add item to cart.");
+            req.flash("error", "Internal Error: Failed to fetch item.")
+            next();
+        });
+
+        Item.findById(itemId).then(foundItem => {
+
+            CartItem.create({
+                userId: userId,
+                itemId: itemId,
+                manufacturer: foundItem.manufacturer,
+                model: foundItem.model,
+                price: foundItem.price,
+                image: foundItem.image,
+                quantity: quantity
+            })
+            .then(() => {
+    
+                Item.findById(itemId).then(item => {
+                    Item.findByIdAndUpdate(itemId, {
+                        manufacturer: item.manufacturer,
+                        model: item.model,
+                        price: item.price,
+                        image: item.image,
+                        quantity: Number(item.quantity) - Number(quantity)
+                    })
+                    .catch(error => {
+                        res.locals.redirect = '/items/shop';
+                        req.flash("error", "Internal Error: Failed to update item.")
+                        next();
+                    });
+                })
+                .catch(error => {
+                    res.locals.redirect = '/items/shop';
+                    req.flash("error", "Internal Error: Failed to fetch item.")
+                    next();
+                });
+    
+                res.locals.redirect = '/items/shop';
+                req.flash("success", "Added item to cart.");
+                next();
+            })
+            .catch(error => {
+                res.locals.redirect = '/items/shop';
+                req.flash("error", "Internal Error: Failed to add item to cart.");
+                next();
+            });
+        })
+        .catch(error => {
+            res.locals.redirect = '/items/shop';
+            req.flash("error", "Internal Error: Failed to fetch item.")
+            next();
+        });
+    },
+
+    removeItemFromCart: (req, res, next) => {
+        let userId = req.params.userId;
+        let itemId = req.params.itemId;
+        let cartItemId = null;
+        let quantity = 0;
+
+        CartItem.find().then(cartItems => {
+            cartItems.forEach(cartItem => {
+                if (cartItem.itemId == itemId) {
+                    if (cartItem.userId == userId) {
+                        cartItemId = cartItem._id;
+                        quantity = cartItem.quantity;
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            res.locals.redirect = '/items/shop';
+            req.flash("error", "Internal Error: Failed to fetch cart items.");
+            next();
+        });
+
+        CartItem.findByIdAndDelete(cartItemId)
+        .then(() => {
+            Item.findById(itemId).then(item => {
+
+                let updatedItem = {
+                    manufacturer: item.manufacturer,
+                    model: item.model,
+                    price: item.price,
+                    image: item.image,
+                    quantity: Number(item.quantity) + Number(quantity)
+                };
+
+                Item.findByIdAndUpdate(itemId, {
+                    $set: updatedItem
+                })
+                .catch(error => {
+                    res.locals.redirect = '/items/shop';
+                    req.flash("error", "Internal Error: Failed to update item.");
+                    next();
+                });
+
+                res.locals.redirect = '/items/shop';
+                req.flash("success", "Removed item from cart.");
+                next();
+            })
+            .catch(error => {
+                res.locals.redirect = '/items/shop';
+                req.flash("error", "Internal Error: Failed to fetch item.");
+                next();
+            });
+        })
+        .catch(error => {
+            res.locals.redirect = '/items/shop';
+            console.log(error);
+            req.flash("error", "Internal Error: Failed to delete cart item.");
             next();
         });
     },
