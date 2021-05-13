@@ -32,7 +32,7 @@ function quantityChanged(event){
 
 function addToCartClicked(event){
     var button = event.target
-    var shopItem = button.parentElement.parentElement
+    
 }
 
 
