@@ -43,7 +43,11 @@
                                 <img class="card-img-top" src="images/tennis-store.jpeg">
                                 <div class="card-body">
                                     <p class="card-text">Need some gear? We've got you covered. Our tennis store is highly equipped with a range of products to bring your game higher and higher!</p>
-                                    <a href="/shop" class="btn btn-primary card-button-custom">Tennis Store</a>
+                                    <% if (loggedIn) { %>
+                                        <a href="/items/shop" class="btn btn-primary card-button-custom">Tennis Store</a>
+                                    <% } else { %>
+                                        <a href="/users/signin" class="btn btn-primary card-button-custom">Tennis Store</a>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
