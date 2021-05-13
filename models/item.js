@@ -13,16 +13,10 @@ itemSchema = new Schema(
         model: {
             type: String,
             required: true
-        
         },
         count:{
             type: Number,
             required: true
-        },
-        size:{
-            type: String,
-            required: true
-           
         },
         price:{
             type: Number,
@@ -30,7 +24,7 @@ itemSchema = new Schema(
         },
         image:{
             type: String,
-            required: true
+            required: false
         },
         itemId:{
             type: String,
@@ -42,7 +36,5 @@ itemSchema = new Schema(
     }
 );
 
-userSchema.virtual("fullName").get(function() {
-    return `${this.name.companyName} ${this.name.model}`;
-});
-module.exports = mongoose.model("Item", userSchema);
+
+module.exports = mongoose.model("Item", itemSchema);

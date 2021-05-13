@@ -117,13 +117,13 @@ router.post("/reserve-lesson", reservationController.reserveLesson, reservationC
 router.get("/admin-dashboard", usersController.authorizeRole('admin'), usersController.redirectView, usersController.showAdminDashboard);
 
 // Other Pages
-
-router.get("/shop", homeController.showShop);
 router.get("/calendar", homeController.showCalendar);
-router.post("/subscribers/create", homeController.create);
+router.post("/subscribers/create", homeController.createSubscribers,homeController.redirectView );
 
 // Enter items in the shop for admin use
-router.get("/newItem", homeController.addItem);
+router.get("/newItem", homeController.newItem);
+router.post("/items/create", homeController.createItems,homeController.redirectView );
+router.get("/items/:id", homeController.show, homeController.showShop);
 // Setup errors
 
 router.use(errorController.pageNotFoundError);
