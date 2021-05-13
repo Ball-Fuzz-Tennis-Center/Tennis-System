@@ -68,7 +68,7 @@
                             <span class="span-cart-items"><%= cartItem.quantity %></span>
                         </td>
                         <td>
-                            <a class="link-cart-items" href="<%= `/items/remove-from-cart/${currentUser._id}/${cartItem.itemId}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">
+                            <a class="link-cart-items" href="<%= `/items/remove-from-cart/${currentUser._id}/${cartItem.itemId}/${cartItem._id}/${cartItem.quantity}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">
                                 Delete
                             </a>
                         </td>

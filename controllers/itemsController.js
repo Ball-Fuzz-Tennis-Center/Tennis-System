@@ -245,24 +245,8 @@ module.exports = {
     removeItemFromCart: (req, res, next) => {
         let userId = req.params.userId;
         let itemId = req.params.itemId;
-        let cartItemId = null;
-        let quantity = 0;
-
-        CartItem.find().then(cartItems => {
-            cartItems.forEach(cartItem => {
-                if (cartItem.itemId == itemId) {
-                    if (cartItem.userId == userId) {
-                        cartItemId = cartItem._id;
-                        quantity = cartItem.quantity;
-                    }
-                }
-            });
-        })
-        .catch(error => {
-            res.locals.redirect = '/items/shop';
-            req.flash("error", "Internal Error: Failed to fetch cart items.");
-            next();
-        });
+        let cartItemId = req.params.cartItemId;
+        let quantity = req.params.quantity;
 
         CartItem.findByIdAndDelete(cartItemId)
         .then(() => {
