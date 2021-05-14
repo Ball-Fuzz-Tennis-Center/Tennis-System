@@ -154,6 +154,10 @@ reservationController.redirectView);
 router.get('/items/shop', 
 itemsController.index);
 
+router.get("/items/checkout",
+itemsController.checkout, 
+itemsController.redirectView);
+
 router.get("/items/new", 
 usersController.authorizeRole('admin'), 
 usersController.redirectView, 
@@ -170,7 +174,7 @@ usersController.authorizeRole('admin'),
 usersController.redirectView, 
 itemsController.edit);
 
-router.get("/items/:id/update", 
+router.put("/items/:id/update", 
 usersController.authorizeRole('admin'), 
 usersController.redirectView, 
 itemsController.update, 
@@ -191,12 +195,6 @@ router.delete("/items/:id/delete",
 usersController.authorizeRole('admin'), 
 usersController.redirectView, 
 itemsController.delete, 
-itemsController.redirectView);
-
-
-router.post("/items/purchase/:id", 
-
-itemsController.purchase, 
 itemsController.redirectView);
 
 // Administrative Pages

@@ -6,12 +6,12 @@
 
     <div class="standard-div div-admin-edit-item">
 
-        <form method ="POST" action="<%= `/items/${item._id}/update?_method=PUT` %>">
+        <form class="form-admin-edit-item" method ="POST" action="<%= `/items/${item._id}/update?_method=PUT` %>">
             <label for ="manufacturer">Manufacturer</label>
             <input type = "text" name ="manufacturer" id ="manufacturer" value="<%= item.manufacturer %>" autofocus required>
     
             <label for ="model">Model</label>
-            <input type = "text" name ="model" id ="model" value="<%= item.manufacturer %>" required>
+            <input type = "text" name ="model" id ="model" value="<%= item.model %>" required>
     
             <label for ="price">Price</label>
             <input type = "number" name ="price" id ="price" value="<%= item.price %>" required>

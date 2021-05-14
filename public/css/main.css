@@ -367,7 +367,20 @@ h6{
 .div-admin-edit-item {
     padding: 2%; 
     background-color: #c54444; 
-    margin-top: 20px; 
+    margin-top: 20px;
+}
+
+.form-admin-add-item {
+    padding: 2%;
+}
+
+.form-admin-edit-item {
+    padding: 2%;
+}
+
+.checkout-total {
+    font-size: 1.3rem;
+    margin-left: 10px;
 }
 
 /* Image effects */

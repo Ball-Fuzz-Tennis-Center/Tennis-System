@@ -74,45 +74,20 @@
                         </tr>
                         
                     <% }); %>
-                        
-                    
-                     
-                    <% cartItems.forEach(cartItem => { %>
-                        
-                        <form method="POST" action="<%= `/items/purchase/${currentUser._id}/${cartItem.itemId}` %>">               
-                             
-                            <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <p>Recipt</p>
-                                    <span class="one">Item</span>
-                                    <span class="one">Price</span>
-                                    <span class="one">Quantity</span>
-                                    <span class="total"> Total Price</span>
-                                    <% cartItems.forEach(cartItem => { %>
-                                    <p><%= cartItem.manufacturer %> <%= cartItem.model %>
-                                    <p>$<%= cartItem.price %></p>
-                                    <p><%= cartItem.quantity %></p>
-                                    <p id ="total"></p>
-                                    <% }); %>
-                                    
-                                    <p></p>
-                                    <p> Thank you for choosing our small business.</p>
-                                </div>
-                            </div>
-                             
-                        </form>
-                          
-
-                    <% }); %>
-                    <button class="btn btn-lg btn-primary btn-danger" onclick ="Purchase()" id ="myBtn" >Purchase</button> 
                     
                 </tbody>
             </table>
 
+            <a class="btn btn-lg btn-primary btn-danger" href="<%= `/items/checkout` %>">Purchase</a>
+
+            <label class="checkout-total">Total: </label>
+            <% var total = 0; %>
+            <% cartItems.forEach(cartItem => { %>
+            <% total += (cartItem.price * cartItem.quantity); %>
+            <% }); %>
+            <label class="checkout-total">$<%= total %></label>
+
         </div>
 
         <% } %>
-
-    <script src="/js/shop.js"></script>
 </div>
