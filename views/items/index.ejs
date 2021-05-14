@@ -1,13 +1,13 @@
+<link rel="stylesheet" href="../css/shop.css">
 <div class="container">
-    <link rel="stylesheet" href="css/shop.css">
-
+    
     <header>
         <a href="/"> BallFuzz.Tennis</a>
     </header>
 
     <div class="standard-div">
         <% if (loggedIn) { %>
-            <h1 style="margin-bottom: 20px;">BallFuzz Shop</h1>
+            <h1 >BallFuzz Shop</h1>
         <% } else { %>
             <h1>You're not signed in!</h1>
             <a href="/users/signin">Sign in here</a>
@@ -18,7 +18,7 @@
 
         <div class="standard-div div-shop-items">
             
-            <h2 style="color: white;">Shop Inventory</h2>
+            <h2>Shop Inventory</h2>
     
             <div class="list-group list-group-custom">
 
@@ -29,7 +29,7 @@
                     <h5 class="mb-1" style="font-size: 1.2rem;"><%= item.manufacturer %></h5>
                     <small><%= item.quantity %> in stock</small>
                     </div>
-                    <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= item.model %></p>
+                    <p class="mb-1"><%= item.model %></p>
                     <small style="font-size: 1rem;">$<%= item.price %></small>
                 </a>
 
@@ -41,7 +41,7 @@
 
         <div class="standard-div div-shop-cart">
 
-            <h2 style="color: white;">Cart</h2>
+            <h2>Cart</h2>
 
             <table class="table table-striped table-shop-cart">
                 <thead class="thead-light">
@@ -54,28 +54,59 @@
                 </thead>
 
                 <tbody>
+                    
+                    <% cartItems.forEach(cartItem => { %>
+                        <tr>
+                            <td>
+                                <span class="span-cart-items" ><%= cartItem.manufacturer %> <%= cartItem.model %></span>
+                            </td>
+                            <td>
+                                <span class="span-cart-items" id= "price">$<%= cartItem.price %></span>
+                            </td>
+                            <td>
+                                <span class="span-cart-items" id= "quantity"><%= cartItem.quantity %></span>
+                            </td>
+                            <td>
+                                <a class="link-cart-items" href="<%= `/items/remove-from-cart/${currentUser._id}/${cartItem.itemId}/${cartItem._id}/${cartItem.quantity}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    <% }); %>
+                        
+                    
+                     
+                    <% cartItems.forEach(cartItem => { %>
+                        
+                        <form method="POST" action="<%= `/items/purchase/${currentUser._id}/${cartItem.itemId}` %>">               
+                             
+                            <div id="myModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <p>Recipt</p>
+                                    <span class="one">Item</span>
+                                    <span class="one">Price</span>
+                                    <span class="one">Quantity</span>
+                                    <span class="total"> Total Price</span>
+                                    <% cartItems.forEach(cartItem => { %>
+                                    <p><%= cartItem.manufacturer %> <%= cartItem.model %>
+                                    <p>$<%= cartItem.price %></p>
+                                    <p><%= cartItem.quantity %></p>
+                                    <p id ="total"></p>
+                                    <% }); %>
+                                    
+                                    <p></p>
+                                    <p> Thank you for choosing our small business.</p>
+                                </div>
+                            </div>
+                             
+                        </form>
+                          
 
-                <% cartItems.forEach(cartItem => { %>
-                
-                    <tr>
-                        <td>
-                            <span class="span-cart-items"><%= cartItem.manufacturer %> <%= cartItem.model %></span>
-                        </td>
-                        <td>
-                            <span class="span-cart-items">$<%= cartItem.price %></span>
-                        </td>
-                        <td>
-                            <span class="span-cart-items"><%= cartItem.quantity %></span>
-                        </td>
-                        <td>
-                            <a class="link-cart-items" href="<%= `/items/remove-from-cart/${currentUser._id}/${cartItem.itemId}/${cartItem._id}/${cartItem.quantity}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-
-                <% }); %>
-
+                    <% }); %>
+                    <button class="btn btn-lg btn-primary btn-danger" onclick ="Purchase()" id ="myBtn" >Purchase</button> 
+                    
                 </tbody>
             </table>
 

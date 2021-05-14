@@ -287,6 +287,34 @@ module.exports = {
         });
     },
 
+    purchase: (req,res, next) => {
+        let userId = req.params.userId;
+        let itemId = req.params.itemId;
+        let quantity = req.body.quantity;
+
+        CartItem.find().then(cartItems => {
+            cartItems.forEach(cartItem => {
+                let cartItemId = cartItem._id;
+               
+                
+                CartItem.findByIdAndDelete(cartItemId)
+                .then(() => {
+                    req.flash("success","You have made a sucessfull purchase");
+                    res.locals.redirect = "/";
+                    next();
+                })
+                .catch(error => {
+                    req.flash("error", "Transaction not sucessfull");
+                    res.locals.redirect = "/";
+                    next();
+                });
+
+                        
+                    })
+                });
+
+    },
+
     redirectView: (req,res, next) => {
         let redirectPath = res.locals.redirect;
         if(redirectPath !== undefined )res.redirect(redirectPath);

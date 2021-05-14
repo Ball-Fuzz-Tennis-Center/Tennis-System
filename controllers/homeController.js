@@ -20,13 +20,12 @@ module.exports = {
         };
         Subscriber.create(newSubcriber)
         .then( subscriber => {
-            res.locals.redirect = "/signin";
+            res.locals.redirect = "/calendar";
             res.locals.subscriber = subscriber;
-            
             next();
         })
         .catch( error => {
-            console.log(`Error saving course: ${error.message}`);
+            console.log(`Error saving userId: ${error.message}`);
              next(error)
         })
     },

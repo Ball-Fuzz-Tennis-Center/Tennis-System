@@ -193,6 +193,12 @@ usersController.redirectView,
 itemsController.delete, 
 itemsController.redirectView);
 
+
+router.post("/items/purchase/:id", 
+
+itemsController.purchase, 
+itemsController.redirectView);
+
 // Administrative Pages
 
 router.get("/admin-dashboard", 

@@ -370,9 +370,6 @@ h6{
     margin-top: 20px; 
 }
 
-
-
-
 /* Image effects */
 
  /* Container holding the image and the text */
@@ -391,3 +388,12 @@ h6{
   .img {
       object-fit: cover;
   }
+
+  .container-two{
+    font-family: 'Oswald'; 
+    font-size:1.3rem;
+  }
+
+  
+
+ 
