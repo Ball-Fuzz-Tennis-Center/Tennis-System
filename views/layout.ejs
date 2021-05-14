@@ -10,65 +10,114 @@
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <a class="navbar-brand" href="/">Ball Fuzz Tennis Center</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Facilities
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="reserve-court">Reserve a Court</a>
-                        <a class="dropdown-item" href="reserve-lesson">Reserve a Lesson</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signIn">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signUp">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="calendar">Calendar</a>
-                </li>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand" href="/">Ball Fuzz Tennis Center</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
 
-            </ul>
+                    <% if (loggedIn) { %>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/items/shop">Shop</a>
+                    </li> 
+
+                    <% }  else { %>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/signin">Shop</a>
+                    </li>
+
+                    <% } %>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calendar">Calendar</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Reserve
+                        </a>
+
+                        <% if (loggedIn) { %>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/reserve-court">Reserve a Court</a>
+                            <a class="dropdown-item" href="/reserve-lesson">Reserve a Lesson</a>
+                        </div>
+
+                        <% } else { %>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/users/signin">Reserve a Court</a>
+                            <a class="dropdown-item" href="/users/signin">Reserve a Lesson</a>
+                        </div>
+
+                        <% } %>
+
+                    </li>
+
+                </ul>
+                
+                <ul class="navbar-nav ml-auto"></ul>
+
+                <% if (loggedIn) { %>
+
+                    <li class="navbar-nav nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarAccountDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Signed in as <%= currentUser.name.first %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="<%= `/users/${currentUser._id}` %>">Profile</a>
+
+                            <% if (currentUser.role == 'admin') { %>
+
+                            <a class="dropdown-item" href="/admin-dashboard">Admin Dashboard</a>
+
+                            <% } %>
+
+                            <a class="dropdown-item" href="/users/signout">Log Out</a>
+                        </div>
+                    </li>
+
+                <% } else { %>
+
+                    <li class="navbar-nav nav-item">
+                        <a class="nav-link" href="/users/signin">Sign In</a>
+                    </li>
+
+                    <li class="navbar-nav nav-item navbar-signin-option-divider">
+                        - or -
+                    </li>
+
+                    <li class="navbar-nav nav-item">
+                        <a class="nav-link" href="/users/new">Join Us!</a>
+                    </li>
+
+                <% } %>
+
+                </ul>
+                
+            </div>
         </div>
     </nav>
-
-    <div class="login-status">
-        <% if (loggedIn) { %>
-            <div class=" bubble logged-in">
-                Logged in as <a href="<%=`${currentUser._id}`%>">
-                    <%= currentUser.fullName %></a>
-            </div>
-            <div class=" bubble log-out">
-                <a href="/logout">Log out</a>
-            </div>
-        <% } %>
-    </div>
-
     
     <div class="flashes">
         <% if (flashMessages) { %>
           <% if (flashMessages.success) { %>
-            <div class="flash success"><%= flashMessages.success %></div>
+            <div class="flash success flash-div"><%= flashMessages.success %></div>
           <% } else if (flashMessages.error) { %>
-            <div class="flash error"><%= flashMessages.error %></div>
+            <div class="flash error flash-div"><%= flashMessages.error %></div>
           <% } %>
         <% } %>
     </div>
@@ -82,9 +131,7 @@
 
 <footer>
     <h6> Let's Play Tennis</h6>
-    <p>© 2021 by RD and JF. All Rights Reserved. BallFuzz's Tennis Center Is Proud To Serve the Colorado Tennis Community</p>
-    <p>Contact us: 720-989-4367, ballfuzztennis@gmail.com </p>
-    <p>Location: 18 Couscous St, Denver CO</p>
+    <p class="sitefooter">© 2021 by RD and JF. All Rights Reserved. BallFuzz Tennis Center is proud to serve the Colorado tennis community!</p>
 
 </footer>
 

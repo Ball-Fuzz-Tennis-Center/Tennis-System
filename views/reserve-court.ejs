@@ -1,7 +1,4 @@
 <div>
-    <!-- <link rel="stylesheet" href="css/reserve-court.css"> -->
-    <!-- Court Reservation Form -->
-
     <header>
         <a href="/"> BallFuzz.Tennis</a>
     </header>
@@ -10,65 +7,81 @@
         var passedDates = '<%- JSON.stringify(dates) %>';
     </script>
 
-    <form class="signin" autocomplete="off" action="/reserve-court" method="POST">
-        <fieldset class="border" style="margin:5%;">
+    <% if (loggedIn) { %>
 
-            <legend class="w-auto">New Court Reservation</legend>
+        <form class="signin" autocomplete="off" action="/reserve-court" method="POST">
 
-            <p>Notice: Courts may only be reserved up to 5 days in advance!</p>
+            <fieldset class="border" style="margin: 2%;">
+                
+                <legend class="w-auto">New Court Reservation</legend>
+        
+                    <p>Notice: Courts may only be reserved up to 5 days in advance!</p>
+        
+                    <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                        <div class="col">
+                            <label for="durationDropdown" class="col-form-label">How long?</label>
+                        </div>
+                        <div class="col">
+                            <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedDurationDropdown()">
+                                <option value="-1" selected>Pick one...</option>
+                                <option value="1">30 Minutes</option>
+                                <option value="2">60 Minutes</option>
+                                <option value="3">90 Minutes</option>
+                                <option value="4">120 Minutes</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                        <div class="col">
+                            <label for="dateSelect" class="col-form-label">Which day?</label>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" id="dateSelect" name="dateSelect" onchange="changedDateSelect()">
+                                <option value="-1" selected>Pick a day...</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                        <div class="col">
+                            <label for="ballMachineCheck" class="col-form-label">Ball machine?</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="ballMachineCheck" name="ballMachineCheck">
+                        </div>
+                    </div>
+        
+                    <div class="form-group row col-sm-12 col-md-8 col-lg-7">
+                        <div class="col">
+                            <label for="timeDropdown" class="col-form-label">Start time:</label>
+                        </div>
+                        <div class="col">
+                            <select id="timeDropdown" name="timeDropdown" class="form-control">
+                                <option value="-1" selected>Pick a time...</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <div class="col-sm-12 col-md-8 col-lg-7">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                    </div>
 
-            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                <div class="col">
-                    <label for="durationDropdown" class="col-form-label">How long?</label>
-                </div>
-                <div class="col">
-                    <select id="durationDropdown" name="durationDropdown" class="form-control" onchange="changedDurationDropdown()">
-                        <option value="-1" selected>Pick one...</option>
-                        <option value="1">30 Minutes</option>
-                        <option value="2">60 Minutes</option>
-                        <option value="3">90 Minutes</option>
-                        <option value="4">120 Minutes</option>
-                    </select>
-                </div>
-            </div>
+            </fieldset>
+            <img src='/images/part2.jpg' alt="tennis pic">
+        </form>
 
-            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                <div class="col">
-                    <label for="dateSelect" class="col-form-label">Which day?</label>
-                </div>
-                <div class="col">
-                    <select class="form-select" id="dateSelect" name="dateSelect" onchange="changedDateSelect()">
-                        <option value="-1" selected>Pick a day...</option>
-                    </select>
-                </div>
-            </div>
+    <% } else { %>
 
-            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                <div class="col">
-                    <label for="ballMachineCheck" class="col-form-label">Ball machine?</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ballMachineCheck" name="ballMachineCheck">
-                </div>
-            </div>
+        <div class="standard-div">
+            <h1>You're not signed in!</h1>
+            <a href="/users/signin">Sign in here</a>
+        </div>
 
-            <div class="form-group row col-sm-12 col-md-8 col-lg-7">
-                <div class="col">
-                    <label for="timeDropdown" class="col-form-label">Start time:</label>
-                </div>
-                <div class="col">
-                    <select id="timeDropdown" name="timeDropdown" class="form-control">
-                        <option value="-1" selected>Pick a time...</option>
-                    </select>
-                </div>
-            </div>
+    <% } %>
 
-            <div class="col-sm-12 col-md-8 col-lg-7">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-secondary" onclick="resetForm()">Reset</button>
-            </div>
-
-        </fieldset>
-    </form>
-    <script src="js/reserve-court.js"></script>
+    <script src="/js/reserve-court.js"></script>
 </div>
+
+<!--“Jonas Wood - Four Majors: Unbound: Online Auction New York Wednesday, October 30, 2019 Lot 26.” Phillips, www.phillips.com/detail/jonas-wood/NY000619/26. -->

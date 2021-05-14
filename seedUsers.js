@@ -22,7 +22,8 @@ var users = [
     email: "jon@jonwexler.com",
     password: "12346Pa!",
     gender: "male",
-    dob: "03/21/2000"
+    dob: "03/21/2000",
+    role: "standard"
   },
   {
     name: {
@@ -33,7 +34,8 @@ var users = [
     gender:"male",
     email: "eggplant@recipeapp.com",
     dob: "03/21/2001",
-    password: "12345Pa@"
+    password: "12345Pa@",
+    role: "standard"
   },
   {
     name:{
@@ -44,7 +46,20 @@ var users = [
     gender:"male",
     email: "souffle@recipeapp.com",
     dob: "03/21/2002",
-    password: "12348Pa!"
+    password: "12348Pa!",
+    role: "standard"
+  },
+  {
+    name: {
+      first: "Admin",
+      last: "Admin"
+    },
+    username: "Administrator",
+    gender: "other",
+    email: "admin@ballfuzz.tennis",
+    dob: "01/01/1900",
+    password: "tennis",
+    role: "admin"
   }
 ];
 let registerUser = (u, resolve) => {
@@ -58,7 +73,8 @@ let registerUser = (u, resolve) => {
         gender:u.gender,
         email: u.email,
         dob: u.dob,
-        password: u.password
+        password: u.password,
+        role: u.role
       },
       u.password,
       (error, user) => {

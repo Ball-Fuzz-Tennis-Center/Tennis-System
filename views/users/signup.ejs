@@ -4,7 +4,7 @@
         <a href="/"> BallFuzz.Tennis</a>
     </header>
 
-    <form  method ="post" action ="/signup"  onsubmit="return validateForm()" id="mainForm" novalidate>
+    <form  method ="post" action ="/users/create"  onsubmit="return validateForm()" id="mainForm" novalidate>
 
         <fieldset class="border">
             <h3 class="w-auto1">Sign Up</h3>
@@ -37,9 +37,9 @@
                 </div>
 
                 <div class="row form-group  col-lg">
-                    <label for="txtUsername" class="col-sm-4 col-form-label"> UserName:</label>
+                    <label for="txtUsername" class="col-sm-4 col-form-label"> Username:</label>
                     <div class="col-sm-8">
-                        <input type="text" id="txtUsername" name="username" required class="form-control" placeholder="Jamie">
+                        <input type="text" id="txtUsername" name="username" required class="form-control" placeholder="Username">
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                 <div class="row form-group  col-lg">
                     <label for="inputEmail" class="col-sm-4 col-form-label"> Email:</label>
                     <div class="col-sm-8">
-                        <input type="emai" id="inputEmail" name="email" required class="form-control" placeholder="name@example.com">
+                        <input type="email" id="inputEmail" name="email" required class="form-control" placeholder="Email Address">
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@
                 <div class="row form-group  col-lg">
                     <label for="inputPassword" class="col-sm-4 col-form-label"> Password:</label>
                     <div class="col-sm-8">
-                        <input type="password" id="inputPassword" name="password" required class="form-control" placeholder="password">
+                        <input type="password" id="inputPassword" name="password" required class="form-control" placeholder="Password">
                         <div id="divConditionError" class="invisible errorMessage"> </div>
                     </div>
                 </div>
@@ -112,13 +112,11 @@
                     <label for="txtConfirmPassword" class="col-sm-4 col-form-label">Confirm Password:</label>
                     <div class="col-sm-8">
                         <input type="password" id="txtConfirmPassword" name="confirmPassword" required class="form-control"
-                            placeholder="password">
+                            placeholder="Password">
                         <div id="divPasswordError" class="invisible errorMessage"> </div>
                     </div>
 
                 </div>
-
-
 
                 <div class="col-lg">
                     <fieldset class="border form-group">
@@ -169,7 +167,7 @@
 
 
         </fieldset>
-        <img src='images/part2.jpg' alt="tennis pic">
+        <img src='/images/part2.jpg' alt="tennis pic">
 
         <div class="low form-group row col-lg">
             <div class="col-sm-12">
@@ -179,7 +177,7 @@
         </div>
     </form>
 
-    <script src="js/signup.js"></script>
+    <script src="/js/signup.js"></script>
 </div>
 
 <!--“Jonas Wood - Four Majors: Unbound: Online Auction New York Wednesday, October 30, 2019 Lot 26.” Phillips, www.phillips.com/detail/jonas-wood/NY000619/26. -->

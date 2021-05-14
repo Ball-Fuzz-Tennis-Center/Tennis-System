@@ -8,13 +8,6 @@ const mongoose = require("mongoose"),
 mongoose.connect("mongodb://localhost:27017/tennis-system");
 mongoose.connection;
 
-// user json
-
-// User Data
-
-
-
-
 var commands = [];
 
 // Court Reservation Data

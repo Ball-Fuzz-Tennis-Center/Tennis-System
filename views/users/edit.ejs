@@ -1,0 +1,93 @@
+<div>
+    <link rel="stylesheet" href="css/signuperr.css">
+    <header>
+        <a href="/"> BallFuzz.Tennis</a>
+    </header>
+
+    <form method="POST" action="<%= `/users/${user._id}/update?_method=PUT` %>" id="mainForm" novalidate>
+
+        <fieldset class="border">
+            <h3 class="w-auto1">Edit Profile</h3>
+            <div class="hero-bg1">
+                <div id="divInvalidError" class="invisible errorMessage"> </div>
+                <div class="form-group row col-lg">
+                    <div class="col-sm-4">
+                        <label for="txtFirstName" class="col-form-label">
+                            <span>First Name:</span>
+
+                        </label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtFirstName" name="first" required class="form-control" placeholder="First Name"
+                            required value="<%= user.name.first %>">
+                    </div>
+                </div>
+
+                <div class="form-group row col-lg">
+                    <div class="col-sm-4">
+                        <label for="txtLastName" class="col-form-label">
+                            <span>Last Name:</span>
+
+                        </label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtLastName" name="last" required class="form-control" placeholder="Last Name"
+                            required value="<%= user.name.last %>">
+                    </div>
+                </div>
+
+                <div class="row form-group  col-lg">
+                    <label for="txtUsername" class="col-sm-4 col-form-label"> Username:</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtUsername" name="username" required class="form-control" placeholder="Username" value="<%= user.username %>">
+                    </div>
+                </div>
+
+                <div class="row form-group  col-lg">
+                    <label for="inputEmail" class="col-sm-4 col-form-label"> Email:</label>
+                    <div class="col-sm-8">
+                        <input type="email" id="inputEmail" name="email" required class="form-control" placeholder="Email Address" value="<%= user.email %>" disabled>
+                    </div>
+                </div>
+
+                <div class="row form-group  col-lg">
+                    <label for="txtAddress" class=" col-sm-2 col-form-label"> Address:</label>
+
+                    <div class="col-md-4 col-lg-4">
+                        <input type="txt" id="txtAddress" name="street" class="form-control" placeholder="Street" value="<%= user.street %>">
+                    </div>
+
+
+                    <div class="col">
+                        <input type="txt" id="txtCity" name="city" class="form-control" placeholder="City" value="<%= user.city %>">
+                    </div>
+
+                    <div class="col">
+                        <input type="txt" id="txtState" name="state" class="form-control" placeholder="State" value="<%= user.state %>">
+                    </div>
+
+                    <div class="col">
+                        <input type="txt" id="txtZipcode" name="zipcode" class="form-control" placeholder="Zipcode" pattern=[0-9]{5} value="<%= user.zipcode %>">
+                    </div>
+
+                    <p style="margin-top: 20px;">Notice: Any other information must be modified by a system administrator. Please contact us to do so.</p>
+
+                </div>
+
+        </fieldset>
+        <img src='/images/part2.jpg' alt="tennis pic">
+
+        <div class="low form-group row col-lg">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                <button type="button" onclick="document.location='<%= `/users/${user._id}` %>'" class="btn btn-primary btn-lg">Cancel</button>
+                <br>
+                <a style="color: red; font-size: 1rem;" href="<%= `/users/${user._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure?')">Delete Account</a>
+            </div>
+        </div>
+    </form>
+
+    <script src="/js/signup.js"></script>
+</div>
+
+<!--“Jonas Wood - Four Majors: Unbound: Online Auction New York Wednesday, October 30, 2019 Lot 26.” Phillips, www.phillips.com/detail/jonas-wood/NY000619/26. -->

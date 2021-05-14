@@ -20,6 +20,7 @@ connectFlash = require("connect-flash");
 
 const homeController = require("./controllers/homeController");
 const usersController = require("./controllers/usersController");
+const itemsController = require("./controllers/itemsController");
 const reservationController = require("./controllers/reservationController");
 const errorController = require("./controllers/errorController");
 
@@ -90,23 +91,128 @@ router.use((req,res,next) => {
 
 router.get("/", homeController.showIndex);
 
+// Users
 
-router.get("/signup", usersController.showSignUp);
-router.post("/signup", usersController.validate, usersController.userAuthentication, usersController.redirectView);
+router.get("/users/new", 
+usersController.showSignUp);
 
-router.get("/signin", usersController.showSignIn);
-router.post("/signin", usersController.authenticate );
-router.get("/logout", usersController.logout, usersController.redirectView)
+router.post("/users/create", 
+usersController.validate, 
+usersController.create, 
+usersController.redirectView);
 
+router.get("/users/signin", 
+usersController.showSignIn);
 
-router.get("/reserve-court", reservationController.showReserveCourt);
-router.post("/reserve-court", reservationController.reserveCourt, reservationController.showReserveCourt);
+router.post("/users/signin", 
+usersController.authenticate);
 
-router.get("/reserve-lesson", reservationController.showReserveLesson);
-router.post("/reserve-lesson", reservationController.reserveLesson);
+router.get("/users/signout", 
+usersController.signOut, 
+usersController.redirectView);
 
-router.get("/calendar", homeController.showCaledar);
-// Setup errors
+router.get("/users/:id/edit", 
+usersController.edit);
+
+router.put("/users/:id/update", 
+usersController.validateUpdate, 
+usersController.update, 
+usersController.redirectView);
+
+router.get("/users/:id/change-password", 
+usersController.showChangePassword);
+
+router.post("/users/:id/change-password", 
+usersController.changeUserPassword, 
+usersController.redirectView);
+
+router.get("/users/:id", 
+usersController.show);
+
+router.delete("/users/:id/delete", 
+usersController.delete, 
+usersController.redirectView);
+
+// Reservations
+
+router.get("/reserve-court", 
+reservationController.showReserveCourt);
+
+router.post("/reserve-court", 
+reservationController.reserveCourt, 
+reservationController.redirectView);
+
+router.get("/reserve-lesson", 
+reservationController.showReserveLesson);
+
+router.post("/reserve-lesson", 
+reservationController.reserveLesson, 
+reservationController.redirectView);
+
+// Items
+
+router.get('/items/shop', 
+itemsController.index);
+
+router.get("/items/checkout",
+itemsController.checkout, 
+itemsController.redirectView);
+
+router.get("/items/new", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.new);
+
+router.post("/items/create", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.create, 
+itemsController.redirectView);
+
+router.get("/items/:id/edit", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.edit);
+
+router.put("/items/:id/update", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.update, 
+itemsController.redirectView);
+
+router.post("/items/add-to-cart/:userId/:itemId", 
+itemsController.addItemToCart, 
+itemsController.redirectView);
+
+router.delete("/items/remove-from-cart/:userId/:itemId/:cartItemId/:quantity/delete",
+itemsController.removeItemFromCart,
+itemsController.redirectView);
+
+router.get("/items/:id", 
+itemsController.show);
+
+router.delete("/items/:id/delete", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+itemsController.delete, 
+itemsController.redirectView);
+
+// Administrative Pages
+
+router.get("/admin-dashboard", 
+usersController.authorizeRole('admin'), 
+usersController.redirectView, 
+usersController.showAdminDashboard);
+
+// Other Pages
+router.get("/calendar", 
+homeController.showCalendar);
+
+router.post("/subscribers/create", 
+homeController.createSubscribers,
+homeController.redirectView);
+
+// Errors
 
 router.use(errorController.pageNotFoundError);
 router.use(errorController.internalServerError);

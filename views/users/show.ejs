@@ -1,0 +1,166 @@
+<div>
+    <header>
+        <a href="/"> BallFuzz.Tennis</a>
+    </header>
+
+    <div class="standard-div">
+        
+        <% if (loggedIn) { %>
+            <h1 style="margin-bottom: 20px;"><%= currentUser.fullName %></h1>
+        <% } else { %>
+            <h1>You're not signed in!</h1>
+            <a href="/users/signin">Sign in here</a>
+        <% } %>
+
+        <% if (loggedIn) { %>
+
+            <div class="standard-div shadow div-account-details">
+            
+                <h2 style="color: white;">Account Details</h2>
+    
+                <div class="list-group list-group-custom">
+    
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">First Name</h5>
+                      </div>
+                      <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.name.first %></p>
+                      <small style="font-size: 1rem;"></small>
+                    </a>
+
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1" style="font-size: 1.2rem;">Last Name</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.name.last %></p>
+                        <small style="font-size: 1rem;"></small>
+                      </a>
+
+                      <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1" style="font-size: 1.2rem;">Username</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.username %></p>
+                        <small style="font-size: 1rem;"></small>
+                      </a>
+
+                      <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1" style="font-size: 1.2rem;">Email Address</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.email %></p>
+                        <small style="font-size: 1rem;"></small>
+                      </a>
+
+                </div>
+            </div>
+
+            <div class="standard-div shadow div-address-details">
+            
+                <h2 style="color: white;">Address Details</h2>
+    
+                <div class="list-group list-group-custom">
+    
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">Home Address</h5>
+                      </div>
+                      <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.street %>, <%= currentUser.city %>, <%= currentUser.state %> <%= currentUser.zipcode %></p>
+                      <small style="font-size: 1rem;"></small>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="standard-div shadow div-personal-details">
+
+                <h2 style="color: white;">Personal Details</h2>
+        
+                <div class="list-group list-group-custom">
+
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">Date of Birth</h5>
+                    </div>
+                    <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.dob.toDateString() %></p>
+                    <small style="font-size: 1rem;"></small>
+                    </a>
+
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" style="font-size: 1.2rem;">Gender</h5>
+                        </div>
+                        <p class="mb-1" style="font-size: 1.7rem; color: navy;"><%= currentUser.gender %></p>
+                        <small style="font-size: 1rem;"></small>
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="<%= `/users/${currentUser._id}/edit` %>">Edit Profile</a>
+            <br>
+            <a href="<%= `/users/${currentUser._id}/change-password` %>">Change Password</a>
+
+        <% } %>
+
+    </div>
+
+    <% if (loggedIn) { %>
+
+    <div class="standard-div div-reservations">
+        
+        <h1 style="margin-bottom: 20px;">Reservations</h1>
+
+        <div class="standard-div shadow div-reservations-court">
+            
+            <h2 style="color: white;">Court Reservations</h2>
+
+            <div class="list-group list-group-custom">
+
+                <% courtReservations.forEach(reservation => { %>
+
+                <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 title-reservation"><%= reservation.date %></h5>
+                  </div>
+                  <p class="mb-1 info-reservation"><%= reservation.startTime %> to <%= reservation.endTime %></p>
+                  <small style="font-size: 1rem;">
+                    <% if (reservation.ballMachine) { %>
+                        With Ball Machine
+                    <% } %>
+                  </small>
+                </a>
+
+                <% }); %>
+
+            </div>
+        </div>
+
+        <div class="standard-div shadow div-reservations-lesson">
+            
+            <h2 style="color: white;">Lesson Reservations</h2>
+
+            <div class="list-group list-group-custom">
+
+                <% lessonReservations.forEach(reservation => { %>
+
+                <a href="" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-custom">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 title-reservation"><%= reservation.date %></h5>
+                  </div>
+                  <p class="mb-1 info-reservation"><%= reservation.startTime %> to <%= reservation.endTime %></p>
+                  <small></small>
+                </a>
+
+                <% }); %>
+
+            </div>
+        </div>
+
+    </div>
+
+    <% } %>
+
+    <script src="/js/view-profile.js"></script>
+
+</div>

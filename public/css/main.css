@@ -5,24 +5,27 @@ body{
     margin:0;
     background:#ffAE42;
     background-repeat: no-repeat;
+    padding-top: 70px;
     padding-right: 5em;
     padding-left: 5em;
     font-weight: 600;
-
 }
 
 header a{
     font-weight: 600;
-    font-size: 4.5rem;
-    padding-bottom: 2em;
+    font-size: 2rem;
+    padding-bottom: 1em;
     color: aliceblue;
     cursor: pointer;
+    
 }
 
 header{
     text-align: center;
     padding-top: 5em;
     padding-bottom: 5em;
+    text-decoration: none;
+    background-image:url("images/tennis.jpg") ;
 }
 
 form {
@@ -33,6 +36,21 @@ form {
     
 }
 
+.standard-div {
+    text-align: left;
+    border-radius: 0.8em;
+    background-color: aliceblue;
+    color: #00224B;
+    padding: 5%;
+}
+
+.flash-div {
+    text-align: center;
+    border-radius: 0.8em;
+    background-color: #e9a142;
+    color: #00224B;
+    padding: 0.8%;
+}
 
 .hero-bg{
     font-size: 2rem;
@@ -123,7 +141,11 @@ footer{
 }
 
 h6{
-    font-size: 2.6rem;
+    font-size: 1.5rem;
+}
+
+.sitefooter {
+    font-size: 1rem;
 }
 
 
@@ -185,16 +207,180 @@ h6{
     }
 }
 
-/* Modify navbar background color */ 
+/* Navbar */ 
           
 .navbar-custom { 
-    background-color: #ffAE42; 
+    background-color: #3ec994; 
 } 
+
+.navbar-signin-option-divider {
+    color: aliceblue;
+}
+
 /* Modify brand and text color */ 
   
 .navbar-custom .navbar-brand, 
 .navbar-custom .navbar-text { 
-    color: white; 
+    color: white;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: rgb(235, 235, 235);
+    font-size: 1.2rem;
+}
+
+/* Album */
+
+.album-custom {
+    background-color: #e9a142;
+}
+
+.card-custom {
+    background-color: #c54444;
+}
+
+.card-text {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.card-button-custom {
+    background-color: #3ec994;
+    border-color: #3ec994;
+    font-size: 1.3rem;
+}
+
+/* Custom Blocks */
+
+.div-index {
+    background-color: #e9a142; 
+    padding: 1%;
+}
+
+.div-account-details {
+    padding: 2%; 
+    background-color: #c54444;
+}
+
+.div-address-details {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 10px;
+}
+
+.div-personal-details {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.div-reservations {
+    margin-top: 30px;
+}
+
+.div-reservations-court {
+    padding: 2%; 
+    background-color: #c54444;
+}
+
+.div-reservations-lesson {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 10px;
+}
+
+.title-reservation {
+    font-size: 2rem;
+}
+
+.info-reservation {
+    font-size: 1.5rem; 
+    color: navy;
+}
+
+.signup-link {
+    color: deepskyblue;
+}
+
+.div-admin-users {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.table-admin-users {
+    margin-top: 20px;
+}
+
+.span-admin-users {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.link-admin-users {
+    font-size: 1.2rem;
+    color: lightcoral;
+}
+
+.div-admin-items {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.div-shop-items {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.table-admin-items {
+    margin-top: 20px;
+}
+
+.div-shop-cart {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px; 
+}
+
+.table-shop-cart {
+    margin-top: 20px;
+}
+
+.span-cart-items {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.link-cart-items {
+    font-size: 1.2rem;
+    color: lightcoral;
+}
+
+.card-text-custom {
+    color: darkgreen;
+}
+
+.div-admin-edit-item {
+    padding: 2%; 
+    background-color: #c54444; 
+    margin-top: 20px;
+}
+
+.form-admin-add-item {
+    padding: 2%;
+}
+
+.form-admin-edit-item {
+    padding: 2%;
+}
+
+.checkout-total {
+    font-size: 1.3rem;
+    margin-left: 10px;
 }
 
 /* Image effects */
@@ -215,3 +401,12 @@ h6{
   .img {
       object-fit: cover;
   }
+
+  .container-two{
+    font-family: 'Oswald'; 
+    font-size:1.3rem;
+  }
+
+  
+
+ 

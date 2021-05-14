@@ -1,39 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-body{
-    font-family: 'Oswald';
-    margin:0;
-    background:#ffAE42;
-    box-sizing: border-box;
-}
-
-html{
-    font-size:62.5%;
-}
-header{
-  text-align: center;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  background:#ffAE42;
-}
-
-header a{
- 
-  font-weight: 600;
-  font-size: 4.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: aliceblue;
-}
 
 .container{
   width:100%;
   height: 50%;
-  background-color: #ffAE42;
-  color: #00224B;
-  display:flex;
-  justify-content:center;
-  
-  
+  position: realtive;
 }
 
 .calendar{
@@ -41,8 +11,9 @@ header a{
   height:100%;
   background:aliceblue;
   color: #00224B;
+  justify-content:center;
   box-shadow: 0 0.5rem 3rem rgba(0,0,0,0.4);
-  
+
 }
 
 .month{
@@ -72,11 +43,6 @@ header a{
 .round {
   border-radius: 50%;
 }
-a:hover {
-  background-color:#ffAE42;
-  color: black;
-}
-
 .month p{
   font-size: 1rem;
 }
@@ -118,11 +84,11 @@ a:hover {
   
 }
 .days div{
-  font-size:1rem;
+  font-size:1 rem;
   
   width:calc(100%/7);
-  text-align:left;
-  height: 10rem;
+  
+  height: 7rem;
   display:flex;
   border: 1px solid black;
   justify-content: center;
@@ -131,8 +97,23 @@ a:hover {
   
 }
 
-.days div:hover:not(.today){
-  background-color:#04AA6D ;
+ .event{
+   font-size: 0.8rem;
+   border:0.1rem solid black;
+   background-color: lightblue;
+   display: block;
+ }
+
+.days .month-day{
+  text-align:left;
+  display: block;
+}
+.days .today{
+  display: block;
+}
+
+.days .month-day:hover:not(.today){
+  background-color: #04AA6D;
   border:0.2rem solid black;
   cursor:pointer;
 }
@@ -146,3 +127,40 @@ a:hover {
   background-color:#ffAE42 ;
 }
 
+.days .month-day .modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+ 
+}
+
+ .days .month-day .modal .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 5px;
+  border: 1px solid #888;
+  width: 60%; 
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.days .month-day .modal .modal-content .close {
+  color: #aaa;
+  float: right;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.days .month-day .modal .modal-content .close:hover,
+.days .month-day .modal .modal-content .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -8,16 +8,45 @@ let courtReservationDates = [];
 
 module.exports = {
     showReserveCourt: (req, res) => {
-        fetchCourtReservationDatesAndShow(res);
-    },
-    showReserveLesson: (req, res) => {
-        fetchLessonReservationDatesAndShow(res);
-    },
-    reserveCourt: (req, res, next) => {
-        let user = User(res.locals.user);
 
         CourtReservationDate.find({}, function (err, dates) {
-            if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
+            if (err != undefined) { 
+                console.log(`Failed to fetch court reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch court reservations.");
+                next();
+             }
+    
+            dates.sort((a, b) => (a.date > b.date) ? 1: -1);
+    
+            res.render("reserve-court", { dates: dates });
+        });
+    },
+    showReserveLesson: (req, res) => {
+        
+        LessonReservationDate.find({}, function (err, dates) {
+            if (err != undefined) { 
+                console.log(`Failed to fetch lesson reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch lesson reservations.");
+                next();
+             }
+    
+            dates.sort((a, b) => (a.date > b.date) ? 1: -1);
+    
+            res.render("reserve-lesson", { dates: dates });
+        });
+    },
+    reserveCourt: (req, res, next) => {
+        let user = User(res.locals.currentUser);
+
+        CourtReservationDate.find({}, function (err, dates) {
+            if (err != undefined) { 
+                console.log(`Failed to fetch court reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch court reservations.");
+                next();
+            }
 
             dates.forEach((date) => {
                 if (date._id == req.body.dateSelect) {
@@ -41,21 +70,29 @@ module.exports = {
                             "timeSlotBallMachines": newTimeSlotBallMachines
                         }, function (err, result) {
                         if (!err) {
+                            res.locals.redirect = "/";
+                            req.flash("success", "Successfully booked court.");
                             next();
                         }
                         else {
-                            console.log(`Error updating reservation! ${err}`);
+                            res.locals.redirect = "/reserve-court";
+                            req.flash("error", "Failed to book court.");
                         }
                     });
                 }
             });
         });
     },
-    reserveLesson: (req, res) => {
-        let user = User(res.locals.user);
+    reserveLesson: (req, res, next) => {
+        let user = User(res.locals.currentUser);
 
         LessonReservationDate.find({}, function (err, dates) {
-            if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
+            if (err != undefined) {
+                console.log(`Failed to fetch lesson reservation dates: ${err.message}`);
+                res.locals.redirect = "/";
+                req.flash("Internal Error: Failed to fetch lesson reservations.");
+                next();
+            }
 
             dates.forEach((date) => {
                 if (date._id == req.body.dateSelect) {
@@ -71,34 +108,22 @@ module.exports = {
 
                     LessonReservationDate.findByIdAndUpdate(dateId, {"timeSlots": newTimeSlots}, function (err, result) {
                         if (!err) {
+                            res.locals.redirect = "/";
+                            req.flash("success", "Successfully booked lesson.");
                             next();
                         }
                         else {
-                            console.log(`Error updating reservation! ${err}`);
+                            res.locals.redirect = "/reserve-lesson";
+                            req.flash("error", "Failed to book lesson.");
                         }
                     });
                 }
             });
         });
+    },
+    redirectView: (req, res, next) => {
+        let redirectPath = res.locals.redirect;
+        if (redirectPath !== undefined) res.redirect(redirectPath);
+        else next();
     }
 };
-
-function fetchCourtReservationDatesAndShow(res) {
-    CourtReservationDate.find({}, function (err, dates) {
-        if (err != undefined) { console.log(`Failed to fetch court reservation dates: ${err.message}`); }
-
-        dates.sort((a, b) => (a.date > b.date) ? 1: -1);
-
-        res.render("reserve-court", { dates: dates });
-    });
-}
-
-function fetchLessonReservationDatesAndShow(res) {
-    LessonReservationDate.find({}, function (err, dates) {
-        if (err != undefined) { console.log(`Failed to fetch lesson reservation dates: ${err.message}`); }
-
-        dates.sort((a, b) => (a.date > b.date) ? 1: -1);
-
-        res.render("reserve-lesson", { dates: dates });
-    });
-}
