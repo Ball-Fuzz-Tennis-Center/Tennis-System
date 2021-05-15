@@ -4,7 +4,11 @@ const mongoose = require("mongoose"),
   User = require("./models/user"),
   Item = require("./models/item");
 
-mongoose.connect("mongodb://localhost:27017/tennis-system");
+mongoose.connect(
+process.env.MONGODB_URI ||
+"mongodb://localhost:27017/tennis-system", 
+{ useNewUrlParser: true, useUnifiedTopology: true }
+);
 mongoose.connection;
 
 var commands = [];
