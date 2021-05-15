@@ -5,7 +5,11 @@ const mongoose = require("mongoose"),
   CourtReservationDate = require("./models/courtReservationDate"),
   LessonReservationDate = require("./models/lessonReservationDate");
 
-mongoose.connect("mongodb://localhost:27017/tennis-system");
+mongoose.connect(
+  process.env.MONGODB_URI ||
+  "mongodb://localhost:27017/tennis-system", 
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
 mongoose.connection;
 
 var commands = [];

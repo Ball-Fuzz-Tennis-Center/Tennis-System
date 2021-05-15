@@ -31,6 +31,7 @@ const User = require("./models/user");
 const mongoose = require("mongoose");
 //const cookieParser = require("cookie-parser");
 mongoose.connect(
+    process.env.MONGODB_URI ||
     "mongodb://localhost:27017/tennis-system", 
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
